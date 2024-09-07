@@ -51,7 +51,8 @@ Chapter - Debug Mode
 
 Volume - Beginning The Story
 
-
+When play begins:
+	close the graphics window;
 
 Volume - Figures
 
