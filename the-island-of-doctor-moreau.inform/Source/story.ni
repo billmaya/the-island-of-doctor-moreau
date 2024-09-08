@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "".
 The story creation year is 2024.
 
-[WORDS - 1372]
+[WORDS - 1828]
 
 Table of Releases
 release	notes
@@ -38,7 +38,7 @@ Section - Setup
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is 240.
+The measurement of the map window is 195. [240.]
 
 The right-sidebar window is a graphics g-window spawned by the main window.
 The position of the right-sidebar window is g-placeright.
@@ -48,7 +48,7 @@ The measurement of the right-sidebar window is 290.
 The graphics-object window is a graphics g-window spawned by the right-sidebar window.
 The position of the graphics-object window is g-placeabove.
 The scale method of the graphics-object window is g-fixed-size.
-The measurement of the graphics-object window is 240.
+The measurement of the graphics-object window is 195. [240.]
 
 The title-object window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-object window is g-placeabove.
@@ -127,7 +127,89 @@ Section - Styles
 
 Chapter - Status Line
 
-Section  - Compass Test Room
+[The original code was taken from the Improved Status Line section of "Bronze" by Emily Short and modified slightly. 
+ See https://i7-examples.github.io/Bronze/source_43.html for the original code.]
+
+Table of User Styles (continued)
+window	style name	background color
+all-grid-windows	special-style-1	"#FFFFFF" ["#FF0000" - Red]
+
+Table of Fancy Status
+left	central	right
+" "	" "	"                [top rose]"
+" "	" "	"       [middle rose]"
+" "	" "	"       [bottom rose]"
+
+When play begins: now right alignment depth is 25;
+
+To say red reverse:
+	say special-style-1;
+
+To say default letters:
+	say roman type;
+
+Definition: a room is discernible:
+	[if it is the River Bank and the Balcony is unvisited and the River Bank is unvisited, no;
+	if it is the River Bank and the Balcony is unvisited and the River Bank is visited, yes;
+	if it is the River Bank and the Balcony is visited and the River Bank is unvisited, yes;
+	if it is the River Bank and the Balcony is visited and the River Bank is visited, yes;
+	if it is the Top Well and the metal cover is on the circular well, no;
+	if it is the Domed Building and the player is in the time machine, no;]
+	yes.
+
+To say top rose:
+	let place be the room up from the location;
+	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]U [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	let place be the room northwest from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]NW [default letters]"; otherwise say "   "; [Added two additional spaces to otherwise say]
+	let place be the room north from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]N [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	let place be the room northeast from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]NE[default letters]"; otherwise say " ".
+
+To say middle rose:
+	say "           "; [Added one additional space to say; added nine additional spaces]
+	let place be the room west from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]W [default letters]"; otherwise say "  ";
+	say " . ";
+	let place be the room east from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if] E[default letters]"; otherwise say "  ".
+
+To say bottom rose:
+	say "         "; [Added nine additional spaces]
+	let place be the room down from the location;
+	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]D [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	let place be the room southwest from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SW [default letters]"; otherwise say "   "; [Added two additional spaces to otherwise say]
+	let place be the room south from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]S [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	let place be the room southeast from the location;
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
+
+Rule for constructing the status line:
+	fill status bar with Table of Fancy Status;
+	say default letters;
+	rule succeeds. 
+
+Section - Compass Test Room
+
+[This code is used just to test the positioning and appearance of the compass rose.]
+
+Example Location is a room. 
+
+To The North is a room. To The North is north of the Example Location.
+To The South is a room. To The South is south of the Example Location.
+To The West is a room. To The West is west of the Example Location.
+To The East is a room. To The East is east of the Example Location.
+
+To The Northeast is a room. To The Northeast is northeast of the Example Location.
+To The Northwest is a room. To The Northwest is northwest of the Example Location.
+To The Southeast is a room. To The Southeast is southeast of the Example Location.
+To The Southwest is a room. To The Southwest is southwest of the Example Location.
+
+Up Above is a room. Up Above is up from the Example Location.
+Down Below is a room. Down Below is down from the Example Location.
+
 
 Part - Out Of World Actions
 
@@ -195,7 +277,7 @@ Book - Scenes
 
 Volume - Settings
 
-Example Location is a room. 
+The player is in Example Location.
 
 Book - Regions
 
