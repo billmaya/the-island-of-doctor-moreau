@@ -118,10 +118,10 @@ Rule for refreshing the contents-debug window:
 	say "contents-debug[line break]Debugging info goes here.";	
 
 Rule for refreshing the graphics-object window:
-	draw Figure of Beach in graphics-object window;
+	draw Figure of Beach-0 in graphics-object window;
 	
 Rule for refreshing the map window:
-	draw Figure of Map in map window;
+	draw Figure of Map-Island-1 in map window;
 
 Section - Styles
 
@@ -167,8 +167,15 @@ Volume - Figures
 
 Book - Testing
 
-Figure of Beach is the file "beach-0.png".
-Figure of Map is the file "island-1.png".
+Figure of Beach-0 is the file "beach-0.png".
+Figure of Map-Island-1 is the file "island-1.png".
+Figure of Map-Island-2 is the file "island-2.png".
+Figure of Map-Island-3 is the file "island-3.png".
+Figure of Map-Island-4 is the file "island-4.png".
+Figure of Map-Island-5 is the file "island-5.png".
+Figure of Map-Island-6 is the file "island-6.png".
+Figure of Map-Island-7 is the file "island-7.png".
+Figure of Map-Island-8 is the file "island-8.png".
 
 Book - Settings
 
