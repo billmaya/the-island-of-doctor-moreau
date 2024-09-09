@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "".
 The story creation year is 2024.
 
-[WORDS - 1828]
+[WORDS - 1790]
 
 Table of Releases
 release	notes
@@ -93,26 +93,27 @@ The measurement of the contents-debug window is 9.
 Section - Rules
 
 Rule for refreshing the title-object window:
-	say "title-object[line break](Room, Character, Object)";
+	say "[location][line break]title-object";
+	[say "title-object[line break](Room, Character, Object)";]
 
 Rule for refreshing the contents-object window:
 	say "contents-object[line break]title-object Description or Action.";
 	
 Rule for refreshing the title-help window:
-	say "title-help[line break]Help";
+	say "Help[line break]title-help";
 	
 Rule for refreshing the contents-help window:
 	say "contents-help[line break]Typing > HELP in the main window will display context-sensitive help here.";
 	
 Rule for refreshing the title-inventory window:
-	say "title-inventory[line break]Inventory". 
+	say "Inventory[line break]title-inventory". 
 	
 Rule for refreshing the contents-inventory window:
 	[try taking inventory.]
 	say "list-inventory";
 
 Rule for refreshing the title-debug window:
-	say "title-debug[line break]DEBUG".
+	say "DEBUG[line break]title-debug".
 	
 Rule for refreshing the contents-debug window:
 	say "contents-debug[line break]Debugging info goes here.";	
@@ -254,10 +255,6 @@ Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
 Figure of Map-Island-4 is the file "island-4.png".
-Figure of Map-Island-5 is the file "island-5.png".
-Figure of Map-Island-6 is the file "island-6.png".
-Figure of Map-Island-7 is the file "island-7.png".
-Figure of Map-Island-8 is the file "island-8.png".
 
 Book - Settings
 
