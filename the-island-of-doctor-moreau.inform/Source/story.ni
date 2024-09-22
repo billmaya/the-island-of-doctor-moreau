@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "".
 The story creation year is 2024.
 
-[WORDS - 1800]
+[WORDS - 1843]
 
 Table of Releases
 release	notes
@@ -226,9 +226,13 @@ Volume - Beginning The Story
 debug-mode is a truth state that varies.
 debug-mode is [false.] true.
 
+Before starting the virtual machine:
+	now the current graphics drawing rule is the bland graphics drawing rule;
+
 When play begins:
 	close the graphics window;
-	say "THIS IS MY TITLE SCREEN";
+	[draw Figure of Island in main window;] [This doesn't work since main window isn't a graphics window.]
+	[say "THIS IS MY TITLE SCREEN";]
 	wait for any key;
 	open right-sidebar window;
 	open graphics-object window;
@@ -252,6 +256,7 @@ Volume - Figures
 
 Book - Testing
 
+Figure of Island is the file "island-0.png".
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
