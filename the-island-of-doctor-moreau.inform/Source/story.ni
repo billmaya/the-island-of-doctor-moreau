@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "".
 The story creation year is 2024.
 
-[WORDS - 1790]
+[WORDS - 1800]
 
 Table of Releases
 release	notes
@@ -228,6 +228,8 @@ debug-mode is [false.] true.
 
 When play begins:
 	close the graphics window;
+	say "THIS IS MY TITLE SCREEN";
+	wait for any key;
 	open right-sidebar window;
 	open graphics-object window;
 	open title-object window;
