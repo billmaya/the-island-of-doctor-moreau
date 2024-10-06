@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "".
 The story creation year is 2024.
 
-[WORDS - 1843]
+[WORDS - 1955]
 
 Table of Releases
 release	notes
@@ -34,6 +34,11 @@ Part - User Interface
 Chapter - Windows
 
 Section - Setup
+
+The title window is a graphics g-window spawned by the main window.
+The position of the title window is g-placeabove.
+The scale method of the title window is g-fixed-size.
+The measurement of the title window is 780.
 
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
@@ -141,7 +146,15 @@ left	central	right
 " "	" "	"       [middle rose]"
 " "	" "	"       [bottom rose]"
 
-When play begins: now right alignment depth is 25;
+Table of Empty Status
+left	central	right
+" "	" "	" "
+" "	" "	" "
+" "	" "	" "
+
+When play begins: 
+	now right alignment depth is 25;
+	fill status bar with Table of Empty Status;
 
 To say red reverse:
 	say special-style-1;
@@ -188,9 +201,14 @@ To say bottom rose:
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
 
 Rule for constructing the status line:
-	fill status bar with Table of Fancy Status;
-	say default letters;
-	rule succeeds. 
+	if time of day is 9:00 AM:
+		fill status bar with Table of Empty Status;
+		rule succeeds;
+	otherwise:
+		fill status bar with Table of Fancy Status;
+		say default letters;
+		rule succeeds;
+	
 
 Section - Compass Test Room
 
@@ -209,8 +227,7 @@ To The Southeast is a room. To The Southeast is southeast of the Example Locatio
 To The Southwest is a room. To The Southwest is southwest of the Example Location.
 
 Up Above is a room. Up Above is up from the Example Location.
-Down Below is a room. Down Below is down from the Example Location.
-
+Down Below is a room. Down Below is down from the Example Location. 
 
 Part - Out Of World Actions
 
@@ -221,19 +238,22 @@ graphics-mode is true.
 
 Chapter - Debug Mode
 
-Volume - Beginning The Story
-
 debug-mode is a truth state that varies.
 debug-mode is [false.] true.
 
+
+Volume - Beginning The Story
+
 Before starting the virtual machine:
-	now the current graphics drawing rule is the bland graphics drawing rule;
+	now the current graphics drawing rule is the standard placement [centered scaled drawing] [fully scaled drawing] [tiled drawing] rule; 
 
 When play begins:
 	close the graphics window;
-	[draw Figure of Island in main window;] [This doesn't work since main window isn't a graphics window.]
-	[say "THIS IS MY TITLE SCREEN";]
-	wait for any key;
+	open the title window;
+	draw Figure of Title in title window;
+	say "[banner text]";
+	pause the game;
+	close the title window;
 	open right-sidebar window;
 	open graphics-object window;
 	open title-object window;
@@ -248,7 +268,7 @@ When play begins:
 		open contents-debug window;
 	refresh the map window;
 	refresh the graphics-object window;
-	[now the time of day is 10:00 PM;]
+	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
 
@@ -256,6 +276,7 @@ Volume - Figures
 
 Book - Testing
 
+Figure of Title is the file "the-dream-0.jpg".
 Figure of Island is the file "island-0.png".
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Map-Island-1 is the file "island-1.png".
@@ -281,7 +302,17 @@ Book - Scenes
 
 Volume - Settings
 
-The player is in Example Location.
+The player is in the Beach.
+
+Book - Island
+
+Part - Beach
+
+The Beach is a room.
+
+Part - Jungle
+
+The Jungle is a room. The Jungle is north of the Beach.
 
 Book - Regions
 
