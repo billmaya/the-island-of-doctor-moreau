@@ -2,7 +2,7 @@ The story title is "The Island of Doctor Moreau".
 The story author is "Bill Maya".
 The story genre is "Science Fiction".
 The release number is 1.
-The story description is "".
+The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
 [WORDS - 1955]
@@ -241,6 +241,34 @@ Chapter - Debug Mode
 debug-mode is a truth state that varies.
 debug-mode is [false.] true.
 
+Chapter - Banner Text
+
+Section - Printing
+
+Rule for printing the banner text:
+	if the time of day is not 9:00 AM:
+		say "";
+	otherwise:
+		continue the action;
+		[say "TITLE PAGE";]
+
+Section - Removing Extra Lines
+
+The initial whitespace rule does nothing.
+
+[
+Include (-
+[ VIRTUAL_MACHINE_STARTUP_R;
+	CarryOutActivity(STARTING_VIRTUAL_MACHINE_ACT);
+	VM_Initialise();
+	rfalse;
+];
+-) instead of "Virtual Machine Startup Rule" in "OrderOfPlay.i6t".
+]
+
+Part - Release
+
+Release along with an interpreter
 
 Volume - Beginning The Story
 
@@ -308,11 +336,12 @@ Book - Island
 
 Part - Beach
 
-The Beach is a room.
+The Beach is a room. The description of the Beach is "This is the beach."
 
 Part - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
+The description of the Jungle is "This is the jungle."
 
 Book - Regions
 
