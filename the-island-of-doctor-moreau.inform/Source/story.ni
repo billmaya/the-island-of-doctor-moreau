@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2040]
+[WORDS - 2185]
 
 Table of Releases
 release	notes
@@ -228,19 +228,7 @@ To The Southwest is a room. To The Southwest is southwest of the Example Locatio
 
 Up Above is a room. Up Above is up from the Example Location.
 Down Below is a room. Down Below is down from the Example Location. 
-
-Part - Out Of World Actions
-
-Chapter - Graphics Mode
-
-graphics-mode is a truth state that varies.
-graphics-mode is true.
-
-Chapter - Debug Mode
-
-debug-mode is a truth state that varies.
-debug-mode is [false.] true.
-
+		
 Chapter - Banner Text
 
 Section - Printing
@@ -256,6 +244,7 @@ Section - Removing Extra Lines
 
 The initial whitespace rule does nothing.
 
+[6L38/6M62]
 [
 Include (-
 [ VIRTUAL_MACHINE_STARTUP_R;
@@ -266,9 +255,41 @@ Include (-
 -) instead of "Virtual Machine Startup Rule" in "OrderOfPlay.i6t".
 ]
 
+[
+-) replacing "INITIAL_WHITESPACE_R". in "OrderOfPlay.i65".
+]
+
+[v10]
+[
+Include (-
+[ VIRTUAL_MACHINE_STARTUP_R;
+	CarryOutActivity(STARTING_VIRTUAL_MACHINE_ACT);
+	VM_Initialise();
+	! It is now safe for the paragraph breaking between rules mechanism to work
+	if (say__pc & PARA_NORULEBOOKBREAKS) say__pc = say__pc - PARA_NORULEBOOKBREAKS;
+	! print "^^^";
+	rfalse;
+];
+-) replacing "VIRTUAL_MACHINE_STARTUP_R".
+]
+
+Part - Out Of World Actions
+
+Chapter - Graphics Mode
+
+graphics-mode is a truth state that varies.
+graphics-mode is true.
+
+Chapter - Debug Mode
+
+debug-mode is a truth state that varies.
+debug-mode is [false.] true.
+
+
+
 Part - Release
 
-Release along with an interpreter
+Release along with an interpreter and source text.
 
 Volume - Beginning The Story
 
@@ -304,9 +325,12 @@ Volume - Figures
 
 Book - Testing
 
-Figure of Title is the file "the-dream-0.jpg".
-Figure of Island is the file "island-0.png".
+Figure of Title is the file "the-dream-0.png".
+[Figure of Title is the file "the-dream-0.jpg".]
+[Figure of Island is the file "island-0.png".]
+
 Figure of Beach-0 is the file "beach-0.png".
+
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
@@ -343,9 +367,28 @@ Part - Jungle
 The Jungle is a room. The Jungle is north of the Beach.
 The description of the Jungle is "This is the jungle."
 
+Part - Ruins
+
+The Ruins are a room. The Ruins are west of the Jungle.
+The description of the Ruins are "These are the ruins."
+
+Part - Deep Jungle
+
+The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
+The description of the Deep Jungle is "This is the Deep Jungle."
+
 Book - Regions
 
 
+
+Book - Mapping
+
+Table of Map Locations
+room	map	map-x	map-y	image
+"Beach"	"Map-Island-1"	0	0	"Beach-0"
+"Jungle"	"Map-Island-1"	0	0	
+"Ruins"	"Map-Island-1"	0	0	
+"Deep Jungle"	"Map-Island-2"	0	0	
 
 Volume - Characters
 
