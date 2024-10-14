@@ -317,6 +317,9 @@ Figure of Title is the file "the-dream-0.png".
 [Figure of Island is the file "island-0.png".]
 
 Figure of Beach-0 is the file "beach-0.png".
+Figure of Jungle-0 is the file "jungle-0.png".
+Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
+Figure of Ruins-0 is the file "ruins-0.png".
 
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
