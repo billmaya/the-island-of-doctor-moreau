@@ -13,11 +13,11 @@ release	notes
 
 Volume - Setup
 
-Part - Missing Item Description Check
+Book - Missing Item Description Check
 
 
 
-Part - Extensions
+Book - Extensions
 
 Include Flexible Windows by Jon Ingold.
 Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly; v15/170131 of Flexible Windows]
@@ -29,11 +29,11 @@ Include Punctuation Removal by Emily Short. [Writing §17.21. Understanding mist
 
 Include Conversation Rules by Eric Eve. [Contains Epistemology, Conversation Framework, and List Control]
 
-Part - User Interface
+Book - User Interface
 
-Chapter - Windows
+Part - Windows
 
-Section - Setup
+Chapter - Setup
 
 The title window is a graphics g-window spawned by the main window.
 The position of the title window is g-placeabove.
@@ -95,7 +95,7 @@ The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
 The measurement of the contents-debug window is 9.
 
-Section - Rules
+Chapter - Rules
 
 Rule for refreshing the title-object window:
 	say "[location][line break]title-object";
@@ -129,9 +129,9 @@ Rule for refreshing the graphics-object window:
 Rule for refreshing the map window:
 	draw Figure of Map-Island-1 in map window;
 
-Section - Styles
+Chapter - Styles
 
-Chapter - Status Line
+Part - Status Line
 
 [The original code was taken from the Improved Status Line section of "Bronze" by Emily Short and modified slightly. 
  See https://i7-examples.github.io/Bronze/source_43.html for the original code.]
@@ -210,7 +210,7 @@ Rule for constructing the status line:
 		rule succeeds;
 	
 
-Section - Compass Test Room
+Chapter - Compass Test Room
 
 [This code is used just to test the positioning and appearance of the compass rose.]
 
@@ -336,7 +336,7 @@ Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
 Figure of Map-Island-4 is the file "island-4.png".
 
-Book - Settings
+Book - Rooms
 
 
 
@@ -352,7 +352,7 @@ Book - Scenes
 
 
 
-Volume - Settings
+Volume - Rooms
 
 The player is in the Beach.
 
