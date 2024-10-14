@@ -277,8 +277,8 @@ Part - Out Of World Actions
 
 Chapter - Graphics Mode
 
-graphics-mode is a truth state that varies.
-graphics-mode is true.
+[graphics-mode is a truth state that varies.
+graphics-mode is true.]
 
 Chapter - Debug Mode
 
