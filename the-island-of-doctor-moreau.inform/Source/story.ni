@@ -273,14 +273,14 @@ Include (-
 -) replacing "VIRTUAL_MACHINE_STARTUP_R".
 ]
 
-Part - Out Of World Actions
+Book - Out Of World Actions
 
-Chapter - Graphics Mode
+Part - Graphics Mode
 
 [graphics-mode is a truth state that varies.
 graphics-mode is true.]
 
-Chapter - Debug Mode
+Part - Debug Mode
 
 debug-mode is a truth state that varies.
 debug-mode is [false.] true.
