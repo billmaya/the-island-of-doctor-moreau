@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2185]
+[WORDS - 2204]
 
 Table of Releases
 release	notes
@@ -60,10 +60,10 @@ The position of the title-object window is g-placeabove.
 The scale method of the title-object window is g-fixed-size.
 The measurement of the title-object window is 2. 
 
-The contents-object window is a text buffer g-window spawned by the right-sidebar window.
-The position of the contents-object window is g-placeabove.
-The scale method of the contents-object window is g-fixed-size.
-The measurement of the contents-object window is 9.
+The description-action-object window is a text buffer g-window spawned by the right-sidebar window.
+The position of the description-action-object window is g-placeabove.
+The scale method of the description-action-object window is g-fixed-size.
+The measurement of the description-action-object window is 9.
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
@@ -98,11 +98,10 @@ The measurement of the contents-debug window is 9.
 Chapter - Rules
 
 Rule for refreshing the title-object window:
-	say "[location][line break]title-object";
-	[say "title-object[line break](Room, Character, Object)";]
+	say "[location]";
 
-Rule for refreshing the contents-object window:
-	say "contents-object[line break]title-object Description or Action.";
+Rule for refreshing the description-action-object window:
+	say "[description of location]";
 	
 Rule for refreshing the title-help window:
 	say "Help[line break]title-help";
@@ -111,11 +110,10 @@ Rule for refreshing the contents-help window:
 	say "contents-help[line break]Typing > HELP in the main window will display context-sensitive help here.";
 	
 Rule for refreshing the title-inventory window:
-	say "Inventory[line break]title-inventory". 
+	say "Inventory". 
 	
 Rule for refreshing the contents-inventory window:
-	[try taking inventory.]
-	say "list-inventory";
+	try taking inventory.
 
 Rule for refreshing the title-debug window:
 	say "DEBUG[line break]title-debug".
@@ -238,41 +236,28 @@ Rule for printing the banner text:
 		say "";
 	otherwise:
 		continue the action;
-		[say "TITLE PAGE";]
 
 Section - Removing Extra Lines
 
 The initial whitespace rule does nothing.
 
-[6L38/6M62]
-[
-Include (-
-[ VIRTUAL_MACHINE_STARTUP_R;
-	CarryOutActivity(STARTING_VIRTUAL_MACHINE_ACT);
-	VM_Initialise();
-	rfalse;
-];
--) instead of "Virtual Machine Startup Rule" in "OrderOfPlay.i6t".
-]
+Book - Rule Modifications
 
-[
--) replacing "INITIAL_WHITESPACE_R". in "OrderOfPlay.i65".
-]
+The room description heading rule does nothing.
+The room description body text rule does nothing.
 
-[v10]
-[
-Include (-
-[ VIRTUAL_MACHINE_STARTUP_R;
-	CarryOutActivity(STARTING_VIRTUAL_MACHINE_ACT);
-	VM_Initialise();
-	! It is now safe for the paragraph breaking between rules mechanism to work
-	if (say__pc & PARA_NORULEBOOKBREAKS) say__pc = say__pc - PARA_NORULEBOOKBREAKS;
-	! print "^^^";
-	rfalse;
-];
--) replacing "VIRTUAL_MACHINE_STARTUP_R".
-]
+This is the modified room description heading rule:
+	refresh the title-object window;
 
+[The window room heading rule substitues for the room description heading rule.] [This doesn't appear to work. Why?]
+
+The modified room description heading rule is listed in the every turn rules.
+
+This is the modified room description body text rule:
+	refresh the description-action-object window;
+
+The modified room description body text rule is listed in the every turn rules.
+	
 Book - Out Of World Actions
 
 Part - Graphics Mode
@@ -285,9 +270,11 @@ Part - Debug Mode
 debug-mode is a truth state that varies.
 debug-mode is [false.] true.
 
+Part - Map Mode
 
 
-Part - Release
+
+Book - Release
 
 Release along with an interpreter and source text.
 
@@ -306,7 +293,7 @@ When play begins:
 	open right-sidebar window;
 	open graphics-object window;
 	open title-object window;
-	open contents-object window;
+	open description-action-object window;
 	open title-inventory window; 
 	open contents-inventory window;
 	open title-help window;
