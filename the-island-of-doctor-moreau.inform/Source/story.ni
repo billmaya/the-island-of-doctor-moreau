@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2236]
+[WORDS - 2311]
 
 Table of Releases
 release	notes
@@ -122,7 +122,7 @@ Rule for refreshing the contents-debug window:
 	say "contents-debug[line break]Debugging info goes here.";	
 
 Rule for refreshing the graphics-object window:
-	draw Figure of Beach-0 in graphics-object window;
+	draw the illustration of the location in graphics-object window.
 	
 Rule for refreshing the map window:
 	draw Figure of Map-Island-1 in map window;
@@ -257,6 +257,11 @@ This is the modified room description body text rule:
 	refresh the description-action-object window;
 
 The modified room description body text rule is listed in the every turn rules.
+
+This is the display object graphics rule:
+	refresh the graphics-object window;
+
+The display object graphics rule is listed in the every turn rules.
 	
 Book - Out Of World Actions
 
@@ -310,6 +315,8 @@ When play begins:
 
 Volume - Figures
 
+A room has a figure name called illustration.
+
 Book - Testing
 
 Figure of Title is the file "the-dream-0.png".
@@ -350,22 +357,27 @@ Book - Island
 
 Part - Beach
 
-The Beach is a room. The description of the Beach is "This is the beach."
+The Beach is a room. 
+The description of the Beach is "This is the beach."
+The illustration of the Beach is Figure of Beach-0.
 
 Part - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 The description of the Jungle is "This is the jungle."
+The illustration of the Jungle is Figure of Jungle-0.
 
 Part - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
 The description of the Ruins are "These are the ruins."
+The illustration of the Ruins are Figure of Ruins-0.
 
 Part - Deep Jungle
 
 The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
 The description of the Deep Jungle is "This is the Deep Jungle."
+The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
 Book - Regions
 
