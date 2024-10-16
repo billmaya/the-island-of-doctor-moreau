@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2311]
+[WORDS - 2287]
 
 Table of Releases
 release	notes
@@ -101,8 +101,8 @@ Rule for refreshing the title-object window:
 	say "[location]";
 
 Rule for refreshing the description-action-object window:
-	say "[description of location]";
-	
+	say "[description of location]";	
+
 Rule for refreshing the title-help window:
 	say "Help[line break]title-help";
 	
@@ -243,25 +243,28 @@ The initial whitespace rule does nothing.
 
 Book - Rule Modifications
 
-The room description heading rule does nothing.
-The room description body text rule does nothing.
+Part - Room 
+
+Chapter - Heading 
 
 This is the modified room description heading rule:
 	refresh the title-object window;
 
-[The window room heading rule substitues for the room description heading rule.] [This doesn't appear to work. Why?]
+The modified room description heading rule substitutes for the room description heading rule.
 
-The modified room description heading rule is listed in the every turn rules.
+Chapter - Description
 
 This is the modified room description body text rule:
 	refresh the description-action-object window;
 
-The modified room description body text rule is listed in the every turn rules.
+The modified room description body text rule substitutes for the room description body text rule.
+
+Chapter - Graphics
+
+The display object graphics rule is listed in the every turn rules.
 
 This is the display object graphics rule:
 	refresh the graphics-object window;
-
-The display object graphics rule is listed in the every turn rules.
 	
 Book - Out Of World Actions
 
