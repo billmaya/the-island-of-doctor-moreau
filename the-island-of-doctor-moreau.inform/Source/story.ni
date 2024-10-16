@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2287]
+[WORDS - 2366]
 
 Table of Releases
 release	notes
@@ -243,6 +243,21 @@ The initial whitespace rule does nothing.
 
 Book - Rule Modifications
 
+Part - User Interface
+
+Chapter - User Interface
+
+Every turn (this is the Refresh Windows rule):
+	[refresh the title-characters window;
+	refresh the list-characters window;
+	refresh the title-talking-to window;
+	refresh the talking-to-character window;
+	refresh the title-topics window;
+	refresh the character-topics window;]
+	refresh the contents-inventory window;
+	[if graphics-mode is true:
+		refresh the character-graphics window;]
+
 Part - Room 
 
 Chapter - Heading 
@@ -401,6 +416,13 @@ Volume - Characters
 
 Volume - Things
 
+
+Book - Island
+
+Part - Rusty Knife
+
+The rusty knife is a thing.
+The rusty knife is in the Beach.
 
 Volume - Scenes
 
