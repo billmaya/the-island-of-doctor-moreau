@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2366]
+[WORDS - 2435]
 
 Table of Releases
 release	notes
@@ -122,10 +122,11 @@ Rule for refreshing the contents-debug window:
 	say "contents-debug[line break]Debugging info goes here.";	
 
 Rule for refreshing the graphics-object window:
-	draw the illustration of the location in graphics-object window.
+	draw the illustration of the location in graphics-object window
 	
 Rule for refreshing the map window:
 	draw Figure of Map-Island-1 in map window;
+
 
 Chapter - Styles
 
@@ -240,46 +241,6 @@ Rule for printing the banner text:
 Section - Removing Extra Lines
 
 The initial whitespace rule does nothing.
-
-Book - Rule Modifications
-
-Part - User Interface
-
-Chapter - User Interface
-
-Every turn (this is the Refresh Windows rule):
-	[refresh the title-characters window;
-	refresh the list-characters window;
-	refresh the title-talking-to window;
-	refresh the talking-to-character window;
-	refresh the title-topics window;
-	refresh the character-topics window;]
-	refresh the contents-inventory window;
-	[if graphics-mode is true:
-		refresh the character-graphics window;]
-
-Part - Room 
-
-Chapter - Heading 
-
-This is the modified room description heading rule:
-	refresh the title-object window;
-
-The modified room description heading rule substitutes for the room description heading rule.
-
-Chapter - Description
-
-This is the modified room description body text rule:
-	refresh the description-action-object window;
-
-The modified room description body text rule substitutes for the room description body text rule.
-
-Chapter - Graphics
-
-The display object graphics rule is listed in the every turn rules.
-
-This is the display object graphics rule:
-	refresh the graphics-object window;
 	
 Book - Out Of World Actions
 
@@ -331,9 +292,23 @@ When play begins:
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
 
+Book - Every Turn
+
+Every turn:
+	follow the display object graphics rule;
+	refresh the contents-inventory window;
+
+
 Volume - Figures
 
 A room has a figure name called illustration.
+
+A thing has a figure name called illustration.
+
+[Before examining the noun: 
+	if the noun is not a person:
+		if graphics-mode is true:
+			display the illustration of the noun.]
 
 Book - Testing
 
@@ -345,6 +320,8 @@ Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
 Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
 Figure of Ruins-0 is the file "ruins-0.png".
+
+Figure of Knife-0 is the file "knife-0.png".
 
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
@@ -370,6 +347,36 @@ Book - Scenes
 Volume - Rooms
 
 The player is in the Beach.
+
+Book - Rule Modifications
+
+Part - Heading 
+
+This is the modified room description heading rule:
+	refresh the title-object window;
+
+The modified room description heading rule substitutes for the room description heading rule.
+
+Part - Description
+
+This is the modified room description body text rule:
+	refresh the description-action-object window;
+
+The modified room description body text rule substitutes for the room description body text rule.
+
+Part - Graphics
+
+[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+
+This is the display object graphics rule:
+	refresh the graphics-object window;
+
+Part - You Also See
+
+[This is the modified you-can-also-see rule:
+	refresh the description-action-object window;
+
+The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
 Book - Island
 
@@ -422,7 +429,10 @@ Book - Island
 Part - Rusty Knife
 
 The rusty knife is a thing.
-The rusty knife is in the Beach.
+The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
+The illustration of the rusty knife is Figure of Knife-0.
+
+The rusty knife is in the Jungle.
 
 Volume - Scenes
 
