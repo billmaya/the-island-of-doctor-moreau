@@ -112,16 +112,17 @@ Rule for refreshing the contents-inventory window:
 	try taking inventory.
 
 Rule for refreshing the title-debug window:
-	say "DEBUG[line break]title-debug".
+	say "DEBUG (title-debug)".
 	
 Rule for refreshing the contents-debug window:
 	say "contents-debug[line break]Debugging info goes here.";	
 
 Rule for refreshing the graphics-object window:
-	draw the illustration of the location in graphics-object window
+	draw the illustration of the location in graphics-object window.
 	
 Rule for refreshing the map window:
-	draw Figure of Map-Island-1 in map window;
+	draw the map-section of the location in the map window.
+	[draw Figure of Map-Island-1 in map window;]
 
 
 Chapter - Styles
@@ -293,6 +294,16 @@ Book - Every Turn
 Every turn:
 	follow the display object graphics rule;
 	refresh the contents-inventory window;
+	refresh the map window;
+	[Trying to determine map section that corresponds to player's current location]
+	let X be the location of the player;
+	[let Y be the map corresponding to a room of "Deep Jungle" in the Table of Map Locations;]
+	if debug-mode is true: 
+		focus contents-debug window;
+		clear contents-debug window;
+		say "[X][line break]";
+		[say "[Y]";]
+		focus main window;
 
 
 Volume - Figures
@@ -316,6 +327,8 @@ Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
 Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
 Figure of Ruins-0 is the file "ruins-0.png".
+Figure of Hidden-Valley-0 is the file "hidden-valley-0.png".
+Figure of Moreau-Compound-0 is the file "moreau-compound-0.png".
 
 Figure of Knife-0 is the file "knife-0.png".
 
@@ -381,24 +394,43 @@ Part - Beach
 The Beach is a room. 
 The description of the Beach is "This is the beach."
 The illustration of the Beach is Figure of Beach-0.
+The map-section of the Beach is Figure of Map-Island-1.
 
 Part - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
+The map-section of the Jungle is Figure of Map-Island-1.
 
 Part - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
 The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
+The map-section of the Ruins is Figure of Map-Island-1.
 
 Part - Deep Jungle
 
 The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
+The map-section of the Deep Jungle is Figure of Map-Island-2.
+
+Part - Hidden Valley
+
+The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
+The description of the Hidden Valley is "This is the Hidden Valley."
+The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
+The map-section of the Hidden Valley is Figure of Map-Island-3.
+
+Part - Moreau Compound
+
+The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
+The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
+The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
+The map-section of the Moreau Compound is Figure of Map-Island-4.
+
 
 Book - Regions
 
@@ -406,12 +438,14 @@ Book - Regions
 
 Book - Mapping
 
-Table of Map Locations
-room	map	map-x	map-y	image
-"Beach"	"Map-Island-1"	0	0	"Beach-0"
-"Jungle"	"Map-Island-1"	0	0	
-"Ruins"	"Map-Island-1"	0	0	
-"Deep Jungle"	"Map-Island-2"	0	0	
+A room has a figure name called map-section.
+
+Table 1 - Map Locations
+room	map	map-x	map-y
+Beach	"Map-Island-1"	0	0	
+Jungle	"Map-Island-1"	0	0	
+Ruins	"Map-Island-1"	0	0	
+Deep Jungle	"Map-Island-2"	0	0	
 
 Volume - Characters
 
