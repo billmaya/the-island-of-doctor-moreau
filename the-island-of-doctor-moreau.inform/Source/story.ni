@@ -5,17 +5,13 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2435]
+[WORDS - 2518]
 
 Table of Releases
 release	notes
 "1"	""
 
 Volume - Setup
-
-Book - Missing Item Description Check
-
-
 
 Book - Extensions
 
@@ -436,6 +432,27 @@ The rusty knife is in the Jungle.
 
 Volume - Scenes
 
+
+
+Volume - Utilities
+
+Book - Missing Item Description Check
+
+[Checks for missing item descriptions]
+[
+When play begins (this is the run property checks at the start of play rule): 
+	repeat with item running through things: 
+		if description of the item is "":
+			say "[item] has no description."
+
+[Writing §20.5. Matching and exact matching]	
+[Writing §20.6. Regular expresssion matching]		
+			
+When play begins (this is the run TBD checks at the start of play rule):
+	repeat with item running through things:
+		if description of item matches the text "TBD":
+			say "[item] description TBD."
+]
 
 
 Volume - Help
