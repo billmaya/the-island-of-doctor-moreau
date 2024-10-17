@@ -121,7 +121,8 @@ Rule for refreshing the graphics-object window:
 	draw the illustration of the location in graphics-object window.
 	
 Rule for refreshing the map window:
-	draw the map-section of the location in the map window.
+	draw the map-section of the location in the map window;
+	draw the Figure of Icon-Player-Location in the map window at x x-coordinate of the location and y y-coordinate of the location scaled to width 20 and height 20.
 
 Chapter - Styles
 
@@ -330,6 +331,8 @@ Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
 Figure of Map-Island-4 is the file "island-4.png".
 
+Figure of Icon-Player-Location is the file "icon-player-location-0.png".
+
 Book - Rooms
 
 
@@ -385,45 +388,68 @@ Book - Island
 Part - Beach
 
 The Beach is a room. 
+
 The description of the Beach is "This is the beach."
 The illustration of the Beach is Figure of Beach-0.
+
 The map-section of the Beach is Figure of Map-Island-1.
+The x-coordinate of the Beach is 425.
+The y-coordinate of the Beach is 100.
 
 Part - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
+
 The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
+
 The map-section of the Jungle is Figure of Map-Island-1.
+The x-coordinate of the Jungle is 425.
+The y-coordinate of the Jungle is 50.
 
 Part - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
+
 The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
+
 The map-section of the Ruins is Figure of Map-Island-1.
+The x-coordinate of the Ruins is 345.
+The y-coordinate of the Ruins is 50.
 
 Part - Deep Jungle
 
 The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
+
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
+
 The map-section of the Deep Jungle is Figure of Map-Island-2.
+The x-coordinate of the Deep Jungle is 425.
+The y-coordinate of the Deep Jungle is 100.
 
 Part - Hidden Valley
 
 The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
+
 The description of the Hidden Valley is "This is the Hidden Valley."
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
+
 The map-section of the Hidden Valley is Figure of Map-Island-3.
+The x-coordinate of the Hidden Valley is 425.
+The y-coordinate of the Hidden Valley is 125.
 
 Part - Moreau Compound
 
-The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
+The Moreau Compound is a room. The Moreau Compound is northwest of the Hidden Valley.
+
 The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
-The map-section of the Moreau Compound is Figure of Map-Island-4.
 
+The map-section of the Moreau Compound is Figure of Map-Island-4.
+The x-coordinate of the Moreau Compound is 300.
+The y-coordinate of the Moreau Compound is 100.
 
 Book - Regions
 
@@ -432,13 +458,26 @@ Book - Regions
 Book - Mapping
 
 A room has a figure name called map-section.
+A room has a number called an x-coordinate.
+A room has a number called a y-coordinate.
 
+[Some rooms are defined by the Table of Rooms.
+
+Table 1 - Rooms
+room	description	illustration	map-section 	map-x	map-y
+Jungle	"This is the jungle."	Figure of Jungle-0	Figure of Map-Island-1	0	0
+]
+
+[
 Table 1 - Map Locations
-room	map	map-x	map-y
-Beach	"Map-Island-1"	0	0	
-Jungle	"Map-Island-1"	0	0	
-Ruins	"Map-Island-1"	0	0	
-Deep Jungle	"Map-Island-2"	0	0	
+room	map-section	map-x	map-y
+Beach	Figure of Map-Island-1	0	0	
+Jungle	Figure of Map-Island-1	0	0	
+Ruins	Figure of Map-Island-1	0	0	
+Deep Jungle	Figure of Map-Island-2	0	0
+Hidden Valley	Figure of Map-Island-3	0	0
+Moreau Compound	Figure of Map-Island-4	0	0	
+]
 
 Volume - Characters
 
