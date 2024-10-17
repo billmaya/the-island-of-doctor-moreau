@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2518]
+[WORDS - 2740]
 
 Table of Releases
 release	notes
@@ -122,8 +122,6 @@ Rule for refreshing the graphics-object window:
 	
 Rule for refreshing the map window:
 	draw the map-section of the location in the map window.
-	[draw Figure of Map-Island-1 in map window;]
-
 
 Chapter - Styles
 
@@ -295,14 +293,9 @@ Every turn:
 	follow the display object graphics rule;
 	refresh the contents-inventory window;
 	refresh the map window;
-	[Trying to determine map section that corresponds to player's current location]
-	let X be the location of the player;
-	[let Y be the map corresponding to a room of "Deep Jungle" in the Table of Map Locations;]
 	if debug-mode is true: 
 		focus contents-debug window;
 		clear contents-debug window;
-		say "[X][line break]";
-		[say "[Y]";]
 		focus main window;
 
 
