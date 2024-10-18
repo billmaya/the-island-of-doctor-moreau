@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2969]
+[WORDS - 2946]
 
 Table of Releases
 release	notes
@@ -100,10 +100,10 @@ Rule for refreshing the description-action-object window:
 	say "[description of location]";	
 
 Rule for refreshing the title-help window:
-	say "Help[line break]title-help";
+	say "Help (title-help)";
 	
 Rule for refreshing the contents-help window:
-	say "contents-help[line break]Typing > HELP in the main window will display context-sensitive help here.";
+	say "contents-help";
 	
 Rule for refreshing the title-inventory window:
 	say "Inventory". 
@@ -115,7 +115,7 @@ Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
 	
 Rule for refreshing the contents-debug window:
-	say "contents-debug[line break]Debugging info goes here.";	
+	say "contents-debug";	
 
 Rule for refreshing the graphics-object window:
 	draw the illustration of the location in graphics-object window.
@@ -296,7 +296,7 @@ Every turn:
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
-		clear contents-debug window;
+		[clear contents-debug window;]
 		focus main window;
 
 
