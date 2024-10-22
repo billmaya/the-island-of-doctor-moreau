@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2946]
+[WORDS - 3032]
 
 Table of Releases
 release	notes
@@ -15,11 +15,11 @@ Volume - Setup
 
 Book - Extensions
 
-Include Flexible Windows by Jon Ingold.
-Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly; v15/170131 of Flexible Windows]
-Include Basic Screen Effects by Emily Short. [Required to change status bar and display compass rose]
+Include Flexible Windows by Jon Ingold. [v15/170131]
+Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly with v15/170131 of Flexible Windows]
+Include Basic Screen Effects by Emily Short. [v7/140425. Required to change status bar and display compass rose]
 Include Basic Help Menu by Emily Short.
-Include Punctuation Removal by Emily Short. [Writing §17.21. Understanding mistakes]
+Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
 [Include Conversation Package by Eric Eve.] [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
 
@@ -119,10 +119,15 @@ Rule for refreshing the contents-debug window:
 
 Rule for refreshing the graphics-object window:
 	draw the illustration of the location in graphics-object window.
+
+x-calculated-coordinate is a number that varies.
+y-calculated-coordinate is a number that varies.
 	
 Rule for refreshing the map window:
 	draw the map-section of the location in the map window;
-	draw the Figure of Icon-Player-Location in the map window at x x-coordinate of the location and y y-coordinate of the location scaled to width 20 and height 20.
+	let x-calculated-coordinate be ( x-coordinate of the location * width of map window ) / 693;
+	[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [Doesn't appear to work, x-c-c = 0]
+	draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate of the location scaled to width 20 and height 20;
 
 Chapter - Styles
 
@@ -296,7 +301,11 @@ Every turn:
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
-		[clear contents-debug window;]
+		clear contents-debug window; [Uncomment]
+		[Begin debug statements]
+		say "Map window width: [width of map window][line break]";
+		say "Map window height: [height of map window][line break]";
+		[End debug statements]
 		focus main window;
 
 
