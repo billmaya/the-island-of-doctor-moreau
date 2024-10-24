@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3032]
+[WORDS - 2933]
 
 Table of Releases
 release	notes
@@ -392,6 +392,14 @@ Part - You Also See
 
 The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
+Book - Mapping
+
+A room has a figure name called map-section.
+A room has a number called an x-coordinate.
+A room has a number called a y-coordinate.
+
+
+
 Book - Island
 
 Part - Beach
@@ -464,29 +472,7 @@ Book - Regions
 
 
 
-Book - Mapping
 
-A room has a figure name called map-section.
-A room has a number called an x-coordinate.
-A room has a number called a y-coordinate.
-
-[Some rooms are defined by the Table of Rooms.
-
-Table 1 - Rooms
-room	description	illustration	map-section 	map-x	map-y
-Jungle	"This is the jungle."	Figure of Jungle-0	Figure of Map-Island-1	0	0
-]
-
-[
-Table 1 - Map Locations
-room	map-section	map-x	map-y
-Beach	Figure of Map-Island-1	0	0	
-Jungle	Figure of Map-Island-1	0	0	
-Ruins	Figure of Map-Island-1	0	0	
-Deep Jungle	Figure of Map-Island-2	0	0
-Hidden Valley	Figure of Map-Island-3	0	0
-Moreau Compound	Figure of Map-Island-4	0	0	
-]
 
 Volume - Characters
 
