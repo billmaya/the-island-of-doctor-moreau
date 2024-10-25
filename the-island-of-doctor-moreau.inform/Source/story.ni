@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 2933]
+[WORDS - 3101]
 
 Table of Releases
 release	notes
@@ -124,10 +124,18 @@ x-calculated-coordinate is a number that varies.
 y-calculated-coordinate is a number that varies.
 	
 Rule for refreshing the map window:
+	[Draw the map section for the current location]
 	draw the map-section of the location in the map window;
+	[Draw the icon for the player's current location]
 	let x-calculated-coordinate be ( x-coordinate of the location * width of map window ) / 693;
 	[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [Doesn't appear to work, x-c-c = 0]
 	draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate of the location scaled to width 20 and height 20;
+	[Draw the unknown location icons for other locations in the same map section that are not the player's current location]
+	repeat through the Table of Room Map Locations:
+		if the room entry is not the location and the map-section entry is the map-section of the location:
+			draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+	
+
 
 Chapter - Styles
 
@@ -341,6 +349,7 @@ Figure of Map-Island-3 is the file "island-3.png".
 Figure of Map-Island-4 is the file "island-4.png".
 
 Figure of Icon-Player-Location is the file "icon-player-location-0.png".
+Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
 
 Book - Rooms
 
@@ -398,6 +407,14 @@ A room has a figure name called map-section.
 A room has a number called an x-coordinate.
 A room has a number called a y-coordinate.
 
+Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate
+Beach	Figure of Map-Island-1	425	100
+Jungle	Figure of Map-Island-1	425	50
+Ruins	Figure of Map-Island-1	345	50
+Deep Jungle	Figure of Map-Island-2	425	100
+Hidden Valley	Figure of Map-Island-3	425	125
+Moreau Compound	Figure of Map-Island-4	300	100
 
 
 Book - Island
