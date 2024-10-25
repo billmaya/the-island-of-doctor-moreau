@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3101]
+[WORDS - 3151]
 
 Table of Releases
 release	notes
@@ -130,10 +130,13 @@ Rule for refreshing the map window:
 	let x-calculated-coordinate be ( x-coordinate of the location * width of map window ) / 693;
 	[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [Doesn't appear to work, x-c-c = 0]
 	draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate of the location scaled to width 20 and height 20;
-	[Draw the unknown location icons for other locations in the same map section that are not the player's current location]
+	[Draw the unknown or visited location icons for other locations in the same map section that are not the player's current location]
 	repeat through the Table of Room Map Locations:
 		if the room entry is not the location and the map-section entry is the map-section of the location:
-			draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+			if the room entry is visited:
+				draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+			otherwise:
+				draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
 	
 
 
@@ -350,6 +353,7 @@ Figure of Map-Island-4 is the file "island-4.png".
 
 Figure of Icon-Player-Location is the file "icon-player-location-0.png".
 Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
+Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
 
 Book - Rooms
 
