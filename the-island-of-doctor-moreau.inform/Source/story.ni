@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3326]
+[WORDS - 3316]
 
 Table of Releases
 release	notes
@@ -121,25 +121,42 @@ Rule for refreshing the graphics-object window:
 	draw the illustration of the location in graphics-object window.
 
 x-calculated-coordinate is a number that varies.
-y-calculated-coordinate is a number that varies.
+[y-calculated-coordinate is a number that varies.]
+current-map is a figure name that varies.
 	
 Rule for refreshing the map window:
 	[Draw the map section for the current location]
-	draw the map-section of the location in the map window;
-	[Draw the icon for the player's current location]
-	let x-calculated-coordinate be ( x-coordinate of the location * width of map window ) / 693;
-	[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [Doesn't appear to work, x-c-c = 0]
-	draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate of the location scaled to width 20 and height 20;
-	[Draw the unknown or visited location icons for other locations in the same map section that are not the player's current location]
 	repeat through the Table of Room Map Locations:
-		if the room entry is not the location and the map-section entry is the map-section of the location:
-			if the room entry is visited:
-				if there is an icon entry:
-					draw the icon entry in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+		if the room entry is the location:
+			let current-map be the map-section entry;
+			draw the map-section entry in the map window;
+	[Draw icons for other locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
+	repeat through the Table of Room Map Locations:
+		if the room entry is not the location:
+			if the map-section entry is the map-section of the location:
+				if the room entry is visited:
+					if there is an icon entry:
+						draw the icon entry in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+					otherwise:
+						draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
 				otherwise:
-					draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
-			otherwise:
-				draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+					draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+		otherwise:
+			let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;
+			[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
+			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+
+[
+Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate	icon
+Beach	Figure of Map-Island-1	425	100	--
+Jungle	Figure of Map-Island-1	425	50	--
+Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
+Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
+Deep Jungle	Figure of Map-Island-2	425	100	--
+Hidden Valley	Figure of Map-Island-3	425	125	--
+Moreau Compound	Figure of Map-Island-4	300	100	--
+]
 
 
 Chapter - Styles
@@ -318,6 +335,7 @@ Every turn:
 		[Begin debug statements]
 		say "Map window width: [width of map window][line break]";
 		say "Map window height: [height of map window][line break]";
+		say "Current map: [current-map][line break]";
 		[End debug statements]
 		focus main window;
 
@@ -422,8 +440,8 @@ The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 Book - Mapping
 
 A room has a figure name called map-section.
-A room has a number called an x-coordinate.
-A room has a number called a y-coordinate.
+[A room has a number called an x-coordinate.
+A room has a number called a y-coordinate.]
 
 [A room has a figure name called icon.
 The icon of a room is usually Figure of Icon-Visited-Location.]
@@ -450,8 +468,6 @@ The description of the Beach is "This is the beach."
 The illustration of the Beach is Figure of Beach-0.
 
 The map-section of the Beach is Figure of Map-Island-1.
-The x-coordinate of the Beach is 425.
-The y-coordinate of the Beach is 100.
 
 Part - Jungle
 
@@ -461,8 +477,6 @@ The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
 
 The map-section of the Jungle is Figure of Map-Island-1.
-The x-coordinate of the Jungle is 425.
-The y-coordinate of the Jungle is 50.
 
 Part - Ruins
 
@@ -472,8 +486,6 @@ The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
 
 The map-section of the Ruins is Figure of Map-Island-1.
-The x-coordinate of the Ruins is 345.
-The y-coordinate of the Ruins is 50.
 
 Part - Volcanic Caldera
 
@@ -483,8 +495,6 @@ The description of the Volcanic Caldera is "This is the volcanic caldera."
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
 
 The map-section of the Volcanic Caldera is Figure of Map-Island-1.
-The x-coordinate of the Volcanic Caldera is 525.
-The y-coordinate of the Volcanic Caldera is 130.
 
 Part - Deep Jungle
 
@@ -494,8 +504,6 @@ The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
 The map-section of the Deep Jungle is Figure of Map-Island-2.
-The x-coordinate of the Deep Jungle is 425.
-The y-coordinate of the Deep Jungle is 100.
 
 Part - Hidden Valley
 
@@ -505,8 +513,6 @@ The description of the Hidden Valley is "This is the Hidden Valley."
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
 The map-section of the Hidden Valley is Figure of Map-Island-3.
-The x-coordinate of the Hidden Valley is 425.
-The y-coordinate of the Hidden Valley is 125.
 
 Part - Moreau Compound
 
@@ -516,8 +522,6 @@ The description of the Moreau Compound is "This is the ruined laboratory compoun
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
 
 The map-section of the Moreau Compound is Figure of Map-Island-4.
-The x-coordinate of the Moreau Compound is 300.
-The y-coordinate of the Moreau Compound is 100.
 
 Book - Regions
 
