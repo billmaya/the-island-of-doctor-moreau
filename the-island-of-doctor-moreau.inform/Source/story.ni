@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3328]
+[WORDS - 3326]
 
 Table of Releases
 release	notes
@@ -134,15 +134,12 @@ Rule for refreshing the map window:
 	repeat through the Table of Room Map Locations:
 		if the room entry is not the location and the map-section entry is the map-section of the location:
 			if the room entry is visited:
-				[if there is an icon corresponding to the room of location in the Table of Room Map Locations:
+				if there is an icon entry:
 					draw the icon entry in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
-				otherwise:]
-				draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+				otherwise:
+					draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
 			otherwise:
 				draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
-
-
-	
 
 
 Chapter - Styles
@@ -339,7 +336,6 @@ A thing has a figure name called illustration.
 Book - Testing
 
 Figure of Title is the file "the-dream-0.png".
-[Figure of Title is the file "the-dream-0.jpg".]
 [Figure of Island is the file "island-0.png".]
 
 Part - Rooms
@@ -428,6 +424,9 @@ Book - Mapping
 A room has a figure name called map-section.
 A room has a number called an x-coordinate.
 A room has a number called a y-coordinate.
+
+[A room has a figure name called icon.
+The icon of a room is usually Figure of Icon-Visited-Location.]
 
 Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon
