@@ -134,9 +134,25 @@ Rule for refreshing the map window:
 	repeat through the Table of Room Map Locations:
 		if the room entry is not the location and the map-section entry is the map-section of the location:
 			if the room entry is visited:
+				[if there is an icon corresponding to the room of location in the Table of Room Map Locations:
+					draw the icon entry in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+				otherwise:]
 				draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
 			otherwise:
 				draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+
+
+[
+Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate	icon
+Beach	Figure of Map-Island-1	425	100	--
+Jungle	Figure of Map-Island-1	425	50	--
+Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
+Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
+Deep Jungle	Figure of Map-Island-2	425	100	--
+Hidden Valley	Figure of Map-Island-3	425	125	--
+Moreau Compound	Figure of Map-Island-4	300	100	--
+]
 	
 
 
@@ -337,23 +353,36 @@ Figure of Title is the file "the-dream-0.png".
 [Figure of Title is the file "the-dream-0.jpg".]
 [Figure of Island is the file "island-0.png".]
 
+Part - Rooms
+
+Figure of Map-Island-1 is the file "island-1.png".
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
-Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
 Figure of Ruins-0 is the file "ruins-0.png".
+Figure of Volcanic-Caldera-0 is the file "volcanic-caldera-0.png".
+
+Figure of Map-Island-2 is the file "island-2.png".
+Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
+
+Figure of Map-Island-3 is the file "island-3.png".
 Figure of Hidden-Valley-0 is the file "hidden-valley-0.png".
+
+Figure of Map-Island-4 is the file "island-4.png".
 Figure of Moreau-Compound-0 is the file "moreau-compound-0.png".
+
+Part - Objects
 
 Figure of Knife-0 is the file "knife-0.png".
 
-Figure of Map-Island-1 is the file "island-1.png".
-Figure of Map-Island-2 is the file "island-2.png".
-Figure of Map-Island-3 is the file "island-3.png".
-Figure of Map-Island-4 is the file "island-4.png".
+Part - Icons
 
 Figure of Icon-Player-Location is the file "icon-player-location-0.png".
+
 Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
 Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
+
+Figure of Icon-Ruins is the file "icon-ruins-0.png".
+Figure of Icon-Volcanic-Caldera is the file "icon-volcanic-caldera-0.png".
 
 Book - Rooms
 
@@ -412,13 +441,15 @@ A room has a number called an x-coordinate.
 A room has a number called a y-coordinate.
 
 Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate
-Beach	Figure of Map-Island-1	425	100
-Jungle	Figure of Map-Island-1	425	50
-Ruins	Figure of Map-Island-1	345	50
-Deep Jungle	Figure of Map-Island-2	425	100
-Hidden Valley	Figure of Map-Island-3	425	125
-Moreau Compound	Figure of Map-Island-4	300	100
+room	map-section	x-coordinate	y-coordinate	icon
+Beach	Figure of Map-Island-1	425	100	--
+Jungle	Figure of Map-Island-1	425	50	--
+Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
+Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
+Deep Jungle	Figure of Map-Island-2	425	100	--
+Hidden Valley	Figure of Map-Island-3	425	125	--
+Moreau Compound	Figure of Map-Island-4	300	100	--
+
 
 
 Book - Island
@@ -455,6 +486,17 @@ The illustration of the Ruins are Figure of Ruins-0.
 The map-section of the Ruins is Figure of Map-Island-1.
 The x-coordinate of the Ruins is 345.
 The y-coordinate of the Ruins is 50.
+
+Part - Volcanic Caldera
+
+The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Jungle.
+
+The description of the Volcanic Caldera is "This is the volcanic caldera."
+The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
+
+The map-section of the Volcanic Caldera is Figure of Map-Island-1.
+The x-coordinate of the Volcanic Caldera is 525.
+The y-coordinate of the Volcanic Caldera is 130.
 
 Part - Deep Jungle
 
