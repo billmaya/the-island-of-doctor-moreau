@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3151]
+[WORDS - 3328]
 
 Table of Releases
 release	notes
@@ -142,17 +142,6 @@ Rule for refreshing the map window:
 				draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
 
 
-[
-Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon
-Beach	Figure of Map-Island-1	425	100	--
-Jungle	Figure of Map-Island-1	425	50	--
-Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
-Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
-Deep Jungle	Figure of Map-Island-2	425	100	--
-Hidden Valley	Figure of Map-Island-3	425	125	--
-Moreau Compound	Figure of Map-Island-4	300	100	--
-]
 	
 
 
