@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3316]
+[WORDS - 3124]
 
 Table of Releases
 release	notes
@@ -128,35 +128,25 @@ Rule for refreshing the map window:
 	[Draw the map section for the current location]
 	repeat through the Table of Room Map Locations:
 		if the room entry is the location:
-			let current-map be the map-section entry;
+			now current-map is the map-section entry; ["let current-map be the map-section entry" doesn't work.]
 			draw the map-section entry in the map window;
 	[Draw icons for other locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
 	repeat through the Table of Room Map Locations:
+		let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;
+		[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 		if the room entry is not the location:
-			if the map-section entry is the map-section of the location:
+			if the map-section entry is the current-map: [map-section of the location:]
 				if the room entry is visited:
 					if there is an icon entry:
-						draw the icon entry in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+						draw the icon entry in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 					otherwise:
-						draw the Figure of Icon-Visited-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+						draw the Figure of Icon-Visited-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 				otherwise:
-					draw the Figure of Icon-Unknown-Location in the map window at x x-coordinate entry and y y-coordinate entry scaled to width 20 and height 20;
+					draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
-			let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;
-			[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 
-[
-Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon
-Beach	Figure of Map-Island-1	425	100	--
-Jungle	Figure of Map-Island-1	425	50	--
-Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
-Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
-Deep Jungle	Figure of Map-Island-2	425	100	--
-Hidden Valley	Figure of Map-Island-3	425	125	--
-Moreau Compound	Figure of Map-Island-4	300	100	--
-]
+
 
 
 Chapter - Styles
@@ -436,16 +426,7 @@ Volume - Rooms
 
 The player is in the Beach.
 
-
-
 Book - Mapping
-
-A room has a figure name called map-section.
-[A room has a number called an x-coordinate.
-A room has a number called a y-coordinate.]
-
-[A room has a figure name called icon.
-The icon of a room is usually Figure of Icon-Visited-Location.]
 
 Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon
@@ -457,8 +438,6 @@ Deep Jungle	Figure of Map-Island-2	425	100	--
 Hidden Valley	Figure of Map-Island-3	425	125	--
 Moreau Compound	Figure of Map-Island-4	300	100	--
 
-
-
 Book - Island
 
 Part - Beach
@@ -468,16 +447,12 @@ The Beach is a room.
 The description of the Beach is "This is the beach."
 The illustration of the Beach is Figure of Beach-0.
 
-The map-section of the Beach is Figure of Map-Island-1.
-
 Part - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 
 The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
-
-The map-section of the Jungle is Figure of Map-Island-1.
 
 Part - Ruins
 
@@ -486,16 +461,12 @@ The Ruins are a room. The Ruins are west of the Jungle.
 The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
 
-The map-section of the Ruins is Figure of Map-Island-1.
-
 Part - Volcanic Caldera
 
 The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Jungle.
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
-
-The map-section of the Volcanic Caldera is Figure of Map-Island-1.
 
 Part - Deep Jungle
 
@@ -504,8 +475,6 @@ The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
-The map-section of the Deep Jungle is Figure of Map-Island-2.
-
 Part - Hidden Valley
 
 The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
@@ -513,16 +482,12 @@ The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
 The description of the Hidden Valley is "This is the Hidden Valley."
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
-The map-section of the Hidden Valley is Figure of Map-Island-3.
-
 Part - Moreau Compound
 
 The Moreau Compound is a room. The Moreau Compound is northwest of the Hidden Valley.
 
 The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
-
-The map-section of the Moreau Compound is Figure of Map-Island-4.
 
 Book - Regions
 
@@ -550,6 +515,10 @@ The rusty knife is in the Jungle.
 Volume - Scenes
 
 
+
+Volume - Tests
+
+Test me with "north / west / east / southeast / northwest / south".
 
 Volume - Utilities
 
