@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3124]
+[WORDS - 3262]
 
 Table of Releases
 release	notes
@@ -145,8 +145,6 @@ Rule for refreshing the map window:
 						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-
-
 
 Chapter - Styles
 
@@ -431,7 +429,13 @@ The player is in the Beach.
 
 Book - Mapping
 
-
+[
+Ever room in the game should have a table entry. 
+The following columns are required - map-section, x-coordinate; y-coordinate.
+The following columns are optional - icon; display.
+To use a custom visited icon for a room, set icon to a Figure of XYZ.
+To display a room icon on the map, set display to true.
+]
 
 Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
