@@ -272,6 +272,35 @@ Rule for printing the banner text:
 Section - Removing Extra Lines
 
 The initial whitespace rule does nothing.
+
+Part - Rule Modifications
+
+Chapter - Room Heading & Description 
+
+This is the modified room description heading rule:
+	refresh the title-object window;
+
+The modified room description heading rule substitutes for the room description heading rule.
+
+This is the modified room description body text rule:
+	refresh the description-action-object window;
+
+The modified room description body text rule substitutes for the room description body text rule.
+
+Chapter - Room You Also See
+
+[This is the modified you-can-also-see rule:
+	refresh the description-action-object window;
+
+The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
+
+Chapter - Room Graphics
+
+[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+
+This is the display object graphics rule:
+	refresh the graphics-object window;
+
 	
 Book - Out Of World Actions
 
@@ -407,35 +436,7 @@ Volume - Rooms
 
 The player is in the Beach.
 
-Book - Rule Modifications
 
-Part - Heading 
-
-This is the modified room description heading rule:
-	refresh the title-object window;
-
-The modified room description heading rule substitutes for the room description heading rule.
-
-Part - Description
-
-This is the modified room description body text rule:
-	refresh the description-action-object window;
-
-The modified room description body text rule substitutes for the room description body text rule.
-
-Part - Graphics
-
-[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
-
-This is the display object graphics rule:
-	refresh the graphics-object window;
-
-Part - You Also See
-
-[This is the modified you-can-also-see rule:
-	refresh the description-action-object window;
-
-The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
 Book - Mapping
 
