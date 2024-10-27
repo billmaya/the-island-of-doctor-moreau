@@ -121,31 +121,30 @@ Rule for refreshing the graphics-object window:
 	draw the illustration of the location in graphics-object window.
 
 x-calculated-coordinate is a number that varies.
-[y-calculated-coordinate is a number that varies.]
 current-map is a figure name that varies.
-	
+
 Rule for refreshing the map window:
 	[Draw the map section for the current location]
 	repeat through the Table of Room Map Locations:
 		if the room entry is the location:
 			now current-map is the map-section entry; ["let current-map be the map-section entry" doesn't work.]
 			draw the map-section entry in the map window;
-	[Draw icons for other locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
+	[Draw icons for other visible locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
 	repeat through the Table of Room Map Locations:
 		let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;
 		[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 		if the room entry is not the location:
-			if the map-section entry is the current-map: [map-section of the location:]
-				if the room entry is visited:
-					if there is an icon entry:
-						draw the icon entry in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+			if there is a display entry:
+				if the map-section entry is the current-map: [map-section of the location:]
+					if the room entry is visited:
+						if there is an icon entry:
+							draw the icon entry in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+						otherwise:
+							draw the Figure of Icon-Visited-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 					otherwise:
-						draw the Figure of Icon-Visited-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-				otherwise:
-					draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-
 
 
 
@@ -381,6 +380,7 @@ Figure of Map-Island-1 is the file "island-1.png".
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
 Figure of Ruins-0 is the file "ruins-0.png".
+Figure of Muddy-Path-0 is the file "muddy-path-0.png".
 Figure of Volcanic-Caldera-0 is the file "volcanic-caldera-0.png".
 
 Figure of Map-Island-2 is the file "island-2.png".
@@ -429,16 +429,19 @@ The player is in the Beach.
 Book - Mapping
 
 Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon
-Beach	Figure of Map-Island-1	425	100	--
-Jungle	Figure of Map-Island-1	425	50	--
-Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins
-Volcanic Caldera	Figure of Map-Island-1	525	130	Figure of Icon-Volcanic-Caldera
-Deep Jungle	Figure of Map-Island-2	425	100	--
-Hidden Valley	Figure of Map-Island-3	425	125	--
-Moreau Compound	Figure of Map-Island-4	300	100	--
+room	map-section	x-coordinate	y-coordinate	icon	display
+Beach	Figure of Map-Island-1	425	100	--	true
+Jungle	Figure of Map-Island-1	425	50	--	true
+Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins	true
+Volcanic Caldera	Figure of Map-Island-1	550	130	Figure of Icon-Volcanic-Caldera	true
+Deep Jungle	Figure of Map-Island-2	425	100	--	true
+Hidden Valley	Figure of Map-Island-3	425	125	--	true
+Moreau Compound	Figure of Map-Island-4	300	100	--	true
+Muddy Path	Figure of Map-Island-1	475	50	--	--
 
-Book - Island
+
+
+Book - Testing
 
 Part - Beach
 
@@ -461,9 +464,16 @@ The Ruins are a room. The Ruins are west of the Jungle.
 The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
 
+Part - Muddy Path
+
+The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of the Volcanic Caldera.
+
+The description of the Muddy Path is "This is a narrow, muddy path."
+The illustration of the Muddy Path is Figure of Muddy-Path-0.
+
 Part - Volcanic Caldera
 
-The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Jungle.
+The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path. [Jungle.]
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
@@ -518,7 +528,7 @@ Volume - Scenes
 
 Volume - Tests
 
-Test me with "north / west / east / southeast / northwest / south".
+Test me with "north / west / east / east / southeast / northwest / west / south".
 
 Volume - Utilities
 
