@@ -374,22 +374,25 @@ Book - Testing
 Figure of Title is the file "the-dream-0.png".
 [Figure of Island is the file "island-0.png".]
 
-Part - Rooms
+Part - Map
 
 Figure of Map-Island-1 is the file "island-1.png".
+Figure of Map-Island-2 is the file "island-2.png".
+Figure of Map-Island-3 is the file "island-3.png".
+Figure of Map-Island-4 is the file "island-4.png".
+
+Part - Rooms
+
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
 Figure of Ruins-0 is the file "ruins-0.png".
 Figure of Muddy-Path-0 is the file "muddy-path-0.png".
 Figure of Volcanic-Caldera-0 is the file "volcanic-caldera-0.png".
 
-Figure of Map-Island-2 is the file "island-2.png".
 Figure of Deep-Jungle-0 is the file "deep-jungle-0.png".
 
-Figure of Map-Island-3 is the file "island-3.png".
 Figure of Hidden-Valley-0 is the file "hidden-valley-0.png".
 
-Figure of Map-Island-4 is the file "island-4.png".
 Figure of Moreau-Compound-0 is the file "moreau-compound-0.png".
 
 Part - Objects
@@ -428,6 +431,8 @@ The player is in the Beach.
 
 Book - Mapping
 
+
+
 Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	425	100	--	true
@@ -438,7 +443,6 @@ Deep Jungle	Figure of Map-Island-2	425	100	--	true
 Hidden Valley	Figure of Map-Island-3	425	125	--	true
 Moreau Compound	Figure of Map-Island-4	300	100	--	true
 Muddy Path	Figure of Map-Island-1	475	50	--	--
-
 
 
 Book - Testing
