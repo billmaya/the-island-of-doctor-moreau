@@ -106,7 +106,7 @@ Rule for refreshing the contents-help window:
 	say "contents-help";
 	
 Rule for refreshing the title-inventory window:
-	say "Inventory". 
+	say "You Are Carrying". 
 	
 Rule for refreshing the contents-inventory window:
 	try taking inventory.
