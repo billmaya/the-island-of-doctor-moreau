@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3262]
+[WORDS - 3327]
 
 Table of Releases
 release	notes
@@ -289,6 +289,14 @@ This is the display object graphics rule:
 	refresh the graphics-object window;
 
 	
+Book - Instead Of Rules
+
+Instead of taking inventory:
+	if the number of things enclosed by the player is 0:
+		say "";
+	otherwise:
+		list the contents of the player, with newlines;
+
 Book - Out Of World Actions
 
 Part - Graphics Mode
@@ -520,7 +528,7 @@ Volume - Characters
 Volume - Things
 
 
-Book - Island
+Book - Testing
 
 Part - Rusty Knife
 
@@ -529,6 +537,14 @@ The description of the knife is "An old, worn out sheath knife that probably won
 The illustration of the rusty knife is Figure of Knife-0.
 
 The rusty knife is in the Jungle.
+
+Part - Piece of Cloth
+
+The piece of cloth is a thing.
+The description of the piece of cloth is "A tattered piece of red cloth."
+
+
+The piece of cloth is in the Muddy Path.
 
 Volume - Scenes
 
