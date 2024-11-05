@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3439]
+[WORDS - 3443]
 
 Table of Releases
 release	notes
@@ -401,7 +401,7 @@ Figure of Hidden-Valley-0 is the file "hidden-valley-0.png".
 
 Figure of Moreau-Compound-0 is the file "moreau-compound-0.png".
 
-Part - Objects
+Part - Things
 
 Figure of Knife-0 is the file "knife-0.png".
 
@@ -552,13 +552,13 @@ The illustration of the rusty knife is Figure of Knife-0.
 
 The rusty knife is in the Jungle.
 
-Part - Piece of Cloth
+Part - Piece of Red Cloth
 
-The piece of cloth is a thing.
-The description of the piece of cloth is "A tattered piece of red cloth."
+The piece of red cloth is a thing.
+The description of the piece of red cloth is "A tattered piece of red cloth."
 
 
-The piece of cloth is in the Muddy Path.
+The piece of red cloth is in the Muddy Path.
 
 Volume - Scenes
 
