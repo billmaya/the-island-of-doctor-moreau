@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3327]
+[WORDS - 3439]
 
 Table of Releases
 release	notes
@@ -39,7 +39,7 @@ The measurement of the title window is 780.
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is 195. [240.]
+The measurement of the map window is 452. [195.] [240.]
 
 The right-sidebar window is a graphics g-window spawned by the main window.
 The position of the right-sidebar window is g-placeright.
@@ -380,7 +380,7 @@ Book - Testing
 Figure of Title is the file "the-dream-0.png".
 [Figure of Island is the file "island-0.png".]
 
-Part - Map
+Part - Mapping
 
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
@@ -445,7 +445,21 @@ To use a custom visited icon for a room, set icon to a Figure of XYZ.
 To display a room icon on the map, set display to true.
 ]
 
+[When map window height is 452]
 Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate	icon	display
+Beach	Figure of Map-Island-1	425	220	--	true
+Jungle	Figure of Map-Island-1	425	170	--	true
+Ruins	Figure of Map-Island-1	345	170	Figure of Icon-Ruins	true
+Volcanic Caldera	Figure of Map-Island-1	550	250	Figure of Icon-Volcanic-Caldera	true
+Deep Jungle	Figure of Map-Island-2	425	220	--	true
+Hidden Valley	Figure of Map-Island-3	425	245	--	true
+Moreau Compound	Figure of Map-Island-4	300	220	--	true
+Muddy Path	Figure of Map-Island-1	475	170	--	--
+
+
+[When map window height was 195]
+[Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	425	100	--	true
 Jungle	Figure of Map-Island-1	425	50	--	true
@@ -454,7 +468,7 @@ Volcanic Caldera	Figure of Map-Island-1	550	130	Figure of Icon-Volcanic-Caldera	
 Deep Jungle	Figure of Map-Island-2	425	100	--	true
 Hidden Valley	Figure of Map-Island-3	425	125	--	true
 Moreau Compound	Figure of Map-Island-4	300	100	--	true
-Muddy Path	Figure of Map-Island-1	475	50	--	--
+Muddy Path	Figure of Map-Island-1	475	50	--	--]
 
 
 Book - Testing
