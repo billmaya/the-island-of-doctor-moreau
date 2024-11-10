@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3443]
+[WORDS - 3592]
 
 Table of Releases
 release	notes
@@ -39,7 +39,12 @@ The measurement of the title window is 780.
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is 452. [195.] [240.]
+The measurement of the map window is 452. [195.]
+
+The entire-map window is a graphics g-window spawned by the main window.
+The position of the entire-map window is g-placeabove.
+The scale method of the entire-map window is g-fixed-size.
+The measurement of the entire-map window is 966.
 
 The right-sidebar window is a graphics g-window spawned by the main window.
 The position of the right-sidebar window is g-placeright.
@@ -49,7 +54,7 @@ The measurement of the right-sidebar window is 290.
 The graphics-object window is a graphics g-window spawned by the right-sidebar window.
 The position of the graphics-object window is g-placeabove.
 The scale method of the graphics-object window is g-fixed-size.
-The measurement of the graphics-object window is 195. [240.]
+The measurement of the graphics-object window is 195.
 
 The title-object window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-object window is g-placeabove.
@@ -69,7 +74,7 @@ The measurement of the title-inventory window is 2.
 The contents-inventory window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-inventory window is g-placeabove.
 The scale method of the contents-inventory window is g-fixed-size.
-The measurement of the contents-inventory window is [10.] 9. [16.]
+The measurement of the contents-inventory window is 9.
 
 The title-help window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-help window is g-placeabove.
@@ -145,6 +150,9 @@ Rule for refreshing the map window:
 						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+
+Rule for refreshing the entire-map window:
+	draw the Figure of Entire-Island in the entire-map window;
 
 Chapter - Styles
 
@@ -311,6 +319,26 @@ debug-mode is [false.] true.
 
 Part - Map Mode
 
+Request map mode is an action out of world.
+Report request map mode:
+	follow the Show Map rules;
+
+Understand "map" as request map mode.
+Understand "show map" as request map mode.
+Understand "show entire map" as request map mode.
+
+Chapter - Show Map Rulebook
+
+Show Map is a rulebook.
+A show map rule:
+	close map window;
+	open entire-map window;
+	refresh entire-map window;
+	pause the game;
+	close entire-map window;
+	open map window;
+	refresh map window;
+
 
 
 Book - Release
@@ -386,6 +414,8 @@ Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
 Figure of Map-Island-4 is the file "island-4.png".
+
+Figure of Entire-Island is the file "island-0.1.png".
 
 Part - Rooms
 
@@ -566,7 +596,7 @@ Volume - Scenes
 
 Volume - Tests
 
-Test me with "north / west / east / east / southeast / northwest / west / south".
+Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south".
 
 Volume - Utilities
 
