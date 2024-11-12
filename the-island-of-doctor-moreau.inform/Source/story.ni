@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3592]
+[WORDS - 3702]
 
 Table of Releases
 release	notes
@@ -110,11 +110,22 @@ Rule for refreshing the title-help window:
 Rule for refreshing the contents-help window:
 	say "contents-help";
 	
+currently-examined-item is an object that varies.
+currently-examined-item is initially nothing.
+
 Rule for refreshing the title-inventory window:
-	say "You Are Carrying". 
-	
+	if currently-examined-item is nothing:
+		say "You Are Carrying";
+	else:
+		say "[currently-examined-item]" in title case;
+
 Rule for refreshing the contents-inventory window:
-	try taking inventory.
+	if currently-examined-item is nothing:
+		try taking inventory;
+	else:
+		say "[description of currently-examined-item][line break]";
+	refresh the title-inventory window;
+	now currently-examined-item is nothing;
 
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
@@ -153,6 +164,7 @@ Rule for refreshing the map window:
 
 Rule for refreshing the entire-map window:
 	draw the Figure of Entire-Island in the entire-map window;
+
 
 Chapter - Styles
 
@@ -270,31 +282,44 @@ The initial whitespace rule does nothing.
 
 Part - Rule Modifications
 
-Chapter - Room Heading & Description 
+Chapter - Rooms
+
+Section - Room Heading
 
 This is the modified room description heading rule:
 	refresh the title-object window;
 
 The modified room description heading rule substitutes for the room description heading rule.
 
+Section - Room Description
+
 This is the modified room description body text rule:
 	refresh the description-action-object window;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
-Chapter - Room You Also See
+Section - Room Graphics
+
+[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+
+This is the display object graphics rule:
+	refresh the graphics-object window;
+
+Section - Room You Also See (not currently used)
 
 [This is the modified you-can-also-see rule:
 	refresh the description-action-object window;
 
 The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
-Chapter - Room Graphics
+Chapter - Examine
 
-[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+Section - Standard Examine
 
-This is the display object graphics rule:
-	refresh the graphics-object window;
+[After] Before examining something:
+	now currently-examined-item is the noun;
+	stop the action;
+
 
 	
 Book - Instead Of Rules
@@ -385,9 +410,10 @@ Every turn:
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
+		[say "inventory-suppressed: [inventory-suppressed][line break]";] [REMOVE]
 		say "Map window width: [width of map window][line break]";
-		say "Map window height: [height of map window][line break]";
-		say "Current map: [current-map][line break]";
+		[say "Map window height: [height of map window][line break]";]
+		[say "Current map: [current-map][line break]";]
 		[End debug statements]
 		focus main window;
 
@@ -579,6 +605,7 @@ Part - Rusty Knife
 The rusty knife is a thing.
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
 The illustration of the rusty knife is Figure of Knife-0.
+[The printed name of rusty knife is "Rusty Knife".]
 
 The rusty knife is in the Jungle.
 
@@ -586,6 +613,7 @@ Part - Piece of Red Cloth
 
 The piece of red cloth is a thing.
 The description of the piece of red cloth is "A tattered piece of red cloth."
+[The printed name of piece of red cloth is "Piece of Red Cloth".]
 
 
 The piece of red cloth is in the Muddy Path.
@@ -597,6 +625,7 @@ Volume - Scenes
 Volume - Tests
 
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south".
+
 
 Volume - Utilities
 
