@@ -109,7 +109,7 @@ Rule for refreshing the title-help window:
 	
 Rule for refreshing the contents-help window:
 	say "contents-help";
-	
+
 currently-examined-item is an object that varies.
 currently-examined-item is initially nothing.
 
@@ -316,10 +316,10 @@ Chapter - Examine
 
 Section - Standard Examine
 
+
 [After] Before examining something:
 	now currently-examined-item is the noun;
 	stop the action;
-
 
 	
 Book - Instead Of Rules
