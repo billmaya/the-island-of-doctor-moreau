@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3702]
+[WORDS - 3733]
 
 Table of Releases
 release	notes
@@ -110,22 +110,20 @@ Rule for refreshing the title-help window:
 Rule for refreshing the contents-help window:
 	say "contents-help";
 
-currently-examined-item is an object that varies.
-currently-examined-item is initially nothing.
-
 Rule for refreshing the title-inventory window:
-	if currently-examined-item is nothing:
-		say "You Are Carrying";
+	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
+		say "[noun]" in title case; [say "[noun part of the current action]" in title case;]
 	else:
-		say "[currently-examined-item]" in title case;
+		say "You Are Carrying";
+
+
 
 Rule for refreshing the contents-inventory window:
-	if currently-examined-item is nothing:
-		try taking inventory;
+	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
+		say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
 	else:
-		say "[description of currently-examined-item][line break]";
+		try taking inventory;
 	refresh the title-inventory window;
-	now currently-examined-item is nothing;
 
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
@@ -317,8 +315,7 @@ Chapter - Examine
 Section - Standard Examine
 
 
-[After] Before examining something:
-	now currently-examined-item is the noun;
+Before examining something:
 	stop the action;
 
 	
@@ -410,10 +407,11 @@ Every turn:
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
-		[say "inventory-suppressed: [inventory-suppressed][line break]";] [REMOVE]
 		say "Map window width: [width of map window][line break]";
 		[say "Map window height: [height of map window][line break]";]
 		[say "Current map: [current-map][line break]";]
+		say "Action: [action name part of the current action][line break]";
+		say "Noun: [noun part of the current action]";
 		[End debug statements]
 		focus main window;
 
