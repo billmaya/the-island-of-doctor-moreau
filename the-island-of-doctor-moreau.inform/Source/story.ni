@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3733]
+[WORDS - 3779]
 
 Table of Releases
 release	notes
@@ -112,15 +112,19 @@ Rule for refreshing the contents-help window:
 
 Rule for refreshing the title-inventory window:
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
-		say "[noun]" in title case; [say "[noun part of the current action]" in title case;]
+		if the player has the noun part of the current action:
+			say "[noun]" in title case; [say "[noun part of the current action]" in title case;]
+		else:
+			say "You Are Carrying";
 	else:
 		say "You Are Carrying";
 
-
-
 Rule for refreshing the contents-inventory window:
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
-		say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
+		if the player has the noun part of the current action:
+			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
+		else:
+			try taking inventory;
 	else:
 		try taking inventory;
 	refresh the title-inventory window;
@@ -316,7 +320,10 @@ Section - Standard Examine
 
 
 Before examining something:
-	stop the action;
+	if the player has the noun part of the current action:
+		stop the action;
+	otherwise:
+		continue the action;
 
 	
 Book - Instead Of Rules
