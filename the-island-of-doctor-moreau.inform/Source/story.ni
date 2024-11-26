@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3779]
+[WORDS - 3830]
 
 Table of Releases
 release	notes
@@ -136,7 +136,12 @@ Rule for refreshing the contents-debug window:
 	say "contents-debug";	
 
 Rule for refreshing the graphics-object window:
-	draw the illustration of the location in graphics-object window.
+	if the illustration of location is not Figure of cover:
+		draw the illustration of the location in graphics-object window;
+	otherwise:
+		[clear graphics-object window;] [This doesn't appear to work]
+		draw Figure of No-Image in graphics-object window;
+		
 
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
@@ -427,7 +432,10 @@ Volume - Figures
 
 A room has a figure name called illustration.
 
-A thing has a figure name called illustration.
+Figure of No-Image is the file "NO-IMAGE-0.png".
+The illustration of room is usually Figure of No-Image.
+
+A thing has a figure name called illustration. [Not displaying images for things at this time.]
 
 [Before examining the noun: 
 	if the noun is not a person:
@@ -436,8 +444,9 @@ A thing has a figure name called illustration.
 
 Book - Testing
 
+Part - Title
+
 Figure of Title is the file "the-dream-0.png".
-[Figure of Island is the file "island-0.png".]
 
 Part - Mapping
 
@@ -575,6 +584,9 @@ The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
 
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
+
+
+
 
 Part - Hidden Valley
 
