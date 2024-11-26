@@ -442,13 +442,11 @@ A thing has a figure name called illustration. [Not displaying images for things
 		if graphics-mode is true:
 			display the illustration of the noun.]
 
-Book - Testing
-
-Part - Title
+Book - Title
 
 Figure of Title is the file "the-dream-0.png".
 
-Part - Mapping
+Book - Mapping
 
 Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
@@ -457,7 +455,17 @@ Figure of Map-Island-4 is the file "island-4.png".
 
 Figure of Entire-Island is the file "island-0.1.png".
 
-Part - Rooms
+Book - Icons
+
+Figure of Icon-Player-Location is the file "icon-player-location-0.png".
+
+Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
+Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
+
+Figure of Icon-Ruins is the file "icon-ruins-0.png".
+Figure of Icon-Volcanic-Caldera is the file "icon-volcanic-caldera-0.png".
+
+Book - Rooms
 
 Figure of Beach-0 is the file "beach-0.png".
 Figure of Jungle-0 is the file "jungle-0.png".
@@ -471,30 +479,11 @@ Figure of Hidden-Valley-0 is the file "hidden-valley-0.png".
 
 Figure of Moreau-Compound-0 is the file "moreau-compound-0.png".
 
-Part - Things
+Book - Things
 
 Figure of Knife-0 is the file "knife-0.png".
 
-Part - Icons
-
-Figure of Icon-Player-Location is the file "icon-player-location-0.png".
-
-Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
-Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
-
-Figure of Icon-Ruins is the file "icon-ruins-0.png".
-Figure of Icon-Volcanic-Caldera is the file "icon-volcanic-caldera-0.png".
-
-Book - Rooms
-
-
-
 Book - Characters
-
-
-
-Book - Things
-
 
 
 Book - Scenes
@@ -543,59 +532,56 @@ Muddy Path	Figure of Map-Island-1	475	50	--	--]
 
 Book - Testing
 
-Part - Beach
+Book - Beach
 
 The Beach is a room. 
 
 The description of the Beach is "This is the beach."
 The illustration of the Beach is Figure of Beach-0.
 
-Part - Jungle
+Book - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 
 The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
 
-Part - Ruins
+Book - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
 
 The description of the Ruins are "These are the ruins."
 The illustration of the Ruins are Figure of Ruins-0.
 
-Part - Muddy Path
+Book - Muddy Path
 
 The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of the Volcanic Caldera.
 
 The description of the Muddy Path is "This is a narrow, muddy path."
 The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
-Part - Volcanic Caldera
+Book - Volcanic Caldera
 
 The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path. [Jungle.]
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
 
-Part - Deep Jungle
+Book - Deep Jungle
 
 The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
 
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
-
-
-
-Part - Hidden Valley
+Book - Hidden Valley
 
 The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
 
 The description of the Hidden Valley is "This is the Hidden Valley."
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
-Part - Moreau Compound
+Book - Moreau Compound
 
 The Moreau Compound is a room. The Moreau Compound is northwest of the Hidden Valley.
 
@@ -614,10 +600,7 @@ Volume - Characters
 
 Volume - Things
 
-
-Book - Testing
-
-Part - Rusty Knife
+Book - Rusty Knife
 
 The rusty knife is a thing.
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
@@ -626,12 +609,11 @@ The illustration of the rusty knife is Figure of Knife-0.
 
 The rusty knife is in the Jungle.
 
-Part - Piece of Red Cloth
+Book - Piece of Red Cloth
 
 The piece of red cloth is a thing.
 The description of the piece of red cloth is "A tattered piece of red cloth."
 [The printed name of piece of red cloth is "Piece of Red Cloth".]
-
 
 The piece of red cloth is in the Muddy Path.
 
