@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4547]
+[WORDS - 4659]
 
 Table of Releases
 release	notes
@@ -39,7 +39,7 @@ The measurement of the title window is 670. [780.]
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is 389. [452.] [195.]
+The measurement of the map window is [389.] 452. [195.]
 
 The entire-map window is a graphics g-window spawned by the main window.
 The position of the entire-map window is g-placeabove.
@@ -64,7 +64,7 @@ The measurement of the title-object window is 2.
 The description-action-object window is a text buffer g-window spawned by the right-sidebar window.
 The position of the description-action-object window is g-placeabove.
 The scale method of the description-action-object window is g-fixed-size.
-The measurement of the description-action-object window is 6. [9.]
+The measurement of the description-action-object window is [6.] 9.
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
@@ -614,7 +614,7 @@ To display a room icon on the map, set display to true.
 ]
 
 [When map window height is 389 with 2-segment map]
-Table 1 - Room Map Locations
+[Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	195	200	--	true
 Jungle	Figure of Map-Island-1	195	170	--	true
@@ -623,11 +623,11 @@ Muddy Path	Figure of Map-Island-1	225	170	--	--
 Volcanic Caldera	Figure of Map-Island-1	285	240	Figure of Icon-Volcanic-Caldera	true
 Deep Jungle	Figure of Map-Island-1	300	80	--	true
 Hidden Valley	Figure of Map-Island-2	375	315	--	true
-Moreau Compound	Figure of Map-Island-2	375	190	--	true
+Moreau Compound	Figure of Map-Island-2	375	190	--	true]
 
 
 [When map window height is 452 with 2-segment map]
-[Table 1 - Room Map Locations
+Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	195	235	--	true
 Jungle	Figure of Map-Island-1	195	205	--	true
@@ -636,7 +636,7 @@ Muddy Path	Figure of Map-Island-1	225	205	--	--
 Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	true
 Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
-Moreau Compound	Figure of Map-Island-2	375	225	--	true]
+Moreau Compound	Figure of Map-Island-2	375	225	--	true
 
 
 [When map window height is 452 with 4-segment map]
