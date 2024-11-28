@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 3830]
+[WORDS - 4012]
 
 Table of Releases
 release	notes
@@ -102,7 +102,11 @@ Rule for refreshing the title-object window:
 	say "[location]";
 
 Rule for refreshing the description-action-object window:
-	say "[description of location]";	
+	say "[description of location][paragraph break]";	
+	let the domain be the location;
+	[list the nondescript items of the location;]
+	list the contents of the location, as a sentence; [, listing marked items only;] [, prefacing with is/are;]
+	[say "[locale description of location]";]
 
 Rule for refreshing the title-help window:
 	say "Help (title-help)";
@@ -423,7 +427,7 @@ Every turn:
 		[say "Map window height: [height of map window][line break]";]
 		[say "Current map: [current-map][line break]";]
 		say "Action: [action name part of the current action][line break]";
-		say "Noun: [noun part of the current action]";
+		say "Noun: [noun part of the current action][line break]";
 		[End debug statements]
 		focus main window;
 
@@ -448,12 +452,16 @@ Figure of Title is the file "the-dream-0.png".
 
 Book - Mapping
 
-Figure of Map-Island-1 is the file "island-1.png".
+Figure of Map-Island-1 is the file "mapgen4-195-1.png".
+Figure of Map-Island-2 is the file "mapgen4-195-2.png".
+
+[Figure of Map-Island-1 is the file "island-1.png".
 Figure of Map-Island-2 is the file "island-2.png".
 Figure of Map-Island-3 is the file "island-3.png".
-Figure of Map-Island-4 is the file "island-4.png".
+Figure of Map-Island-4 is the file "island-4.png".]
 
-Figure of Entire-Island is the file "island-0.1.png".
+Figure of Entire-Island is the file "mapgen4-195.png".
+[Figure of Entire-Island is the file "island-0.1.png".]
 
 Book - Icons
 
@@ -504,8 +512,21 @@ To use a custom visited icon for a room, set icon to a Figure of XYZ.
 To display a room icon on the map, set display to true.
 ]
 
-[When map window height is 452]
+[When map window height is 452 with 2-segment map]
 Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate	icon	display
+Beach	Figure of Map-Island-1	195	235	--	true
+Jungle	Figure of Map-Island-1	195	205	--	true
+Ruins	Figure of Map-Island-1	150	205	Figure of Icon-Ruins	true
+Muddy Path	Figure of Map-Island-1	225	205	--	--
+Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	true
+Deep Jungle	Figure of Map-Island-1	300	115	--	true
+Hidden Valley	Figure of Map-Island-2	375	345	--	true
+Moreau Compound	Figure of Map-Island-2	375	225	--	true
+
+
+[When map window height is 452 with 4-segment map]
+[Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	425	220	--	true
 Jungle	Figure of Map-Island-1	425	170	--	true
@@ -514,10 +535,10 @@ Volcanic Caldera	Figure of Map-Island-1	550	250	Figure of Icon-Volcanic-Caldera	
 Deep Jungle	Figure of Map-Island-2	425	220	--	true
 Hidden Valley	Figure of Map-Island-3	425	245	--	true
 Moreau Compound	Figure of Map-Island-4	300	220	--	true
-Muddy Path	Figure of Map-Island-1	475	170	--	--
+Muddy Path	Figure of Map-Island-1	475	170	--	--]
 
 
-[When map window height was 195]
+[When map window height was 195 with 4-segment map]
 [Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	425	100	--	true
@@ -569,7 +590,7 @@ The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
 
 Book - Deep Jungle
 
-The Deep Jungle is a room. The Deep Jungle is north of the Jungle.
+The Deep Jungle is a room. The Deep Jungle is northeast of the Jungle.
 
 The description of the Deep Jungle is "This is the Deep Jungle."
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
@@ -583,7 +604,7 @@ The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
 Book - Moreau Compound
 
-The Moreau Compound is a room. The Moreau Compound is northwest of the Hidden Valley.
+The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
 
 The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
