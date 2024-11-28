@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4012]
+[WORDS - 4547]
 
 Table of Releases
 release	notes
@@ -39,7 +39,7 @@ The measurement of the title window is 780.
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is 452. [195.]
+The measurement of the map window is 389. [452.] [195.]
 
 The entire-map window is a graphics g-window spawned by the main window.
 The position of the entire-map window is g-placeabove.
@@ -64,7 +64,7 @@ The measurement of the title-object window is 2.
 The description-action-object window is a text buffer g-window spawned by the right-sidebar window.
 The position of the description-action-object window is g-placeabove.
 The scale method of the description-action-object window is g-fixed-size.
-The measurement of the description-action-object window is 9.
+The measurement of the description-action-object window is 6. [9.]
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
@@ -74,7 +74,17 @@ The measurement of the title-inventory window is 2.
 The contents-inventory window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-inventory window is g-placeabove.
 The scale method of the contents-inventory window is g-fixed-size.
-The measurement of the contents-inventory window is 9.
+The measurement of the contents-inventory window is 12. [9.]
+
+The graphics-inventory window is a graphics g-window spawned by the right-sidebar window.
+The position of the graphics-inventory window is g-placeabove.
+The scale method of the graphics-inventory window is g-fixed-size.
+The measurement of the graphics-inventory window is 195.
+
+The description-inventory window is a text buffer g-window spawned by the right-sidebar window.
+The position of the description-inventory window is g-placeabove.
+The scale method of the description-inventory window is g-fixed-size.
+The measurement of the description-inventory window is 3.
 
 The title-help window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-help window is g-placeabove.
@@ -94,7 +104,7 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 9.
+The measurement of the contents-debug window is 5. [9.]
 
 Chapter - Rules
 
@@ -105,7 +115,7 @@ Rule for refreshing the description-action-object window:
 	say "[description of location][paragraph break]";	
 	let the domain be the location;
 	[list the nondescript items of the location;]
-	list the contents of the location, as a sentence; [, listing marked items only;] [, prefacing with is/are;]
+	[list the contents of the location, as a sentence;] [, listing marked items only;] [, prefacing with is/are;]
 	[say "[locale description of location]";]
 
 Rule for refreshing the title-help window:
@@ -123,7 +133,7 @@ Rule for refreshing the title-inventory window:
 	else:
 		say "You Are Carrying";
 
-Rule for refreshing the contents-inventory window:
+Rule for refreshing the contents-inventory window (this is the update-contents-inventory rule):
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
@@ -132,6 +142,37 @@ Rule for refreshing the contents-inventory window:
 	else:
 		try taking inventory;
 	refresh the title-inventory window;
+
+Rule for refreshing the description-inventory window (this is the update-description-inventory rule):
+	if the current action is examining something (called E): 
+		if the player has the noun part of the current action:
+			say "[description of E][line break]"; 
+		else:
+			now inventory-morph-mode is false;
+			follow the Morph Inventory rules;
+			try taking inventory;
+	else:
+		now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+		try taking inventory;
+	refresh the graphics-inventory window;
+	refresh the title-inventory window;
+	
+Rule for refreshing the graphics-inventory window:
+	if the current action is examining something (called E): 
+		if the player has the noun part of the current action:
+			draw the illustration of the noun part of the current action in the graphics-inventory window;
+
+Rule for refreshing the description-inventory window:
+	if the current action is examining something (called E):
+		if the player has the noun part of the current action:
+			say "[description of E][line break]"; 
+		else:
+			try taking inventory;
+	else:
+		try taking inventory;
+	refresh the title-inventory window;
+		
 
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
@@ -327,9 +368,17 @@ Chapter - Examine
 
 Section - Standard Examine
 
-
 Before examining something:
 	if the player has the noun part of the current action:
+		if the illustration of the noun part of the current action is not Figure of No-Image:
+			now inventory-morph-mode is true;
+		otherwise:
+			now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+		if inventory-morph-mode is false:
+			refresh the contents-inventory window;
+		otherwise:
+			refresh the description-inventory window;
 		stop the action;
 	otherwise:
 		continue the action;
@@ -377,6 +426,48 @@ A show map rule:
 	open map window;
 	refresh map window;
 
+Part - Morph Inventory Window Mode
+
+inventory-morph-mode is a truth state that varies.
+inventory-morph-mode is false.
+
+Morph inventory window is an action out of world.
+Report morph inventory window:
+	if inventory-morph-mode is false:
+		now inventory-morph-mode is true;
+		follow the Morph Inventory rules;
+	otherwise:
+		now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+
+understand "morph" as morph inventory window.
+
+Chapter - Morph Inventory
+
+Morph Inventory is a rulebook.
+A morph inventory rule:
+	if debug-mode is true: [Close Debug windows if open]
+		close contents-debug window;
+		close title-debug window;
+	[Close Help windows]
+	close contents-help window;
+	close title-help window;
+	[Modify Inventory contents window]
+	if inventory-morph-mode is true: 
+		close contents-inventory;
+		open graphics-inventory window;
+		open description-inventory window;
+	otherwise:
+		close description-inventory window;
+		close graphics-inventory window;
+		open contents-inventory window;
+	[Open Help windows]
+	open title-help window;
+	open contents-help window;
+	if debug-mode is true: [Open Debug windows if they were open]
+		open title-debug window;
+		open contents-debug window;
+
 
 
 Book - Release
@@ -417,7 +508,11 @@ Book - Every Turn
 
 Every turn:
 	follow the display object graphics rule;
-	refresh the contents-inventory window;
+	if inventory-morph-mode is false:
+		refresh the contents-inventory window;
+	otherwise:
+		refresh the description-inventory window;
+	[refresh the contents-inventory window;]
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
@@ -431,15 +526,21 @@ Every turn:
 		[End debug statements]
 		focus main window;
 
+[
+now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+]
+
 
 Volume - Figures
 
-A room has a figure name called illustration.
-
 Figure of No-Image is the file "NO-IMAGE-0.png".
+
+A room has a figure name called illustration.
 The illustration of room is usually Figure of No-Image.
 
 A thing has a figure name called illustration. [Not displaying images for things at this time.]
+The illustration of a thing is usually Figure of No-Image.
 
 [Before examining the noun: 
 	if the noun is not a person:
@@ -512,8 +613,21 @@ To use a custom visited icon for a room, set icon to a Figure of XYZ.
 To display a room icon on the map, set display to true.
 ]
 
-[When map window height is 452 with 2-segment map]
+[When map window height is 389 with 2-segment map]
 Table 1 - Room Map Locations
+room	map-section	x-coordinate	y-coordinate	icon	display
+Beach	Figure of Map-Island-1	195	200	--	true
+Jungle	Figure of Map-Island-1	195	170	--	true
+Ruins	Figure of Map-Island-1	150	170	Figure of Icon-Ruins	true
+Muddy Path	Figure of Map-Island-1	225	170	--	--
+Volcanic Caldera	Figure of Map-Island-1	285	240	Figure of Icon-Volcanic-Caldera	true
+Deep Jungle	Figure of Map-Island-1	300	80	--	true
+Hidden Valley	Figure of Map-Island-2	375	315	--	true
+Moreau Compound	Figure of Map-Island-2	375	190	--	true
+
+
+[When map window height is 452 with 2-segment map]
+[Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
 Beach	Figure of Map-Island-1	195	235	--	true
 Jungle	Figure of Map-Island-1	195	205	--	true
@@ -522,7 +636,7 @@ Muddy Path	Figure of Map-Island-1	225	205	--	--
 Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	true
 Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
-Moreau Compound	Figure of Map-Island-2	375	225	--	true
+Moreau Compound	Figure of Map-Island-2	375	225	--	true]
 
 
 [When map window height is 452 with 4-segment map]
