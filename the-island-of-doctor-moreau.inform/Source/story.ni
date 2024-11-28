@@ -74,7 +74,7 @@ The measurement of the title-inventory window is 2.
 The contents-inventory window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-inventory window is g-placeabove.
 The scale method of the contents-inventory window is g-fixed-size.
-The measurement of the contents-inventory window is 9.
+The measurement of the contents-inventory window is 12. [9.]
 
 The title-help window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-help window is g-placeabove.
@@ -94,7 +94,7 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 9.
+The measurement of the contents-debug window is 5. [9.]
 
 Chapter - Rules
 
