@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4287]
+[WORDS - 4547]
 
 Table of Releases
 release	notes
@@ -115,7 +115,7 @@ Rule for refreshing the description-action-object window:
 	say "[description of location][paragraph break]";	
 	let the domain be the location;
 	[list the nondescript items of the location;]
-	list the contents of the location, as a sentence; [, listing marked items only;] [, prefacing with is/are;]
+	[list the contents of the location, as a sentence;] [, listing marked items only;] [, prefacing with is/are;]
 	[say "[locale description of location]";]
 
 Rule for refreshing the title-help window:
@@ -133,7 +133,7 @@ Rule for refreshing the title-inventory window:
 	else:
 		say "You Are Carrying";
 
-Rule for refreshing the contents-inventory window:
+Rule for refreshing the contents-inventory window (this is the update-contents-inventory rule):
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
@@ -142,6 +142,37 @@ Rule for refreshing the contents-inventory window:
 	else:
 		try taking inventory;
 	refresh the title-inventory window;
+
+Rule for refreshing the description-inventory window (this is the update-description-inventory rule):
+	if the current action is examining something (called E): 
+		if the player has the noun part of the current action:
+			say "[description of E][line break]"; 
+		else:
+			now inventory-morph-mode is false;
+			follow the Morph Inventory rules;
+			try taking inventory;
+	else:
+		now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+		try taking inventory;
+	refresh the graphics-inventory window;
+	refresh the title-inventory window;
+	
+Rule for refreshing the graphics-inventory window:
+	if the current action is examining something (called E): 
+		if the player has the noun part of the current action:
+			draw the illustration of the noun part of the current action in the graphics-inventory window;
+
+Rule for refreshing the description-inventory window:
+	if the current action is examining something (called E):
+		if the player has the noun part of the current action:
+			say "[description of E][line break]"; 
+		else:
+			try taking inventory;
+	else:
+		try taking inventory;
+	refresh the title-inventory window;
+		
 
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
@@ -337,9 +368,17 @@ Chapter - Examine
 
 Section - Standard Examine
 
-
 Before examining something:
 	if the player has the noun part of the current action:
+		if the illustration of the noun part of the current action is not Figure of No-Image:
+			now inventory-morph-mode is true;
+		otherwise:
+			now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+		if inventory-morph-mode is false:
+			refresh the contents-inventory window;
+		otherwise:
+			refresh the description-inventory window;
 		stop the action;
 	otherwise:
 		continue the action;
@@ -428,7 +467,6 @@ A morph inventory rule:
 	if debug-mode is true: [Open Debug windows if they were open]
 		open title-debug window;
 		open contents-debug window;
-	say "inventory-morph-mode: [inventory-morph-mode]";
 
 
 
@@ -470,7 +508,11 @@ Book - Every Turn
 
 Every turn:
 	follow the display object graphics rule;
-	refresh the contents-inventory window;
+	if inventory-morph-mode is false:
+		refresh the contents-inventory window;
+	otherwise:
+		refresh the description-inventory window;
+	[refresh the contents-inventory window;]
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
@@ -484,15 +526,21 @@ Every turn:
 		[End debug statements]
 		focus main window;
 
+[
+now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+]
+
 
 Volume - Figures
 
-A room has a figure name called illustration.
-
 Figure of No-Image is the file "NO-IMAGE-0.png".
+
+A room has a figure name called illustration.
 The illustration of room is usually Figure of No-Image.
 
 A thing has a figure name called illustration. [Not displaying images for things at this time.]
+The illustration of a thing is usually Figure of No-Image.
 
 [Before examining the noun: 
 	if the noun is not a person:
