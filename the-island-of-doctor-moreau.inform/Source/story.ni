@@ -76,6 +76,16 @@ The position of the contents-inventory window is g-placeabove.
 The scale method of the contents-inventory window is g-fixed-size.
 The measurement of the contents-inventory window is 12. [9.]
 
+The graphics-inventory window is a graphics g-window spawned by the right-sidebar window.
+The position of the graphics-inventory window is g-placeabove.
+The scale method of the graphics-inventory window is g-fixed-size.
+The measurement of the graphics-inventory window is 195.
+
+The description-inventory window is a text buffer g-window spawned by the right-sidebar window.
+The position of the description-inventory window is g-placeabove.
+The scale method of the description-inventory window is g-fixed-size.
+The measurement of the description-inventory window is 3.
+
 The title-help window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-help window is g-placeabove.
 The scale method of the title-help window is g-fixed-size.
@@ -376,6 +386,31 @@ A show map rule:
 	close entire-map window;
 	open map window;
 	refresh map window;
+
+Part - Morph Inventory Window Mode
+
+inventory-morph-mode is a truth state that varies.
+inventory-morph-mode is false.
+
+Morph inventory window is an action out of world.
+Report morph inventory window:
+	if inventory-morph-mode is false:
+		now inventory-morph-mode is true;
+		follow the Morph Inventory rules;
+	otherwise:
+		now inventory-morph-mode is false;
+		follow the Morph Inventory rules;
+
+understand "morph" as morph inventory window.
+
+Chapter - Morph Inventory
+
+Morph Inventory is a rulebook.
+A morph inventory rule:
+	if inventory-morph-mode is true:
+		say "[inventory-morph-mode]";
+	otherwise:
+		say "[inventory-morph-mode]";
 
 
 
