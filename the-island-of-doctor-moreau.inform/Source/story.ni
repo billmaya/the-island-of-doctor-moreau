@@ -34,7 +34,7 @@ Chapter - Setup
 The title window is a graphics g-window spawned by the main window.
 The position of the title window is g-placeabove.
 The scale method of the title window is g-fixed-size.
-The measurement of the title window is 780.
+The measurement of the title window is 670. [780.]
 
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
