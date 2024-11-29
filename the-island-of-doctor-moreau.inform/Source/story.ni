@@ -149,11 +149,11 @@ Rule for refreshing the description-inventory window (this is the update-descrip
 			say "[description of E][line break]"; 
 		else:
 			now inventory-morph-mode is false;
-			follow the Morph Inventory Windows rules;
+			follow the Change Inventory Windows rules;
 			try taking inventory;
 	else:
 		now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
+		follow the Change Inventory Windows rules;
 		try taking inventory;
 	refresh the graphics-inventory window;
 	refresh the title-inventory window;
@@ -373,7 +373,7 @@ Before examining something:
 			now inventory-morph-mode is true;
 		otherwise:
 			now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
+		follow the Change Inventory Windows rules;
 		if inventory-morph-mode is false:
 			refresh the list-inventory window;
 		otherwise:
@@ -424,7 +424,7 @@ A show map rule:
 	open map window;
 	refresh map window;
 
-Part - Morph Inventory Window Mode
+Part - Change Inventory Windows Mode
 
 inventory-morph-mode is a truth state that varies.
 inventory-morph-mode is false.
@@ -433,17 +433,17 @@ Morph inventory window is an action out of world.
 Report morph inventory window:
 	if inventory-morph-mode is false:
 		now inventory-morph-mode is true;
-		follow the Morph Inventory Windows rules;
+		follow the Change Inventory Windows rules;
 	otherwise:
 		now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
+		follow the Change Inventory Windows rules;
 
 [Understand "morph" as morph inventory window.]
 
-Chapter - Morph Inventory Windows Rulebook
+Chapter - Change Inventory Windows Rulebook
 
-Morph Inventory Windows is a rulebook.
-A morph inventory windows rule:
+Change Inventory Windows is a rulebook.
+A change inventory windows rule:
 	[Close Debug windows if open]
 	if debug-mode is true: 
 		close contents-debug window;
