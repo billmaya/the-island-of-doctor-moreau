@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4659]
+[WORDS - 4269]
 
 Table of Releases
 release	notes
@@ -383,7 +383,6 @@ Before examining something:
 	otherwise:
 		continue the action;
 
-	
 Book - Instead Of Rules
 
 Instead of taking inventory:
@@ -442,7 +441,7 @@ Report morph inventory window:
 
 understand "morph" as morph inventory window.
 
-Chapter - Morph Inventory
+Chapter - Morph Inventory Rulebook
 
 Morph Inventory is a rulebook.
 A morph inventory rule:
@@ -467,8 +466,6 @@ A morph inventory rule:
 	if debug-mode is true: [Open Debug windows if they were open]
 		open title-debug window;
 		open contents-debug window;
-
-
 
 Book - Release
 
@@ -526,12 +523,6 @@ Every turn:
 		[End debug statements]
 		focus main window;
 
-[
-now inventory-morph-mode is false;
-		follow the Morph Inventory rules;
-]
-
-
 Volume - Figures
 
 Figure of No-Image is the file "NO-IMAGE-0.png".
@@ -539,13 +530,8 @@ Figure of No-Image is the file "NO-IMAGE-0.png".
 A room has a figure name called illustration.
 The illustration of room is usually Figure of No-Image.
 
-A thing has a figure name called illustration. [Not displaying images for things at this time.]
+A thing has a figure name called illustration.
 The illustration of a thing is usually Figure of No-Image.
-
-[Before examining the noun: 
-	if the noun is not a person:
-		if graphics-mode is true:
-			display the illustration of the noun.]
 
 Book - Title
 
@@ -613,19 +599,6 @@ To use a custom visited icon for a room, set icon to a Figure of XYZ.
 To display a room icon on the map, set display to true.
 ]
 
-[When map window height is 389 with 2-segment map]
-[Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon	display
-Beach	Figure of Map-Island-1	195	200	--	true
-Jungle	Figure of Map-Island-1	195	170	--	true
-Ruins	Figure of Map-Island-1	150	170	Figure of Icon-Ruins	true
-Muddy Path	Figure of Map-Island-1	225	170	--	--
-Volcanic Caldera	Figure of Map-Island-1	285	240	Figure of Icon-Volcanic-Caldera	true
-Deep Jungle	Figure of Map-Island-1	300	80	--	true
-Hidden Valley	Figure of Map-Island-2	375	315	--	true
-Moreau Compound	Figure of Map-Island-2	375	190	--	true]
-
-
 [When map window height is 452 with 2-segment map]
 Table 1 - Room Map Locations
 room	map-section	x-coordinate	y-coordinate	icon	display
@@ -637,33 +610,6 @@ Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	
 Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
 Moreau Compound	Figure of Map-Island-2	375	225	--	true
-
-
-[When map window height is 452 with 4-segment map]
-[Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon	display
-Beach	Figure of Map-Island-1	425	220	--	true
-Jungle	Figure of Map-Island-1	425	170	--	true
-Ruins	Figure of Map-Island-1	345	170	Figure of Icon-Ruins	true
-Volcanic Caldera	Figure of Map-Island-1	550	250	Figure of Icon-Volcanic-Caldera	true
-Deep Jungle	Figure of Map-Island-2	425	220	--	true
-Hidden Valley	Figure of Map-Island-3	425	245	--	true
-Moreau Compound	Figure of Map-Island-4	300	220	--	true
-Muddy Path	Figure of Map-Island-1	475	170	--	--]
-
-
-[When map window height was 195 with 4-segment map]
-[Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon	display
-Beach	Figure of Map-Island-1	425	100	--	true
-Jungle	Figure of Map-Island-1	425	50	--	true
-Ruins	Figure of Map-Island-1	345	50	Figure of Icon-Ruins	true
-Volcanic Caldera	Figure of Map-Island-1	550	130	Figure of Icon-Volcanic-Caldera	true
-Deep Jungle	Figure of Map-Island-2	425	100	--	true
-Hidden Valley	Figure of Map-Island-3	425	125	--	true
-Moreau Compound	Figure of Map-Island-4	300	100	--	true
-Muddy Path	Figure of Map-Island-1	475	50	--	--]
-
 
 Book - Testing
 
@@ -697,7 +643,7 @@ The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
 
-The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path. [Jungle.]
+The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path.
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
@@ -740,7 +686,6 @@ Book - Rusty Knife
 The rusty knife is a thing.
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
 The illustration of the rusty knife is Figure of Knife-0.
-[The printed name of rusty knife is "Rusty Knife".]
 
 The rusty knife is in the Jungle.
 
@@ -748,7 +693,6 @@ Book - Piece of Red Cloth
 
 The piece of red cloth is a thing.
 The description of the piece of red cloth is "A tattered piece of red cloth."
-[The printed name of piece of red cloth is "Piece of Red Cloth".]
 
 The piece of red cloth is in the Muddy Path.
 
