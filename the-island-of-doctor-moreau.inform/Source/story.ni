@@ -439,13 +439,14 @@ Report morph inventory window:
 		now inventory-morph-mode is false;
 		follow the Morph Inventory rules;
 
-understand "morph" as morph inventory window.
+[Understand "morph" as morph inventory window.]
 
 Chapter - Morph Inventory Rulebook
 
 Morph Inventory is a rulebook.
 A morph inventory rule:
-	if debug-mode is true: [Close Debug windows if open]
+	[Close Debug windows if open]
+	if debug-mode is true: 
 		close contents-debug window;
 		close title-debug window;
 	[Close Help windows]
@@ -463,9 +464,12 @@ A morph inventory rule:
 	[Open Help windows]
 	open title-help window;
 	open contents-help window;
-	if debug-mode is true: [Open Debug windows if they were open]
+	[Open Debug windows if they were open]
+	if debug-mode is true: 
 		open title-debug window;
 		open contents-debug window;
+
+
 
 Book - Release
 
