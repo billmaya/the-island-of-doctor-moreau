@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4269]
+[WORDS - 4277]
 
 Table of Releases
 release	notes
@@ -149,11 +149,11 @@ Rule for refreshing the description-inventory window (this is the update-descrip
 			say "[description of E][line break]"; 
 		else:
 			now inventory-morph-mode is false;
-			follow the Morph Inventory rules;
+			follow the Morph Inventory Windows rules;
 			try taking inventory;
 	else:
 		now inventory-morph-mode is false;
-		follow the Morph Inventory rules;
+		follow the Morph Inventory Windows rules;
 		try taking inventory;
 	refresh the graphics-inventory window;
 	refresh the title-inventory window;
@@ -374,7 +374,7 @@ Before examining something:
 			now inventory-morph-mode is true;
 		otherwise:
 			now inventory-morph-mode is false;
-		follow the Morph Inventory rules;
+		follow the Morph Inventory Windows rules;
 		if inventory-morph-mode is false:
 			refresh the contents-inventory window;
 		otherwise:
@@ -434,17 +434,17 @@ Morph inventory window is an action out of world.
 Report morph inventory window:
 	if inventory-morph-mode is false:
 		now inventory-morph-mode is true;
-		follow the Morph Inventory rules;
+		follow the Morph Inventory Windows rules;
 	otherwise:
 		now inventory-morph-mode is false;
-		follow the Morph Inventory rules;
+		follow the Morph Inventory Windows rules;
 
 [Understand "morph" as morph inventory window.]
 
-Chapter - Morph Inventory Rulebook
+Chapter - Morph Inventory Windows Rulebook
 
-Morph Inventory is a rulebook.
-A morph inventory rule:
+Morph Inventory Windows is a rulebook.
+A morph inventory windows rule:
 	[Close Debug windows if open]
 	if debug-mode is true: 
 		close contents-debug window;
