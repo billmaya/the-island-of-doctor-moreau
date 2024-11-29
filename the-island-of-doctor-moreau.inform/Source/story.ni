@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4297]
+[WORDS - 4721]
 
 Table of Releases
 release	notes
@@ -111,6 +111,9 @@ Chapter - Rules
 Rule for refreshing the title-room window:
 	say "[location]";
 
+Rule for refreshing the graphics-room window:
+	draw the illustration of the location in graphics-room window;
+
 Rule for refreshing the description-room window:
 	say "[description of location][paragraph break]";	
 	let the domain be the location;
@@ -148,11 +151,11 @@ Rule for refreshing the description-inventory window (this is the update-descrip
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; 
 		else:
-			now inventory-morph-mode is false;
+			now display-inventory-illustration is false;
 			follow the Change Inventory Windows rules;
 			try taking inventory;
 	else:
-		now inventory-morph-mode is false;
+		now display-inventory-illustration is false;
 		follow the Change Inventory Windows rules;
 		try taking inventory;
 	refresh the graphics-inventory window;
@@ -178,15 +181,7 @@ Rule for refreshing the title-debug window:
 	
 Rule for refreshing the contents-debug window:
 	say "contents-debug";	
-
-Rule for refreshing the graphics-room window:
-	if the illustration of location is not Figure of cover:
-		draw the illustration of the location in graphics-room window;
-	otherwise:
-		[clear graphics-room window;] [This doesn't appear to work]
-		draw Figure of No-Image in graphics-room window;
 		
-
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
 
@@ -370,11 +365,11 @@ Section - Standard Examine
 Before examining something:
 	if the player has the noun part of the current action:
 		if the illustration of the noun part of the current action is not Figure of No-Image:
-			now inventory-morph-mode is true;
+			now display-inventory-illustration is true;
 		otherwise:
-			now inventory-morph-mode is false;
+			now display-inventory-illustration is false;
 		follow the Change Inventory Windows rules;
-		if inventory-morph-mode is false:
+		if display-inventory-illustration is false:
 			refresh the list-inventory window;
 		otherwise:
 			refresh the description-inventory window;
@@ -390,6 +385,16 @@ Instead of taking inventory:
 	otherwise:
 		list the contents of the player, with newlines;
 
+Book - After Rules
+
+After going to a room:
+	if the illustration of location is not Figure of No-Image:
+		now display-room-illustration is true;
+	otherwise:
+		now display-room-illustration is false;
+	follow the Change Location Windows rules;
+	continue the action;
+	
 Book - Out Of World Actions
 
 Part - Graphics Mode
@@ -424,21 +429,100 @@ A show map rule:
 	open map window;
 	refresh map window;
 
-Part - Change Inventory Windows Mode
+Part - Change Current Location Windows
 
-inventory-morph-mode is a truth state that varies.
-inventory-morph-mode is false.
+[Had to use "location" instead of "room" in places to get code to compile]
 
-Morph inventory window is an action out of world.
-Report morph inventory window:
-	if inventory-morph-mode is false:
-		now inventory-morph-mode is true;
+display-room-illustration is a truth state that varies.
+display-room-illustration is true.
+
+Change current location windows is an action out of world.
+Report change current location windows:
+	if display-room-illustration is true:
+		now display-room-illustration is false;
+		follow the Change Location Windows rules;
+	otherwise:
+		now display-room-illustration is true;
+		follow the Change Location Windows rules;
+	[say "display-room-illustration: [display-room-illustration]";]
+
+Understand "roommorph" as change current location windows.
+
+Chapter - Change Location Windows Rulebook
+
+Change Location Windows is a rulebook.
+A change location windows rule:
+	if display-room-illustration is false:
+		[Close Debug windows if open]
+		if debug-mode is true: 
+			close contents-debug window;
+			close title-debug window;
+		[Close Help windows]
+		close contents-help window;
+		close title-help window;
+		[Close Inventory windows]
+		close list-inventory;
+		close title-inventory;
+		[Modify Room windows]
+		close description-room window;
+		close graphics-room window;
+		now the measurement of the description-room window is 18;
+		open description-room window;
+		refresh description-room window;
+		[Open Inventory windows]
+		open title-inventory;
+		open list-inventory;
+		[Open Help windows]
+		open title-help window;
+		open contents-help window;
+		[Open Debug windows if they were open]
+		if debug-mode is true: 
+			open title-debug window;
+			open contents-debug window;
+	otherwise:
+		[Close Debug windows if open]
+		if debug-mode is true: 
+			close contents-debug window;
+			close title-debug window;
+		[Close Help windows]
+		close contents-help window;
+		close title-help window;
+		[Close Inventory windows]
+		close list-inventory;
+		close title-inventory;
+		[Modify Room windows]
+		close description-room window;
+		open graphics-room window;
+		refresh graphics-room window;
+		now the measurement of the description-room window is 9;
+		open description-room window;
+		refresh description-room window;
+		[Open Inventory windows]
+		open title-inventory;
+		open list-inventory;
+		[Open Help windows]
+		open title-help window;
+		open contents-help window;
+		[Open Debug windows if they were open]
+		if debug-mode is true: 
+			open title-debug window;
+			open contents-debug window;
+
+Part - Change Inventory Windows
+
+display-inventory-illustration is a truth state that varies.
+display-inventory-illustration is false.
+
+Change inventory window is an action out of world.
+Report change inventory window:
+	if display-inventory-illustration is false:
+		now display-inventory-illustration is true;
 		follow the Change Inventory Windows rules;
 	otherwise:
-		now inventory-morph-mode is false;
+		now display-inventory-illustration is false;
 		follow the Change Inventory Windows rules;
 
-[Understand "morph" as morph inventory window.]
+[Understand "invmorph" as change inventory window.]
 
 Chapter - Change Inventory Windows Rulebook
 
@@ -452,7 +536,7 @@ A change inventory windows rule:
 	close contents-help window;
 	close title-help window;
 	[Modify Inventory contents window]
-	if inventory-morph-mode is true: 
+	if display-inventory-illustration is true: 
 		close list-inventory;
 		open graphics-inventory window;
 		open description-inventory window;
@@ -467,8 +551,6 @@ A change inventory windows rule:
 	if debug-mode is true: 
 		open title-debug window;
 		open contents-debug window;
-
-
 
 Book - Release
 
@@ -508,8 +590,11 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	follow the display room graphics rule;
-	if inventory-morph-mode is false:
+	if display-room-illustration is true:
+		follow the display room graphics rule;
+	otherwise:
+		follow the change location windows rules;
+	if display-inventory-illustration is false:
 		refresh the list-inventory window;
 	otherwise:
 		refresh the description-inventory window;
@@ -518,9 +603,11 @@ Every turn:
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
-		say "Map window width: [width of map window][line break]";
-		say "Action: [action name part of the current action][line break]";
-		say "Noun: [noun part of the current action][line break]";
+		say "display-room-illustration: [display-room-illustration][line break]";
+		say "display-inventory-illustration: [display-inventory-illustration][line break]";
+		[say "Map window width: [width of map window][line break]";]
+		[say "Action: [action name part of the current action][line break]";]
+		[say "Noun: [noun part of the current action][line break]";]
 		[End debug statements]
 		focus main window;
 
@@ -612,28 +699,30 @@ Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
 Moreau Compound	Figure of Map-Island-2	375	225	--	true
 
-Book - Testing
-
 Book - Beach
 
 The Beach is a room. 
 
-[The description of the Beach is "This is the beach."]
-The description of the Beach is "This is the beach.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".
+The description of the Beach is "This is the beach."
+[The description of the Beach is "This is the beach.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".]
+
 The illustration of the Beach is Figure of Beach-0.
 
 Book - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 
-The description of the Jungle is "This is the jungle."
-The illustration of the Jungle is Figure of Jungle-0.
+[The description of the Jungle is "This is the jungle."]
+The description of the Jungle is "This is the jungle.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".
+
+[The illustration of the Jungle is Figure of Jungle-0.]
 
 Book - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
 
 The description of the Ruins are "These are the ruins."
+
 The illustration of the Ruins are Figure of Ruins-0.
 
 Book - Muddy Path
@@ -641,6 +730,7 @@ Book - Muddy Path
 The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of the Volcanic Caldera.
 
 The description of the Muddy Path is "This is a narrow, muddy path."
+
 The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
@@ -648,6 +738,7 @@ Book - Volcanic Caldera
 The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path.
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
+
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
 
 Book - Deep Jungle
@@ -655,6 +746,7 @@ Book - Deep Jungle
 The Deep Jungle is a room. The Deep Jungle is northeast of the Jungle.
 
 The description of the Deep Jungle is "This is the Deep Jungle."
+
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
 Book - Hidden Valley
@@ -662,6 +754,7 @@ Book - Hidden Valley
 The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
 
 The description of the Hidden Valley is "This is the Hidden Valley."
+
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
 Book - Moreau Compound
@@ -669,11 +762,10 @@ Book - Moreau Compound
 The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
 
 The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
+
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
 
 Book - Regions
-
-
 
 
 
