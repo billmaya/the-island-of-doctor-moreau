@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4277]
+[WORDS - 4721]
 
 Table of Releases
 release	notes
@@ -34,12 +34,12 @@ Chapter - Setup
 The title window is a graphics g-window spawned by the main window.
 The position of the title window is g-placeabove.
 The scale method of the title window is g-fixed-size.
-The measurement of the title window is 670. [780.]
+The measurement of the title window is 670.
 
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is [389.] 452. [195.]
+The measurement of the map window is 452.
 
 The entire-map window is a graphics g-window spawned by the main window.
 The position of the entire-map window is g-placeabove.
@@ -51,30 +51,30 @@ The position of the right-sidebar window is g-placeright.
 The scale method of the right-sidebar window is g-fixed-size.
 The measurement of the right-sidebar window is 290.
 
-The graphics-object window is a graphics g-window spawned by the right-sidebar window.
-The position of the graphics-object window is g-placeabove.
-The scale method of the graphics-object window is g-fixed-size.
-The measurement of the graphics-object window is 195.
+The title-room window is a text grid g-window spawned by the right-sidebar window.
+The position of the title-room window is g-placeabove.
+The scale method of the title-room window is g-fixed-size.
+The measurement of the title-room window is 2. 
 
-The title-object window is a text grid g-window spawned by the right-sidebar window.
-The position of the title-object window is g-placeabove.
-The scale method of the title-object window is g-fixed-size.
-The measurement of the title-object window is 2. 
+The graphics-room window is a graphics g-window spawned by the right-sidebar window. 
+The position of the graphics-room window is g-placeabove.
+The scale method of the graphics-room window is g-fixed-size.
+The measurement of the graphics-room window is 195.
 
-The description-action-object window is a text buffer g-window spawned by the right-sidebar window.
-The position of the description-action-object window is g-placeabove.
-The scale method of the description-action-object window is g-fixed-size.
-The measurement of the description-action-object window is [6.] 9.
+The description-room window is a text buffer g-window spawned by the right-sidebar window. 
+The position of the description-room window is g-placeabove.
+The scale method of the description-room window is g-fixed-size.
+The measurement of the description-room window is 9.
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
 The scale method of the title-inventory window is g-fixed-size.
 The measurement of the title-inventory window is 2.
 
-The contents-inventory window is a text buffer g-window spawned by the right-sidebar window.
-The position of the contents-inventory window is g-placeabove.
-The scale method of the contents-inventory window is g-fixed-size.
-The measurement of the contents-inventory window is 12. [9.]
+The list-inventory window is a text buffer g-window spawned by the right-sidebar window.
+The position of the list-inventory window is g-placeabove.
+The scale method of the list-inventory window is g-fixed-size.
+The measurement of the list-inventory window is 12.
 
 The graphics-inventory window is a graphics g-window spawned by the right-sidebar window.
 The position of the graphics-inventory window is g-placeabove.
@@ -104,14 +104,17 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 5. [9.]
+The measurement of the contents-debug window is 5.
 
 Chapter - Rules
 
-Rule for refreshing the title-object window:
+Rule for refreshing the title-room window:
 	say "[location]";
 
-Rule for refreshing the description-action-object window:
+Rule for refreshing the graphics-room window:
+	draw the illustration of the location in graphics-room window;
+
+Rule for refreshing the description-room window:
 	say "[description of location][paragraph break]";	
 	let the domain be the location;
 	[list the nondescript items of the location;]
@@ -133,7 +136,7 @@ Rule for refreshing the title-inventory window:
 	else:
 		say "You Are Carrying";
 
-Rule for refreshing the contents-inventory window (this is the update-contents-inventory rule):
+Rule for refreshing the list-inventory window (this is the update-list-inventory rule):
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
@@ -148,12 +151,12 @@ Rule for refreshing the description-inventory window (this is the update-descrip
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; 
 		else:
-			now inventory-morph-mode is false;
-			follow the Morph Inventory Windows rules;
+			now display-inventory-illustration is false;
+			follow the Change Inventory Windows rules;
 			try taking inventory;
 	else:
-		now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
+		now display-inventory-illustration is false;
+		follow the Change Inventory Windows rules;
 		try taking inventory;
 	refresh the graphics-inventory window;
 	refresh the title-inventory window;
@@ -173,21 +176,12 @@ Rule for refreshing the description-inventory window:
 		try taking inventory;
 	refresh the title-inventory window;
 		
-
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
 	
 Rule for refreshing the contents-debug window:
 	say "contents-debug";	
-
-Rule for refreshing the graphics-object window:
-	if the illustration of location is not Figure of cover:
-		draw the illustration of the location in graphics-object window;
-	otherwise:
-		[clear graphics-object window;] [This doesn't appear to work]
-		draw Figure of No-Image in graphics-object window;
 		
-
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
 
@@ -339,28 +333,28 @@ Chapter - Rooms
 Section - Room Heading
 
 This is the modified room description heading rule:
-	refresh the title-object window;
+	refresh the title-room window;
 
 The modified room description heading rule substitutes for the room description heading rule.
 
 Section - Room Description
 
 This is the modified room description body text rule:
-	refresh the description-action-object window;
+	refresh the description-room window;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
 Section - Room Graphics
 
-[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+[The display room graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
 
-This is the display object graphics rule:
-	refresh the graphics-object window;
+This is the display room graphics rule:
+	refresh the graphics-room window;
 
 Section - Room You Also See (not currently used)
 
 [This is the modified you-can-also-see rule:
-	refresh the description-action-object window;
+	refresh the description-room window;
 
 The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
@@ -371,12 +365,12 @@ Section - Standard Examine
 Before examining something:
 	if the player has the noun part of the current action:
 		if the illustration of the noun part of the current action is not Figure of No-Image:
-			now inventory-morph-mode is true;
+			now display-inventory-illustration is true;
 		otherwise:
-			now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
-		if inventory-morph-mode is false:
-			refresh the contents-inventory window;
+			now display-inventory-illustration is false;
+		follow the Change Inventory Windows rules;
+		if display-inventory-illustration is false:
+			refresh the list-inventory window;
 		otherwise:
 			refresh the description-inventory window;
 		stop the action;
@@ -391,6 +385,16 @@ Instead of taking inventory:
 	otherwise:
 		list the contents of the player, with newlines;
 
+Book - After Rules
+
+After going to a room:
+	if the illustration of location is not Figure of No-Image:
+		now display-room-illustration is true;
+	otherwise:
+		now display-room-illustration is false;
+	follow the Change Location Windows rules;
+	continue the action;
+	
 Book - Out Of World Actions
 
 Part - Graphics Mode
@@ -425,26 +429,105 @@ A show map rule:
 	open map window;
 	refresh map window;
 
-Part - Morph Inventory Window Mode
+Part - Change Current Location Windows
 
-inventory-morph-mode is a truth state that varies.
-inventory-morph-mode is false.
+[Had to use "location" instead of "room" in places to get code to compile]
 
-Morph inventory window is an action out of world.
-Report morph inventory window:
-	if inventory-morph-mode is false:
-		now inventory-morph-mode is true;
-		follow the Morph Inventory Windows rules;
+display-room-illustration is a truth state that varies.
+display-room-illustration is true.
+
+Change current location windows is an action out of world.
+Report change current location windows:
+	if display-room-illustration is true:
+		now display-room-illustration is false;
+		follow the Change Location Windows rules;
 	otherwise:
-		now inventory-morph-mode is false;
-		follow the Morph Inventory Windows rules;
+		now display-room-illustration is true;
+		follow the Change Location Windows rules;
+	[say "display-room-illustration: [display-room-illustration]";]
 
-[Understand "morph" as morph inventory window.]
+Understand "roommorph" as change current location windows.
 
-Chapter - Morph Inventory Windows Rulebook
+Chapter - Change Location Windows Rulebook
 
-Morph Inventory Windows is a rulebook.
-A morph inventory windows rule:
+Change Location Windows is a rulebook.
+A change location windows rule:
+	if display-room-illustration is false:
+		[Close Debug windows if open]
+		if debug-mode is true: 
+			close contents-debug window;
+			close title-debug window;
+		[Close Help windows]
+		close contents-help window;
+		close title-help window;
+		[Close Inventory windows]
+		close list-inventory;
+		close title-inventory;
+		[Modify Room windows]
+		close description-room window;
+		close graphics-room window;
+		now the measurement of the description-room window is 18;
+		open description-room window;
+		refresh description-room window;
+		[Open Inventory windows]
+		open title-inventory;
+		open list-inventory;
+		[Open Help windows]
+		open title-help window;
+		open contents-help window;
+		[Open Debug windows if they were open]
+		if debug-mode is true: 
+			open title-debug window;
+			open contents-debug window;
+	otherwise:
+		[Close Debug windows if open]
+		if debug-mode is true: 
+			close contents-debug window;
+			close title-debug window;
+		[Close Help windows]
+		close contents-help window;
+		close title-help window;
+		[Close Inventory windows]
+		close list-inventory;
+		close title-inventory;
+		[Modify Room windows]
+		close description-room window;
+		open graphics-room window;
+		refresh graphics-room window;
+		now the measurement of the description-room window is 9;
+		open description-room window;
+		refresh description-room window;
+		[Open Inventory windows]
+		open title-inventory;
+		open list-inventory;
+		[Open Help windows]
+		open title-help window;
+		open contents-help window;
+		[Open Debug windows if they were open]
+		if debug-mode is true: 
+			open title-debug window;
+			open contents-debug window;
+
+Part - Change Inventory Windows
+
+display-inventory-illustration is a truth state that varies.
+display-inventory-illustration is false.
+
+Change inventory window is an action out of world.
+Report change inventory window:
+	if display-inventory-illustration is false:
+		now display-inventory-illustration is true;
+		follow the Change Inventory Windows rules;
+	otherwise:
+		now display-inventory-illustration is false;
+		follow the Change Inventory Windows rules;
+
+[Understand "invmorph" as change inventory window.]
+
+Chapter - Change Inventory Windows Rulebook
+
+Change Inventory Windows is a rulebook.
+A change inventory windows rule:
 	[Close Debug windows if open]
 	if debug-mode is true: 
 		close contents-debug window;
@@ -453,14 +536,14 @@ A morph inventory windows rule:
 	close contents-help window;
 	close title-help window;
 	[Modify Inventory contents window]
-	if inventory-morph-mode is true: 
-		close contents-inventory;
+	if display-inventory-illustration is true: 
+		close list-inventory;
 		open graphics-inventory window;
 		open description-inventory window;
 	otherwise:
 		close description-inventory window;
 		close graphics-inventory window;
-		open contents-inventory window;
+		open list-inventory window;
 	[Open Help windows]
 	open title-help window;
 	open contents-help window;
@@ -468,8 +551,6 @@ A morph inventory windows rule:
 	if debug-mode is true: 
 		open title-debug window;
 		open contents-debug window;
-
-
 
 Book - Release
 
@@ -488,11 +569,12 @@ When play begins:
 	pause the game;
 	close the title window;
 	open right-sidebar window;
-	open graphics-object window;
-	open title-object window;
-	open description-action-object window;
+	open title-room window;
+	open graphics-room window;
+	[open title-room window;]
+	open description-room window;
 	open title-inventory window; 
-	open contents-inventory window;
+	open list-inventory window;
 	open title-help window;
 	open contents-help window;
 	open map window;
@@ -500,7 +582,7 @@ When play begins:
 		open title-debug window;
 		open contents-debug window;
 	refresh the map window;
-	refresh the graphics-object window;
+	refresh the graphics-room window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -508,22 +590,24 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	follow the display object graphics rule;
-	if inventory-morph-mode is false:
-		refresh the contents-inventory window;
+	if display-room-illustration is true:
+		follow the display room graphics rule;
+	otherwise:
+		follow the change location windows rules;
+	if display-inventory-illustration is false:
+		refresh the list-inventory window;
 	otherwise:
 		refresh the description-inventory window;
-	[refresh the contents-inventory window;]
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
-		say "Map window width: [width of map window][line break]";
-		[say "Map window height: [height of map window][line break]";]
-		[say "Current map: [current-map][line break]";]
-		say "Action: [action name part of the current action][line break]";
-		say "Noun: [noun part of the current action][line break]";
+		say "display-room-illustration: [display-room-illustration][line break]";
+		say "display-inventory-illustration: [display-inventory-illustration][line break]";
+		[say "Map window width: [width of map window][line break]";]
+		[say "Action: [action name part of the current action][line break]";]
+		[say "Noun: [noun part of the current action][line break]";]
 		[End debug statements]
 		focus main window;
 
@@ -615,27 +699,30 @@ Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
 Moreau Compound	Figure of Map-Island-2	375	225	--	true
 
-Book - Testing
-
 Book - Beach
 
 The Beach is a room. 
 
 The description of the Beach is "This is the beach."
+[The description of the Beach is "This is the beach.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".]
+
 The illustration of the Beach is Figure of Beach-0.
 
 Book - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 
-The description of the Jungle is "This is the jungle."
-The illustration of the Jungle is Figure of Jungle-0.
+[The description of the Jungle is "This is the jungle."]
+The description of the Jungle is "This is the jungle.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".
+
+[The illustration of the Jungle is Figure of Jungle-0.]
 
 Book - Ruins
 
 The Ruins are a room. The Ruins are west of the Jungle.
 
 The description of the Ruins are "These are the ruins."
+
 The illustration of the Ruins are Figure of Ruins-0.
 
 Book - Muddy Path
@@ -643,6 +730,7 @@ Book - Muddy Path
 The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of the Volcanic Caldera.
 
 The description of the Muddy Path is "This is a narrow, muddy path."
+
 The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
@@ -650,6 +738,7 @@ Book - Volcanic Caldera
 The Volcanic Caldera is a room. The Volcanic Caldera is southeast of the Muddy Path.
 
 The description of the Volcanic Caldera is "This is the volcanic caldera."
+
 The illustration of the Volcanic Caldera is Figure of Volcanic-Caldera-0.
 
 Book - Deep Jungle
@@ -657,6 +746,7 @@ Book - Deep Jungle
 The Deep Jungle is a room. The Deep Jungle is northeast of the Jungle.
 
 The description of the Deep Jungle is "This is the Deep Jungle."
+
 The illustration of the Deep Jungle is Figure of Deep-Jungle-0.
 
 Book - Hidden Valley
@@ -664,6 +754,7 @@ Book - Hidden Valley
 The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
 
 The description of the Hidden Valley is "This is the Hidden Valley."
+
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
 Book - Moreau Compound
@@ -671,11 +762,10 @@ Book - Moreau Compound
 The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
 
 The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
+
 The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
 
 Book - Regions
-
-
 
 
 
@@ -706,7 +796,7 @@ Volume - Scenes
 
 Volume - Tests
 
-Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south".
+Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 
 
 Volume - Utilities
