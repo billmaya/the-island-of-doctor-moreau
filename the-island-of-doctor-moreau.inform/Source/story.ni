@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4277]
+[WORDS - 4297]
 
 Table of Releases
 release	notes
@@ -34,12 +34,12 @@ Chapter - Setup
 The title window is a graphics g-window spawned by the main window.
 The position of the title window is g-placeabove.
 The scale method of the title window is g-fixed-size.
-The measurement of the title window is 670. [780.]
+The measurement of the title window is 670.
 
 The map window is a graphics g-window spawned by the main window.
 The position of the map window is g-placeabove.
 The scale method of the map window is g-fixed-size.
-The measurement of the map window is [389.] 452. [195.]
+The measurement of the map window is 452.
 
 The entire-map window is a graphics g-window spawned by the main window.
 The position of the entire-map window is g-placeabove.
@@ -51,30 +51,30 @@ The position of the right-sidebar window is g-placeright.
 The scale method of the right-sidebar window is g-fixed-size.
 The measurement of the right-sidebar window is 290.
 
-The graphics-object window is a graphics g-window spawned by the right-sidebar window.
-The position of the graphics-object window is g-placeabove.
-The scale method of the graphics-object window is g-fixed-size.
-The measurement of the graphics-object window is 195.
+The title-room window is a text grid g-window spawned by the right-sidebar window.
+The position of the title-room window is g-placeabove.
+The scale method of the title-room window is g-fixed-size.
+The measurement of the title-room window is 2. 
 
-The title-object window is a text grid g-window spawned by the right-sidebar window.
-The position of the title-object window is g-placeabove.
-The scale method of the title-object window is g-fixed-size.
-The measurement of the title-object window is 2. 
+The graphics-room window is a graphics g-window spawned by the right-sidebar window. 
+The position of the graphics-room window is g-placeabove.
+The scale method of the graphics-room window is g-fixed-size.
+The measurement of the graphics-room window is 195.
 
-The description-action-object window is a text buffer g-window spawned by the right-sidebar window.
-The position of the description-action-object window is g-placeabove.
-The scale method of the description-action-object window is g-fixed-size.
-The measurement of the description-action-object window is [6.] 9.
+The description-room window is a text buffer g-window spawned by the right-sidebar window. 
+The position of the description-room window is g-placeabove.
+The scale method of the description-room window is g-fixed-size.
+The measurement of the description-room window is 9.
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
 The scale method of the title-inventory window is g-fixed-size.
 The measurement of the title-inventory window is 2.
 
-The contents-inventory window is a text buffer g-window spawned by the right-sidebar window.
-The position of the contents-inventory window is g-placeabove.
-The scale method of the contents-inventory window is g-fixed-size.
-The measurement of the contents-inventory window is 12. [9.]
+The list-inventory window is a text buffer g-window spawned by the right-sidebar window.
+The position of the list-inventory window is g-placeabove.
+The scale method of the list-inventory window is g-fixed-size.
+The measurement of the list-inventory window is 12.
 
 The graphics-inventory window is a graphics g-window spawned by the right-sidebar window.
 The position of the graphics-inventory window is g-placeabove.
@@ -104,14 +104,14 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 5. [9.]
+The measurement of the contents-debug window is 5.
 
 Chapter - Rules
 
-Rule for refreshing the title-object window:
+Rule for refreshing the title-room window:
 	say "[location]";
 
-Rule for refreshing the description-action-object window:
+Rule for refreshing the description-room window:
 	say "[description of location][paragraph break]";	
 	let the domain be the location;
 	[list the nondescript items of the location;]
@@ -133,7 +133,7 @@ Rule for refreshing the title-inventory window:
 	else:
 		say "You Are Carrying";
 
-Rule for refreshing the contents-inventory window (this is the update-contents-inventory rule):
+Rule for refreshing the list-inventory window (this is the update-list-inventory rule):
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
 		if the player has the noun part of the current action:
 			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
@@ -173,19 +173,18 @@ Rule for refreshing the description-inventory window:
 		try taking inventory;
 	refresh the title-inventory window;
 		
-
 Rule for refreshing the title-debug window:
 	say "DEBUG (title-debug)".
 	
 Rule for refreshing the contents-debug window:
 	say "contents-debug";	
 
-Rule for refreshing the graphics-object window:
+Rule for refreshing the graphics-room window:
 	if the illustration of location is not Figure of cover:
-		draw the illustration of the location in graphics-object window;
+		draw the illustration of the location in graphics-room window;
 	otherwise:
-		[clear graphics-object window;] [This doesn't appear to work]
-		draw Figure of No-Image in graphics-object window;
+		[clear graphics-room window;] [This doesn't appear to work]
+		draw Figure of No-Image in graphics-room window;
 		
 
 x-calculated-coordinate is a number that varies.
@@ -339,28 +338,28 @@ Chapter - Rooms
 Section - Room Heading
 
 This is the modified room description heading rule:
-	refresh the title-object window;
+	refresh the title-room window;
 
 The modified room description heading rule substitutes for the room description heading rule.
 
 Section - Room Description
 
 This is the modified room description body text rule:
-	refresh the description-action-object window;
+	refresh the description-room window;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
 Section - Room Graphics
 
-[The display object graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+[The display room graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
 
-This is the display object graphics rule:
-	refresh the graphics-object window;
+This is the display room graphics rule:
+	refresh the graphics-room window;
 
 Section - Room You Also See (not currently used)
 
 [This is the modified you-can-also-see rule:
-	refresh the description-action-object window;
+	refresh the description-room window;
 
 The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
 
@@ -376,7 +375,7 @@ Before examining something:
 			now inventory-morph-mode is false;
 		follow the Morph Inventory Windows rules;
 		if inventory-morph-mode is false:
-			refresh the contents-inventory window;
+			refresh the list-inventory window;
 		otherwise:
 			refresh the description-inventory window;
 		stop the action;
@@ -454,13 +453,13 @@ A morph inventory windows rule:
 	close title-help window;
 	[Modify Inventory contents window]
 	if inventory-morph-mode is true: 
-		close contents-inventory;
+		close list-inventory;
 		open graphics-inventory window;
 		open description-inventory window;
 	otherwise:
 		close description-inventory window;
 		close graphics-inventory window;
-		open contents-inventory window;
+		open list-inventory window;
 	[Open Help windows]
 	open title-help window;
 	open contents-help window;
@@ -488,11 +487,12 @@ When play begins:
 	pause the game;
 	close the title window;
 	open right-sidebar window;
-	open graphics-object window;
-	open title-object window;
-	open description-action-object window;
+	open title-room window;
+	open graphics-room window;
+	[open title-room window;]
+	open description-room window;
 	open title-inventory window; 
-	open contents-inventory window;
+	open list-inventory window;
 	open title-help window;
 	open contents-help window;
 	open map window;
@@ -500,7 +500,7 @@ When play begins:
 		open title-debug window;
 		open contents-debug window;
 	refresh the map window;
-	refresh the graphics-object window;
+	refresh the graphics-room window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -508,20 +508,17 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	follow the display object graphics rule;
+	follow the display room graphics rule;
 	if inventory-morph-mode is false:
-		refresh the contents-inventory window;
+		refresh the list-inventory window;
 	otherwise:
 		refresh the description-inventory window;
-	[refresh the contents-inventory window;]
 	refresh the map window;
 	if debug-mode is true: 
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
 		say "Map window width: [width of map window][line break]";
-		[say "Map window height: [height of map window][line break]";]
-		[say "Current map: [current-map][line break]";]
 		say "Action: [action name part of the current action][line break]";
 		say "Noun: [noun part of the current action][line break]";
 		[End debug statements]
@@ -621,7 +618,8 @@ Book - Beach
 
 The Beach is a room. 
 
-The description of the Beach is "This is the beach."
+[The description of the Beach is "This is the beach."]
+The description of the Beach is "This is the beach.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".
 The illustration of the Beach is Figure of Beach-0.
 
 Book - Jungle
@@ -706,7 +704,7 @@ Volume - Scenes
 
 Volume - Tests
 
-Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south".
+Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 
 
 Volume - Utilities
