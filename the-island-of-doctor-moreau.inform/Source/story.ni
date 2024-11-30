@@ -405,7 +405,12 @@ graphics-mode is true.]
 Part - Debug Mode
 
 debug-mode is a truth state that varies.
-debug-mode is [false.] true.
+debug-mode is false. [true.]
+
+Part - Help Mode
+
+help-mode is a truth state that varies.
+help-mode is false. [true.]
 
 Part - Map Mode
 
@@ -458,8 +463,9 @@ A change location windows rule:
 			close contents-debug window;
 			close title-debug window;
 		[Close Help windows]
-		close contents-help window;
-		close title-help window;
+		if help-mode is true:
+			close contents-help window;
+			close title-help window;
 		[Close Inventory windows]
 		close list-inventory;
 		close title-inventory;
@@ -473,8 +479,9 @@ A change location windows rule:
 		open title-inventory;
 		open list-inventory;
 		[Open Help windows]
-		open title-help window;
-		open contents-help window;
+		if help-mode is true:
+			open title-help window;
+			open contents-help window;
 		[Open Debug windows if they were open]
 		if debug-mode is true: 
 			open title-debug window;
@@ -485,8 +492,9 @@ A change location windows rule:
 			close contents-debug window;
 			close title-debug window;
 		[Close Help windows]
-		close contents-help window;
-		close title-help window;
+		if help-mode is true:
+			close contents-help window;
+			close title-help window;
 		[Close Inventory windows]
 		close list-inventory;
 		close title-inventory;
@@ -501,8 +509,9 @@ A change location windows rule:
 		open title-inventory;
 		open list-inventory;
 		[Open Help windows]
-		open title-help window;
-		open contents-help window;
+		if help-mode is true:
+			open title-help window;
+			open contents-help window;
 		[Open Debug windows if they were open]
 		if debug-mode is true: 
 			open title-debug window;
@@ -522,7 +531,7 @@ Report change inventory window:
 		now display-inventory-illustration is false;
 		follow the Change Inventory Windows rules;
 
-[Understand "invmorph" as change inventory window.]
+Understand "invmorph" as change inventory window.
 
 Chapter - Change Inventory Windows Rulebook
 
@@ -533,8 +542,9 @@ A change inventory windows rule:
 		close contents-debug window;
 		close title-debug window;
 	[Close Help windows]
-	close contents-help window;
-	close title-help window;
+	if help-mode is true:
+		close contents-help window;
+		close title-help window;
 	[Modify Inventory contents window]
 	if display-inventory-illustration is true: 
 		close list-inventory;
@@ -542,15 +552,18 @@ A change inventory windows rule:
 		open description-inventory window;
 	otherwise:
 		close description-inventory window;
-		close graphics-inventory window;
+		[close graphics-inventory window;]
 		open list-inventory window;
 	[Open Help windows]
-	open title-help window;
-	open contents-help window;
+	if help-mode is true:
+		open title-help window;
+		open contents-help window;
 	[Open Debug windows if they were open]
 	if debug-mode is true: 
 		open title-debug window;
 		open contents-debug window;
+
+
 
 Book - Release
 
@@ -575,8 +588,8 @@ When play begins:
 	open description-room window;
 	open title-inventory window; 
 	open list-inventory window;
-	open title-help window;
-	open contents-help window;
+	[open title-help window;
+	open contents-help window;]
 	open map window;
 	if debug-mode is true:
 		open title-debug window;
@@ -712,10 +725,10 @@ Book - Jungle
 
 The Jungle is a room. The Jungle is north of the Beach.
 
-[The description of the Jungle is "This is the jungle."]
-The description of the Jungle is "This is the jungle.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".
+The description of the Jungle is "This is the jungle."
+[The description of the Jungle is "This is the jungle.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".]
 
-[The illustration of the Jungle is Figure of Jungle-0.]
+The illustration of the Jungle is Figure of Jungle-0.
 
 Book - Ruins
 
@@ -723,7 +736,7 @@ The Ruins are a room. The Ruins are west of the Jungle.
 
 The description of the Ruins are "These are the ruins."
 
-The illustration of the Ruins are Figure of Ruins-0.
+[The illustration of the Ruins are Figure of Ruins-0.]
 
 Book - Muddy Path
 
@@ -797,6 +810,8 @@ Volume - Scenes
 Volume - Tests
 
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
+
+Test bug with "north / take knife / east/ take cloth / west / west".
 
 
 Volume - Utilities
