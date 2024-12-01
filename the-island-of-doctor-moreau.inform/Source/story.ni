@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4754]
+[WORDS - 4557]
 
 Table of Releases
 release	notes
@@ -291,26 +291,6 @@ Rule for constructing the status line:
 		fill status bar with Table of Fancy Status;
 		say default letters;
 		rule succeeds;
-	
-
-Chapter - Compass Test Room
-
-[This code is used just to test the positioning and appearance of the compass rose.]
-
-Example Location is a room. 
-
-To The North is a room. To The North is north of the Example Location.
-To The South is a room. To The South is south of the Example Location.
-To The West is a room. To The West is west of the Example Location.
-To The East is a room. To The East is east of the Example Location.
-
-To The Northeast is a room. To The Northeast is northeast of the Example Location.
-To The Northwest is a room. To The Northwest is northwest of the Example Location.
-To The Southeast is a room. To The Southeast is southeast of the Example Location.
-To The Southwest is a room. To The Southwest is southwest of the Example Location.
-
-Up Above is a room. Up Above is up from the Example Location.
-Down Below is a room. Down Below is down from the Example Location. 
 		
 Chapter - Banner Text
 
@@ -394,10 +374,6 @@ After going to a room (this is the check illustration rule):
 		now display-room-illustration is false;
 	follow the Change Location Windows rules;
 	continue the action;
-
-[The check illustration rule is listed last in the report rules.]
-[The check illustration rule is listed last in the after rules.]
-
 	
 Book - Out Of World Actions
 
@@ -461,7 +437,6 @@ A change location windows rule (this is the change orientation of location windo
 	close title-inventory;
 	[Modify Room windows]
 	close description-room window;
-	say "ONE";
 	if display-room-illustration is false:
 		close graphics-room window;
 		now the measurement of the description-room window is 18;
@@ -498,12 +473,10 @@ Change Inventory Windows is a rulebook.
 
 Change Inventory Windows is a rulebook.
 A change inventory windows rule:
-	[Close Debug windows if they were open]
-	if debug-mode is true: 
+	if debug-mode is true: [close debug windows]
 		close contents-debug window;
 		close title-debug window;
-	[Close Help windows if they were open]
-	if help-mode is true:
+	if help-mode is true: [close help windows]
 		close contents-help window;
 		close title-help window;
 	[Close Inventory contents window]
@@ -515,38 +488,25 @@ A change inventory windows rule:
 	close title-room window;
 	close graphics-room window;
 	close description-room window;
-	say "TWO";
-	pause the game; [1]
 	open title-room window;
 	if display-room-illustration is true:
 		open graphics-room window;
-		pause the game; [2a]
 		now the measurement of the description-room window is 9;
 		open description-room window;
-		pause the game; [2b]
 	otherwise:
 		now the measurement of the description-room window is 18;
 		open description-room window;
-		pause the game; [2c]
 	[Modify Inventory contents windows]
 	open title-inventory window;
-	pause the game; [3]
 	if display-inventory-illustration is true: 
-		[close list-inventory;]
 		open graphics-inventory window;
-		pause the game; [4]
 		open description-inventory window;
-		pause the game; [5]
 	otherwise:
-		[close description-inventory window;
-		close graphics-inventory window;]
 		open list-inventory window;
-	[Open Help windows if they were open]
-	if help-mode is true:
+	if help-mode is true: [open help windows]
 		open title-help window;
 		open contents-help window;
-	[Open Debug windows if they were open]
-	if debug-mode is true: 
+	if debug-mode is true: [open debug windows]
 		open title-debug window;
 		open contents-debug window;
 
@@ -571,7 +531,6 @@ When play begins:
 	open right-sidebar window;
 	open title-room window;
 	open graphics-room window;
-	[open title-room window;]
 	open description-room window;
 	open title-inventory window; 
 	open list-inventory window;
@@ -591,10 +550,6 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	if display-room-illustration is true:
-		follow the display room graphics rule;
-	otherwise:
-		follow the change location windows rules;
 	if display-inventory-illustration is false:
 		refresh the list-inventory window;
 	otherwise:
@@ -673,10 +628,11 @@ Book - Characters
 Book - Scenes
 
 
-
 Volume - Rooms
 
-The player is in the Beach.
+Book - Player Location
+
+The player is in the Beach. [Example Location.]
 
 Book - Mapping
 
@@ -705,7 +661,6 @@ Book - Beach
 The Beach is a room. 
 
 The description of the Beach is "This is the beach."
-[The description of the Beach is "This is the beach.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".]
 
 The illustration of the Beach is Figure of Beach-0.
 
@@ -714,7 +669,6 @@ Book - Jungle
 The Jungle is a room. The Jungle is north of the Beach.
 
 The description of the Jungle is "This is the jungle."
-[The description of the Jungle is "This is the jungle.[line break][italic type]Room Description Line 2[line break]Room Description Line 3[line break]Room Description Line 4[line break]Room Description Line 5[paragraph break]Locale Description Line 1[line break]Locale Description Line 2[roman type]".]
 
 The illustration of the Jungle is Figure of Jungle-0.
 
@@ -732,7 +686,7 @@ The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of 
 
 The description of the Muddy Path is "This is a narrow, muddy path."
 
-[The illustration of the Muddy Path is Figure of Muddy-Path-0.]
+The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
 
@@ -769,9 +723,7 @@ The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
 Book - Regions
 
 
-
 Volume - Characters
-
 
 
 Volume - Things
@@ -779,7 +731,9 @@ Volume - Things
 Book - Rusty Knife
 
 The rusty knife is a thing.
+
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
+
 The illustration of the rusty knife is Figure of Knife-0.
 
 The rusty knife is in the Jungle.
@@ -787,6 +741,7 @@ The rusty knife is in the Jungle.
 Book - Piece of Red Cloth
 
 The piece of red cloth is a thing.
+
 The description of the piece of red cloth is "A tattered piece of red cloth."
 
 The piece of red cloth is in the Muddy Path.
@@ -797,9 +752,30 @@ Volume - Scenes
 
 Volume - Tests
 
+Book - General
+
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 
 Test bug with "north / take knife / east/ take cloth".
+
+Book - Compass Test Room
+
+[This code is used just to test the positioning and appearance of the compass rose.]
+
+Example Location is a room. 
+
+To The North is a room. To The North is north of the Example Location.
+To The South is a room. To The South is south of the Example Location.
+To The West is a room. To The West is west of the Example Location.
+To The East is a room. To The East is east of the Example Location.
+
+To The Northeast is a room. To The Northeast is northeast of the Example Location.
+To The Northwest is a room. To The Northwest is northwest of the Example Location.
+To The Southeast is a room. To The Southeast is southeast of the Example Location.
+To The Southwest is a room. To The Southwest is southwest of the Example Location.
+
+Up Above is a room. Up Above is up from the Example Location.
+Down Below is a room. Down Below is down from the Example Location. 
 
 
 Volume - Utilities
