@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4706]
+[WORDS - 4699]
 
 Table of Releases
 release	notes
@@ -171,16 +171,17 @@ Rule for refreshing the description-inventory window:
 	refresh the title-inventory window;
 
 Rule for refreshing the title-help window:
-	say "Help (title-help)";
+	say "Help";
 	
 Rule for refreshing the contents-help window:
-	say "contents-help";
+	say "";
 		
 Rule for refreshing the title-debug window:
 	say "DEBUG".
 	
 Rule for refreshing the contents-debug window:
 	say "debug-mode: [debug-mode][line break]";
+	say "help-mode: [help-mode][line break]";
 	say "display-room-illustration: [display-room-illustration][line break]";
 	say "display-inventory-illustration: [display-inventory-illustration][line break]";
 	[say "Map window width: [width of map window][line break]";]
@@ -411,12 +412,11 @@ Part - Help Mode
 help-mode is a truth state that varies.
 help-mode is true.
 
-[Switch help mode is an action out of world.
+Switch help mode is an action out of world.
 
 Report switch help mode:
 	if help-mode is true:
 		now help-mode is false;
-		say "help-mode: [help-mode]";
 		if debug-mode is true:
 			close contents-debug window;
 			close title-debug window;
@@ -427,17 +427,16 @@ Report switch help mode:
 			open contents-debug window;
 	otherwise:
 		now help-mode is true;
-		say "help-mode: [help-mode]";
 		if debug-mode is true:
 			close contents-debug window;
 			close title-debug window;
 		open title-help window;
 		open contents-help window;
 		if debug-mode is true:
-			close contents-debug window;
-			close title-debug window;
+			open title-debug window;
+			open contents-debug window;
 
-Understand "help" as switch help mode.]
+Understand "help" as switch help mode.
 
 
 Part - Map Mode
