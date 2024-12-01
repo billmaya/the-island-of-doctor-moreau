@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4557]
+[WORDS - 4565]
 
 Table of Releases
 release	notes
@@ -521,6 +521,12 @@ Volume - Beginning The Story
 Before starting the virtual machine:
 	now the current graphics drawing rule is the standard placement [centered scaled drawing] [fully scaled drawing] [tiled drawing] rule; 
 
+Book - Player Location
+
+The player is in the Beach. [Compass Location.]
+
+Book - When Play Begins
+
 When play begins:
 	close the graphics window;
 	open the title window;
@@ -629,10 +635,6 @@ Book - Scenes
 
 
 Volume - Rooms
-
-Book - Player Location
-
-The player is in the Beach. [Example Location.]
 
 Book - Mapping
 
@@ -760,22 +762,22 @@ Test bug with "north / take knife / east/ take cloth".
 
 Book - Compass Test Room
 
-[This code is used just to test the positioning and appearance of the compass rose.]
+[This code is used just to test the positioning and appearance of the compass rose in the status bar.]
 
-Example Location is a room. 
+Compass Location is a room. 
 
-To The North is a room. To The North is north of the Example Location.
-To The South is a room. To The South is south of the Example Location.
-To The West is a room. To The West is west of the Example Location.
-To The East is a room. To The East is east of the Example Location.
+To The North is a room. To The North is north of the Compass Location.
+To The South is a room. To The South is south of the Compass Location.
+To The West is a room. To The West is west of the Compass Location.
+To The East is a room. To The East is east of the Compass Location.
 
-To The Northeast is a room. To The Northeast is northeast of the Example Location.
-To The Northwest is a room. To The Northwest is northwest of the Example Location.
-To The Southeast is a room. To The Southeast is southeast of the Example Location.
-To The Southwest is a room. To The Southwest is southwest of the Example Location.
+To The Northeast is a room. To The Northeast is northeast of the Compass Location.
+To The Northwest is a room. To The Northwest is northwest of the Compass Location.
+To The Southeast is a room. To The Southeast is southeast of the Compass Location.
+To The Southwest is a room. To The Southwest is southwest of the Compass Location.
 
-Up Above is a room. Up Above is up from the Example Location.
-Down Below is a room. Down Below is down from the Example Location. 
+Up Above is a room. Up Above is up from the Compass Location.
+Down Below is a room. Down Below is down from the Compass Location. 
 
 
 Volume - Utilities
