@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4565]
+[WORDS - 4737]
 
 Table of Releases
 release	notes
@@ -18,7 +18,7 @@ Book - Extensions
 Include Flexible Windows by Jon Ingold. [v15/170131]
 Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly with v15/170131 of Flexible Windows]
 Include Basic Screen Effects by Emily Short. [v7/140425. Required to change status bar and display compass rose]
-Include Basic Help Menu by Emily Short.
+[Include Basic Help Menu by Emily Short.]
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
 [Include Conversation Package by Eric Eve.] [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
@@ -121,12 +121,6 @@ Rule for refreshing the description-room window:
 	[list the contents of the location, as a sentence;] [, listing marked items only;] [, prefacing with is/are;]
 	[say "[locale description of location]";]
 
-Rule for refreshing the title-help window:
-	say "Help (title-help)";
-	
-Rule for refreshing the contents-help window:
-	say "contents-help";
-
 Rule for refreshing the title-inventory window:
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
 		if the player has the noun part of the current action:
@@ -175,12 +169,23 @@ Rule for refreshing the description-inventory window:
 	else:
 		try taking inventory;
 	refresh the title-inventory window;
+
+Rule for refreshing the title-help window:
+	say "Help (title-help)";
+	
+Rule for refreshing the contents-help window:
+	say "contents-help";
 		
 Rule for refreshing the title-debug window:
-	say "DEBUG (title-debug)".
+	say "DEBUG".
 	
 Rule for refreshing the contents-debug window:
-	say "contents-debug";	
+	say "debug-mode: [debug-mode][line break]";
+	say "display-room-illustration: [display-room-illustration][line break]";
+	say "display-inventory-illustration: [display-inventory-illustration][line break]";
+	[say "Map window width: [width of map window][line break]";]
+	[say "Action: [action name part of the current action][line break]";]
+	[say "Noun: [noun part of the current action][line break]";]
 		
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
@@ -385,12 +390,55 @@ graphics-mode is true.]
 Part - Debug Mode
 
 debug-mode is a truth state that varies.
-debug-mode is false. [true.]
+debug-mode is false.
+
+Switch debug mode is an action out of world.
+
+Report switch debug mode:
+	if debug-mode is true:
+		now debug-mode is false;
+		close contents-debug window;
+		close title-debug window;
+	otherwise:
+		now debug-mode is true;
+		open title-debug window;
+		open contents-debug window;
+
+Understand "debug" as switch debug mode.
 
 Part - Help Mode
 
 help-mode is a truth state that varies.
-help-mode is false. [true.]
+help-mode is true.
+
+[Switch help mode is an action out of world.
+
+Report switch help mode:
+	if help-mode is true:
+		now help-mode is false;
+		say "help-mode: [help-mode]";
+		if debug-mode is true:
+			close contents-debug window;
+			close title-debug window;
+		close contents-help window;
+		close title-help window;
+		if debug-mode is true:
+			open title-debug window;
+			open contents-debug window;
+	otherwise:
+		now help-mode is true;
+		say "help-mode: [help-mode]";
+		if debug-mode is true:
+			close contents-debug window;
+			close title-debug window;
+		open title-help window;
+		open contents-help window;
+		if debug-mode is true:
+			close contents-debug window;
+			close title-debug window;
+
+Understand "help" as switch help mode.]
+
 
 Part - Map Mode
 
@@ -561,17 +609,13 @@ Every turn:
 	otherwise:
 		refresh the description-inventory window;
 	refresh the map window;
-	if debug-mode is true: 
+	[if debug-mode is true: 
 		focus contents-debug window;
 		clear contents-debug window; [Uncomment]
 		[Begin debug statements]
-		say "display-room-illustration: [display-room-illustration][line break]";
-		say "display-inventory-illustration: [display-inventory-illustration][line break]";
-		[say "Map window width: [width of map window][line break]";]
-		[say "Action: [action name part of the current action][line break]";]
-		[say "Noun: [noun part of the current action][line break]";]
 		[End debug statements]
 		focus main window;
+]
 
 Volume - Figures
 
