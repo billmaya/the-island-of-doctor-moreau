@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4721]
+[WORDS - 4798]
 
 Table of Releases
 release	notes
@@ -387,13 +387,17 @@ Instead of taking inventory:
 
 Book - After Rules
 
-After going to a room:
+After going to a room (this is the check illustration rule):
 	if the illustration of location is not Figure of No-Image:
 		now display-room-illustration is true;
 	otherwise:
 		now display-room-illustration is false;
 	follow the Change Location Windows rules;
 	continue the action;
+
+[The check illustration rule is listed last in the report rules.]
+[The check illustration rule is listed last in the after rules.]
+
 	
 Book - Out Of World Actions
 
@@ -441,120 +445,103 @@ Part - Change Current Location Windows
 display-room-illustration is a truth state that varies.
 display-room-illustration is true.
 
-Change current location windows is an action out of world.
-Report change current location windows:
-	if display-room-illustration is true:
-		now display-room-illustration is false;
-		follow the Change Location Windows rules;
-	otherwise:
-		now display-room-illustration is true;
-		follow the Change Location Windows rules;
-	[say "display-room-illustration: [display-room-illustration]";]
-
-Understand "roommorph" as change current location windows.
-
 Chapter - Change Location Windows Rulebook
 
 Change Location Windows is a rulebook.
-A change location windows rule:
+
+A change location windows rule (this is the change orientation of location windows rule):
+	if debug-mode is true: [close debug windows]
+		close contents-debug window; 
+		close title-debug window;
+	if help-mode is true: [close help windows]
+		close contents-help window;
+		close title-help window;
+	[Close Inventory windows]
+	close list-inventory;
+	close title-inventory;
+	[Modify Room windows]
+	close description-room window;
+	say "ONE";
 	if display-room-illustration is false:
-		[Close Debug windows if open]
-		if debug-mode is true: 
-			close contents-debug window;
-			close title-debug window;
-		[Close Help windows]
-		if help-mode is true:
-			close contents-help window;
-			close title-help window;
-		[Close Inventory windows]
-		close list-inventory;
-		close title-inventory;
-		[Modify Room windows]
-		close description-room window;
 		close graphics-room window;
 		now the measurement of the description-room window is 18;
 		open description-room window;
 		refresh description-room window;
-		[Open Inventory windows]
-		open title-inventory;
-		open list-inventory;
-		[Open Help windows]
-		if help-mode is true:
-			open title-help window;
-			open contents-help window;
-		[Open Debug windows if they were open]
-		if debug-mode is true: 
-			open title-debug window;
-			open contents-debug window;
 	otherwise:
-		[Close Debug windows if open]
-		if debug-mode is true: 
-			close contents-debug window;
-			close title-debug window;
-		[Close Help windows]
-		if help-mode is true:
-			close contents-help window;
-			close title-help window;
-		[Close Inventory windows]
-		close list-inventory;
-		close title-inventory;
-		[Modify Room windows]
-		close description-room window;
 		open graphics-room window;
 		refresh graphics-room window;
 		now the measurement of the description-room window is 9;
 		open description-room window;
 		refresh description-room window;
-		[Open Inventory windows]
-		open title-inventory;
-		open list-inventory;
-		[Open Help windows]
-		if help-mode is true:
-			open title-help window;
-			open contents-help window;
-		[Open Debug windows if they were open]
-		if debug-mode is true: 
-			open title-debug window;
-			open contents-debug window;
+	[Open Inventory windows]
+	open title-inventory window;
+	if display-inventory-illustration is false:
+		open list-inventory window;
+	otherwise:
+		open graphics-inventory window;
+		open description-inventory window;
+	if help-mode is true: [open help windows]
+		open title-help window;
+		open contents-help window;
+	if debug-mode is true: [open debug windows]
+		open title-debug window;
+		open contents-debug window;
 
-Part - Change Inventory Windows
+ Part - Change Inventory Windows
 
 display-inventory-illustration is a truth state that varies.
 display-inventory-illustration is false.
 
-Change inventory window is an action out of world.
-Report change inventory window:
-	if display-inventory-illustration is false:
-		now display-inventory-illustration is true;
-		follow the Change Inventory Windows rules;
-	otherwise:
-		now display-inventory-illustration is false;
-		follow the Change Inventory Windows rules;
-
-Understand "invmorph" as change inventory window.
-
 Chapter - Change Inventory Windows Rulebook
 
 Change Inventory Windows is a rulebook.
+
+Change Inventory Windows is a rulebook.
 A change inventory windows rule:
-	[Close Debug windows if open]
+	[Close Debug windows if they were open]
 	if debug-mode is true: 
 		close contents-debug window;
 		close title-debug window;
-	[Close Help windows]
+	[Close Help windows if they were open]
 	if help-mode is true:
 		close contents-help window;
 		close title-help window;
-	[Modify Inventory contents window]
-	if display-inventory-illustration is true: 
-		close list-inventory;
-		open graphics-inventory window;
-		open description-inventory window;
+	[Close Inventory contents window]
+	close title-inventory window;
+	close list-inventory window;
+	close graphics-inventory window;
+	close description-inventory window;
+	[Close Room windows]
+	close title-room window;
+	close graphics-room window;
+	close description-room window;
+	say "TWO";
+	pause the game; [1]
+	open title-room window;
+	if display-room-illustration is true:
+		open graphics-room window;
+		pause the game; [2a]
+		now the measurement of the description-room window is 9;
+		open description-room window;
+		pause the game; [2b]
 	otherwise:
-		close description-inventory window;
-		[close graphics-inventory window;]
+		now the measurement of the description-room window is 18;
+		open description-room window;
+		pause the game; [2c]
+	[Modify Inventory contents windows]
+	open title-inventory window;
+	pause the game; [3]
+	if display-inventory-illustration is true: 
+		[close list-inventory;]
+		open graphics-inventory window;
+		pause the game; [4]
+		open description-inventory window;
+		pause the game; [5]
+	otherwise:
+		[close description-inventory window;
+		close graphics-inventory window;]
 		open list-inventory window;
-	[Open Help windows]
+	[Open Help windows if they were open]
 	if help-mode is true:
 		open title-help window;
 		open contents-help window;
@@ -588,12 +575,13 @@ When play begins:
 	open description-room window;
 	open title-inventory window; 
 	open list-inventory window;
-	[open title-help window;
-	open contents-help window;]
-	open map window;
+	if help-mode is true:
+		open title-help window;
+		open contents-help window;
 	if debug-mode is true:
 		open title-debug window;
 		open contents-debug window;
+	open map window;
 	refresh the map window;
 	refresh the graphics-room window;
 	now the time of day is time of day plus 1 minute;
@@ -736,7 +724,7 @@ The Ruins are a room. The Ruins are west of the Jungle.
 
 The description of the Ruins are "These are the ruins."
 
-[The illustration of the Ruins are Figure of Ruins-0.]
+The illustration of the Ruins are Figure of Ruins-0.
 
 Book - Muddy Path
 
@@ -744,7 +732,7 @@ The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of 
 
 The description of the Muddy Path is "This is a narrow, muddy path."
 
-The illustration of the Muddy Path is Figure of Muddy-Path-0.
+[The illustration of the Muddy Path is Figure of Muddy-Path-0.]
 
 Book - Volcanic Caldera
 
@@ -811,7 +799,7 @@ Volume - Tests
 
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 
-Test bug with "north / take knife / east/ take cloth / west / west".
+Test bug with "north / take knife / east/ take cloth".
 
 
 Volume - Utilities
