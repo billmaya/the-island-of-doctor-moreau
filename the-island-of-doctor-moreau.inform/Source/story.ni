@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4699]
+[WORDS - 4805]
 
 Table of Releases
 release	notes
@@ -22,8 +22,7 @@ Include Basic Screen Effects by Emily Short. [v7/140425. Required to change stat
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
 [Include Conversation Package by Eric Eve.] [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
-
-Include Conversation Rules by Eric Eve. [Contains Epistemology, Conversation Framework, and List Control]
+[Include Conversation Rules by Eric Eve.] [Contains Epistemology, Conversation Framework, and List Control]
 
 Book - User Interface
 
@@ -116,10 +115,10 @@ Rule for refreshing the graphics-room window:
 
 Rule for refreshing the description-room window:
 	say "[description of location][paragraph break]";	
-	let the domain be the location;
-	[list the nondescript items of the location;]
-	[list the contents of the location, as a sentence;] [, listing marked items only;] [, prefacing with is/are;]
-	[say "[locale description of location]";]
+	before printing the locale description of a room (called the locale):
+		focus description-room window;
+	after printing the locale description of a room (called the locale):
+		focus main window;
 
 Rule for refreshing the title-inventory window:
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
@@ -180,11 +179,13 @@ Rule for refreshing the title-debug window:
 	say "DEBUG".
 	
 Rule for refreshing the contents-debug window:
-	say "debug-mode: [debug-mode][line break]";
-	say "help-mode: [help-mode][line break]";
-	say "display-room-illustration: [display-room-illustration][line break]";
-	say "display-inventory-illustration: [display-inventory-illustration][line break]";
-	[say "Map window width: [width of map window][line break]";]
+	[say "debug-mode: [debug-mode][line break]";]
+	[say "help-mode: [help-mode][line break]";]
+	[say "display-room-illustration: [display-room-illustration][line break]";]
+	[say "display-inventory-illustration: [display-inventory-illustration][line break]";]
+	say "Map window width: [width of map window][line break]";
+	say "x-calculated-coordinate: [x-calculated-coordinate][line break]";
+	say "Player location: [location]";
 	[say "Action: [action name part of the current action][line break]";]
 	[say "Noun: [noun part of the current action][line break]";]
 		
@@ -199,7 +200,8 @@ Rule for refreshing the map window:
 			draw the map-section entry in the map window;
 	[Draw icons for other visible locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
 	repeat through the Table of Room Map Locations:
-		let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;
+		now x-calculated-coordinate is ( x-coordinate entry * width of map window ) / 693; [changed from let/be in line below]
+		[let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;]
 		[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 		if the room entry is not the location:
 			if there is a display entry:
@@ -216,6 +218,10 @@ Rule for refreshing the map window:
 
 Rule for refreshing the entire-map window:
 	draw the Figure of Entire-Island in the entire-map window;
+	repeat through the Table of Room Main Map Locations:
+		now x-calculated-coordinate is (x-coordinate entry * width of map window ) / 693;
+		if the room entry is the location:
+			draw the Figure of Icon-Player-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 
 
 Chapter - Styles
@@ -337,13 +343,6 @@ Section - Room Graphics
 This is the display room graphics rule:
 	refresh the graphics-room window;
 
-Section - Room You Also See (not currently used)
-
-[This is the modified you-can-also-see rule:
-	refresh the description-room window;
-
-The modified you-can-also-see rule substitutes for the you-can-also-see rule.]
-
 Chapter - Examine
 
 Section - Standard Examine
@@ -437,7 +436,6 @@ Report switch help mode:
 			open contents-debug window;
 
 Understand "help" as switch help mode.
-
 
 Part - Map Mode
 
@@ -557,8 +555,6 @@ A change inventory windows rule:
 		open title-debug window;
 		open contents-debug window;
 
-
-
 Book - Release
 
 Release along with an interpreter and source text.
@@ -607,8 +603,10 @@ Every turn:
 		refresh the list-inventory window;
 	otherwise:
 		refresh the description-inventory window;
+	if debug-mode is true:
+		refresh the contents-debug window;
 	refresh the map window;
-
+	silently try looking;
 
 Volume - Figures
 
@@ -694,6 +692,19 @@ Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	
 Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
 Moreau Compound	Figure of Map-Island-2	375	225	--	true
+
+[For main map]
+Table 2 - Room Main Map Locations
+room	x-coordinate	y-coordinate	icon	display
+Beach	200	100	--	--
+Jungle	110	110	--	--
+Ruins	120	120	--	--
+Muddy Path	130	130	--	--
+Volcanic Caldera	140	140	--	--
+Deep Jungle	150	150	--	--
+Hidden Valley	160	160	--	--
+Moreau Compound	170	170	--	--
+
 
 Book - Beach
 
