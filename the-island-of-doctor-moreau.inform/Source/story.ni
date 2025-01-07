@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4805]
+[WORDS - 4947]
 
 Table of Releases
 release	notes
@@ -184,6 +184,7 @@ Rule for refreshing the contents-debug window:
 	[say "display-room-illustration: [display-room-illustration][line break]";]
 	[say "display-inventory-illustration: [display-inventory-illustration][line break]";]
 	say "Map window width: [width of map window][line break]";
+	say "Entire Map window width: [width of entire-map window][line break]";
 	say "x-calculated-coordinate: [x-calculated-coordinate][line break]";
 	say "Player location: [location]";
 	[say "Action: [action name part of the current action][line break]";]
@@ -219,9 +220,19 @@ Rule for refreshing the map window:
 Rule for refreshing the entire-map window:
 	draw the Figure of Entire-Island in the entire-map window;
 	repeat through the Table of Room Main Map Locations:
-		now x-calculated-coordinate is (x-coordinate entry * width of map window ) / 693;
+		now x-calculated-coordinate is (x-coordinate entry * width of entire-map window ) / 693;
 		if the room entry is the location:
 			draw the Figure of Icon-Player-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+		otherwise:
+			if there is a display entry:
+				if the room entry is visited:
+					if there is an icon entry:
+						draw the icon entry in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+					otherwise:
+						draw the Figure of Icon-Visited-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+				otherwise:
+					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+			
 
 
 Chapter - Styles
@@ -696,14 +707,14 @@ Moreau Compound	Figure of Map-Island-2	375	225	--	true
 [For main map]
 Table 2 - Room Main Map Locations
 room	x-coordinate	y-coordinate	icon	display
-Beach	200	100	--	--
-Jungle	110	110	--	--
-Ruins	120	120	--	--
-Muddy Path	130	130	--	--
-Volcanic Caldera	140	140	--	--
-Deep Jungle	150	150	--	--
-Hidden Valley	160	160	--	--
-Moreau Compound	170	170	--	--
+Beach	190	724	--	true
+Jungle	190	694	--	true
+Ruins	145	694	Figure of Icon-Ruins	true
+Muddy Path	220	694	--	--
+Volcanic Caldera	285	766	Figure of Icon-Volcanic-Caldera	true
+Deep Jungle	300	604	--	true
+Hidden Valley	375	373	--	true
+Moreau Compound	375	250	--	true
 
 
 Book - Beach
@@ -805,6 +816,7 @@ Volume - Tests
 Book - General
 
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
+Test me2 with "test me / north / northeast / north".
 
 Test bug with "north / take knife / east/ take cloth".
 
