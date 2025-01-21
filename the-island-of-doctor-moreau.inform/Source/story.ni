@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5004]
+[WORDS - 5005]
 
 Table of Releases
 release	notes
@@ -103,7 +103,7 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 5.
+The measurement of the contents-debug window is 10. [5.]
 
 Chapter - Rules
 
