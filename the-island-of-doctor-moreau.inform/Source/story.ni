@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 4947]
+[WORDS - 5004]
 
 Table of Releases
 release	notes
@@ -18,7 +18,7 @@ Book - Extensions
 Include Flexible Windows by Jon Ingold. [v15/170131]
 Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly with v15/170131 of Flexible Windows]
 Include Basic Screen Effects by Emily Short. [v7/140425. Required to change status bar and display compass rose]
-[Include Basic Help Menu by Emily Short.]
+Include Basic Help Menu by Emily Short.
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
 [Include Conversation Package by Eric Eve.] [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
@@ -401,7 +401,7 @@ graphics-mode is true.]
 Part - Debug Mode
 
 debug-mode is a truth state that varies.
-debug-mode is false.
+debug-mode is true. [false.]
 
 Switch debug mode is an action out of world.
 
@@ -419,10 +419,15 @@ Understand "debug" as switch debug mode.
 
 Part - Help Mode
 
-help-mode is a truth state that varies.
-help-mode is true.
+[help-mode exists in other parts of the code so it has not been commented out but it has been set to false.]
+[Currently, we'll be using Emily Short's Basic Help Menu extension to display instructions and help in the main window.]
 
-Switch help mode is an action out of world.
+help-mode is a truth state that varies.
+help-mode is false. [true.]
+
+[The code that shows and hides the Help window has been commented out.]
+
+[Switch help mode is an action out of world.
 
 Report switch help mode:
 	if help-mode is true:
@@ -446,7 +451,7 @@ Report switch help mode:
 			open title-debug window;
 			open contents-debug window;
 
-Understand "help" as switch help mode.
+Understand "help" as switch help mode.]
 
 Part - Map Mode
 
