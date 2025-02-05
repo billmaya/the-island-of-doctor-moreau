@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5005]
+[WORDS - 5044]
 
 Table of Releases
 release	notes
@@ -158,6 +158,8 @@ Rule for refreshing the graphics-inventory window:
 	if the current action is examining something (called E): 
 		if the player has the noun part of the current action:
 			draw the illustration of the noun part of the current action in the graphics-inventory window;
+		[otherwise:
+			display the illustration of the noun part of the current action in the main window;]
 
 Rule for refreshing the description-inventory window:
 	if the current action is examining something (called E):
@@ -179,17 +181,26 @@ Rule for refreshing the title-debug window:
 	say "DEBUG".
 	
 Rule for refreshing the contents-debug window:
-	[say "debug-mode: [debug-mode][line break]";]
-	[say "help-mode: [help-mode][line break]";]
-	[say "display-room-illustration: [display-room-illustration][line break]";]
-	[say "display-inventory-illustration: [display-inventory-illustration][line break]";]
+	say "";
+	repeat through the Table of Debug Variables:
+		if there is a display entry:
+			showme data entry;
+		
+	[showme location;
+	showme width of map window;
+	showme width of entire-map window; ]
+
+	[repeat through the Table of Debug Variables:
+		if there is a display entry:
+			say "[label entry]: [data entry][line break]"]
+
+	[
 	say "Map window width: [width of map window][line break]";
 	say "Entire Map window width: [width of entire-map window][line break]";
 	say "x-calculated-coordinate: [x-calculated-coordinate][line break]";
 	say "Player location: [location]";
-	[say "Action: [action name part of the current action][line break]";]
-	[say "Noun: [noun part of the current action][line break]";]
-		
+	]	
+	
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
 
@@ -417,6 +428,25 @@ Report switch debug mode:
 
 Understand "debug" as switch debug mode.
 
+Chapter - Debug Display Table
+
+[data can't be value that varies according to compiler]
+
+Table 3 - Debug Variables
+display	label	data
+true	"Player Location"	"location"
+--	"Map Window Width"	"width of map window"
+--	"Debug Mode"	"debug-mode"
+-- 	"Help Mode"	"help-mode"
+--	"Display Room Illustration"	"display-room-illustration"
+--	"Display Inventory Illustration"	"display-inventory-illustration"
+--	"Entire Map Window Width"	"width of entire-map-window"
+--	"x-calculated-coordinate"	"x-calculated-coordinate"
+--	"Action"	"action name part of current action"
+--	"Noun"	"noun part of the current action"
+	
+
+
 Part - Help Mode
 
 [help-mode exists in other parts of the code so it has not been commented out but it has been set to false.]
@@ -573,7 +603,7 @@ A change inventory windows rule:
 
 Book - Release
 
-Release along with an interpreter and source text.
+[Release along with an interpreter.] [and source text.]
 
 Volume - Beginning The Story
 
@@ -643,13 +673,7 @@ Book - Mapping
 Figure of Map-Island-1 is the file "mapgen4-195-1.png".
 Figure of Map-Island-2 is the file "mapgen4-195-2.png".
 
-[Figure of Map-Island-1 is the file "island-1.png".
-Figure of Map-Island-2 is the file "island-2.png".
-Figure of Map-Island-3 is the file "island-3.png".
-Figure of Map-Island-4 is the file "island-4.png".]
-
 Figure of Entire-Island is the file "mapgen4-195.png".
-[Figure of Entire-Island is the file "island-0.1.png".]
 
 Book - Icons
 
@@ -752,7 +776,7 @@ The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of 
 
 The description of the Muddy Path is "This is a narrow, muddy path."
 
-The illustration of the Muddy Path is Figure of Muddy-Path-0.
+[The illustration of the Muddy Path is Figure of Muddy-Path-0.]
 
 Book - Volcanic Caldera
 
