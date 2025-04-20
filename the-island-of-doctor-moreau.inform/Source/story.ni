@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5247]
+[WORDS - 5325]
 
 Table of Releases
 release	notes
@@ -104,6 +104,11 @@ The contents-debug window is a text buffer g-window spawned by the right-sidebar
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
 The measurement of the contents-debug window is 10. [5.]
+
+The character-row window is a graphics g-window spawned by the main window.
+The position of the character-row window is g-placeabove.
+The scale method of the character-row window is g-fixed-size.
+The measurement of the character-row window is 169.
 
 [The left-sidebar window is a text grid g-window spawned by the main window.
 The position of the left-sidebar window is g-placeleft.
@@ -263,7 +268,8 @@ Rule for refreshing the entire-map window:
 				otherwise:
 					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 			
-
+Rule for refreshing the character-row window:
+	draw the Figure of Sample-Characters in the character-row window;
 
 Chapter - Styles
 
@@ -656,8 +662,10 @@ When play begins:
 		open title-debug window;
 		open contents-debug window;
 	open map window;
+	open character-row window;
 	refresh the map window;
 	refresh the graphics-room window;
+	refresh the character-row window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -672,6 +680,7 @@ Every turn:
 	if debug-mode is true:
 		refresh the contents-debug window;
 	refresh the map window;
+	refresh the character-row window;
 	silently try looking;
 
 Volume - Figures
@@ -728,6 +737,7 @@ Figure of Knife-0 is the file "knife-0.png".
 
 Book - Characters
 
+Figure of Sample-Characters is the file "character-row-sample-lost.png".
 
 Book - Scenes
 
