@@ -523,11 +523,13 @@ Chapter - Show Map Rulebook
 Show Map is a rulebook.
 A show map rule:
 	close map window;
+	close character-row window;
 	open entire-map window;
 	refresh entire-map window;
 	pause the game;
 	close entire-map window;
 	open map window;
+	open character-row window;
 	refresh map window;
 
 Part - Change Current Location Windows
