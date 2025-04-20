@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5044]
+[WORDS - 5247]
 
 Table of Releases
 release	notes
@@ -105,6 +105,11 @@ The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
 The measurement of the contents-debug window is 10. [5.]
 
+[The left-sidebar window is a text grid g-window spawned by the main window.
+The position of the left-sidebar window is g-placeleft.
+The scale method of the left-sidebar window is g-fixed-size.
+The measurement of the left-sidebar window is 10.]
+
 Chapter - Rules
 
 Rule for refreshing the title-room window:
@@ -179,27 +184,26 @@ Rule for refreshing the contents-help window:
 		
 Rule for refreshing the title-debug window:
 	say "DEBUG".
-	
+
+obj is an object variable.
+
 Rule for refreshing the contents-debug window:
 	say "";
-	repeat through the Table of Debug Variables:
-		if there is a display entry:
-			showme data entry;
-		
-	[showme location;
+	showme location;
 	showme width of map window;
-	showme width of entire-map window; ]
-
+	[showme width of entire-map window;]
+	[showme x-calculated-coordinate;]
+	[]
+	[say "Player location: [location][line break]";
+	say "Map window width: [width of map window][line break]";]
+	[]
 	[repeat through the Table of Debug Variables:
 		if there is a display entry:
-			say "[label entry]: [data entry][line break]"]
-
-	[
-	say "Map window width: [width of map window][line break]";
-	say "Entire Map window width: [width of entire-map window][line break]";
-	say "x-calculated-coordinate: [x-calculated-coordinate][line break]";
-	say "Player location: [location]";
-	]	
+			if the data entry is:
+				-- "location": now obj is location;
+				-- "width of map window": now obj is width of map window;
+			[]
+			say "[label entry]: [obj][line break]";]
 	
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
@@ -212,7 +216,11 @@ Rule for refreshing the map window:
 			draw the map-section entry in the map window;
 	[Draw icons for other visible locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
 	repeat through the Table of Room Map Locations:
-		now x-calculated-coordinate is ( x-coordinate entry * width of map window ) / 693; [changed from let/be in line below]
+		now x-calculated-coordinate is ( x-coordinate entry * width of map window ) / [907;] 693; [changed from let/be in line below]
+		[focus main window;
+		say "[room entry]: [x-calculated-coordinate][line break]";
+		focus map window;]
+		[now x-calculated-coordinate is (x-coordinate entry / 693) * width of map window;]
 		[let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;]
 		[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 		if the room entry is not the location:
@@ -227,6 +235,17 @@ Rule for refreshing the map window:
 						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
+	[Draw the map width indicator icon]
+	if the width of map window <= 910:
+		if the width of map window >= 890:
+			[focus main window;
+			say "[width of map window]";
+			focus map window;]
+			draw the Figure of Map-Width-Good in the map window at x 2 and y 430 scaled to width 20 and height 20;
+		otherwise:
+			draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
+	otherwise:
+		draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
 
 Rule for refreshing the entire-map window:
 	draw the Figure of Entire-Island in the entire-map window;
@@ -623,6 +642,7 @@ When play begins:
 	say "[banner text]";
 	pause the game;
 	close the title window;
+	[open left-sidebar window;]
 	open right-sidebar window;
 	open title-room window;
 	open graphics-room window;
@@ -684,6 +704,9 @@ Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
 
 Figure of Icon-Ruins is the file "icon-ruins-0.png".
 Figure of Icon-Volcanic-Caldera is the file "icon-volcanic-caldera-0.png".
+
+Figure of Map-Width-Good is the file "map-width-good.png".
+Figure of Map-Width-Bad is the file "map-width-bad.png".
 
 Book - Rooms
 
