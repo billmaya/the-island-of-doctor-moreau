@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5347]
+[WORDS - 5418]
 
 Table of Releases
 release	notes
@@ -267,9 +267,19 @@ Rule for refreshing the entire-map window:
 						draw the Figure of Icon-Visited-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 				otherwise:
 					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-			
+
+flag-switch is a number that varies.
+flag-switch is 1.	
+					
 Rule for refreshing the character-row window:
-	draw the Figure of Sample-Characters in the character-row window;
+	if flag-switch is:
+		-- 1:
+		draw the Figure of Sample-Characters in the character-row window;
+		-- 2:
+		draw the Figure of Sample-Characters in the character-row window at x 0 and y 0;
+		-- 3:
+		draw the Figure of Sample-Characters in the character-row window at x 0 and y 0 scaled to width 904 and height 169;
+
 
 Chapter - Styles
 
@@ -741,7 +751,8 @@ Figure of Knife-0 is the file "knife-0.png".
 
 Book - Characters
 
-Figure of Sample-Characters is the file "character-row-sample-lost.png".
+[Figure of Sample-Characters is the file "character-row-sample-lost.png".]
+Figure of Sample-Characters is the file "character-row-sample-moreau.png".
 
 Book - Scenes
 
