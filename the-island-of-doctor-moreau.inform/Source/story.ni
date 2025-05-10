@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5418]
+[WORDS - 5586]
 
 Table of Releases
 release	notes
@@ -109,6 +109,11 @@ The character-row window is a graphics g-window spawned by the main window.
 The position of the character-row window is g-placeabove.
 The scale method of the character-row window is g-fixed-size.
 The measurement of the character-row window is 169.
+
+The character-name window is a text grid g-window spawned by the main window.
+The position of the character-name window is g-placeabove.
+The scale method of the character-name window is g-fixed-size.
+The measurement of the character-name window is 1.
 
 [The left-sidebar window is a text grid g-window spawned by the main window.
 The position of the left-sidebar window is g-placeleft.
@@ -269,7 +274,7 @@ Rule for refreshing the entire-map window:
 					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 
 flag-switch is a number that varies.
-flag-switch is 1.	
+flag-switch is 3.	
 					
 Rule for refreshing the character-row window:
 	if flag-switch is:
@@ -278,7 +283,15 @@ Rule for refreshing the character-row window:
 		-- 2:
 		draw the Figure of Sample-Characters in the character-row window at x 0 and y 0;
 		-- 3:
-		draw the Figure of Sample-Characters in the character-row window at x 0 and y 0 scaled to width 904 and height 169;
+		[draw the Figure of Sample-Characters in the character-row window at x 0 and y 0 scaled to width 904 and height 169;]
+		draw the Figure of Beast-People in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
+		draw the Figure of Dogman in the character-row window at x 225 and y 0 scaled to width 127 and height 169;
+		draw the Figure of Montgomery in the character-row window at x 352 and y 0 scaled to width 127 and height 169;
+
+Rule for refreshing the character-name window:
+	say "CHARACTER NAMES WOULD GO HERE";
+	
+	
 
 
 Chapter - Styles
@@ -677,9 +690,11 @@ When play begins:
 		open contents-debug window;
 	open map window;
 	open character-row window;
+	open character-name window;
 	refresh the map window;
 	refresh the graphics-room window;
 	refresh the character-row window;
+	refresh the character-name window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -753,6 +768,10 @@ Book - Characters
 
 [Figure of Sample-Characters is the file "character-row-sample-lost.png".]
 Figure of Sample-Characters is the file "character-row-sample-moreau.png".
+
+Figure of Montgomery is the file "character-montgomery-0.png".
+Figure of Dogman is the file "character-dogman-0.png".
+Figure of Beast-People is the file "character-beastpeople-0.png".
 
 Book - Scenes
 
