@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5586]
+[WORDS - 5818]
 
 Table of Releases
 release	notes
@@ -274,22 +274,45 @@ Rule for refreshing the entire-map window:
 					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 
 flag-switch is a number that varies.
-flag-switch is 3.	
+flag-switch is [0] 1.	
 					
 Rule for refreshing the character-row window:
 	if flag-switch is:
+		-- 0:
+			draw the Figure of Beast-People in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
+			draw the Figure of Dogman in the character-row window at x 225 and y 0 scaled to width 127 and height 169;
+			draw the Figure of Montgomery in the character-row window at x 352 and y 0 scaled to width 127 and height 169;
+			[draw the Figure of Montgomery in the character-row window at x 0 and y 0 scaled to width 127 and height 169;]
 		-- 1:
-		draw the Figure of Sample-Characters in the character-row window;
-		-- 2:
-		draw the Figure of Sample-Characters in the character-row window at x 0 and y 0;
-		-- 3:
-		[draw the Figure of Sample-Characters in the character-row window at x 0 and y 0 scaled to width 904 and height 169;]
-		draw the Figure of Beast-People in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
-		draw the Figure of Dogman in the character-row window at x 225 and y 0 scaled to width 127 and height 169;
-		draw the Figure of Montgomery in the character-row window at x 352 and y 0 scaled to width 127 and height 169;
-
+			clear the character-row window;
+			repeat through the Table of Character Display Information:
+				if the location of the people entry is the location of the player:
+					if the type entry is "Portrait":
+						draw the image entry in the character-row window at x 0 and y 0 scaled to width 127 and height 169;
+					otherwise:
+						draw the image entry in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
+			
 Rule for refreshing the character-name window:
-	say "CHARACTER NAMES WOULD GO HERE";
+	if flag-switch is:
+		-- 0:
+			[say " 0000000000000000000 11111111111 22222222222 ";]
+			say "    Beast People       Dogman    Montgomery ";
+			[say " Montgomery ";]
+		-- 1:
+			clear the character-name window;
+			repeat through the Table of Character Display Information:
+				if the location of the people entry is the location of the player:
+					say " [people entry] ";
+
+[
+Table 3 - Character Display Information
+people	image	type	displayed	position
+Montgomery	Figure of Montgomery	"Portrait"	false	0
+Dogman	Figure of Dogman	"Portrait"	false	0
+Beast People	Figure of Beast-People	"Landscape"	false	0		
+]	
+	
+
 	
 	
 
@@ -710,6 +733,7 @@ Every turn:
 		refresh the contents-debug window;
 	refresh the map window;
 	refresh the character-row window;
+	refresh the character-name window;
 	silently try looking;
 
 Volume - Figures
@@ -778,7 +802,7 @@ Book - Scenes
 
 Volume - Rooms
 
-Book - Mapping
+Book - Map Display Information
 
 [
 Ever room in the game should have a table entry. 
@@ -881,6 +905,38 @@ Book - Regions
 
 
 Volume - Characters
+
+Book - Character Display Information
+
+Table 3 - Character Display Information
+people	image	type	displayed	position
+Montgomery	Figure of Montgomery	"Portrait"	false	0
+Dogman	Figure of Dogman	"Portrait"	false	0
+Beast People	Figure of Beast-People	"Landscape"	false	0
+
+Book - Montgomery
+
+Montgomery is a person.
+Montgomery is male.
+
+Montgomery is in the Ruins.
+
+Book - Dogman
+
+The Dogman is a person.
+The Dogman is male.
+The indefinite article of the Dogman is "the".
+
+The Dogman is in the Muddy Path.
+
+Book - Beast People
+
+The Beast People are people.
+The Beast People are neuter.
+The Beast People are plural-named.
+
+The Beast People are in the Deep Jungle.
+
 
 
 Volume - Things
