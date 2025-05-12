@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5818]
+[WORDS - 5692]
 
 Table of Releases
 release	notes
@@ -173,8 +173,6 @@ Rule for refreshing the graphics-inventory window:
 	if the current action is examining something (called E): 
 		if the player has the noun part of the current action:
 			draw the illustration of the noun part of the current action in the graphics-inventory window;
-		[otherwise:
-			display the illustration of the noun part of the current action in the main window;]
 
 Rule for refreshing the description-inventory window:
 	if the current action is examining something (called E):
@@ -201,12 +199,6 @@ Rule for refreshing the contents-debug window:
 	say "";
 	showme location;
 	showme width of map window;
-	[showme width of entire-map window;]
-	[showme x-calculated-coordinate;]
-	[]
-	[say "Player location: [location][line break]";
-	say "Map window width: [width of map window][line break]";]
-	[]
 	[repeat through the Table of Debug Variables:
 		if there is a display entry:
 			if the data entry is:
@@ -227,12 +219,6 @@ Rule for refreshing the map window:
 	[Draw icons for other visible locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
 	repeat through the Table of Room Map Locations:
 		now x-calculated-coordinate is ( x-coordinate entry * width of map window ) / [907;] 693; [changed from let/be in line below]
-		[focus main window;
-		say "[room entry]: [x-calculated-coordinate][line break]";
-		focus map window;]
-		[now x-calculated-coordinate is (x-coordinate entry / 693) * width of map window;]
-		[let x-calculated-coordinate be ( x-coordinate entry * width of map window ) / 693;]
-		[let x-calculated-coordinate be ( x-coordinate of the location / 693 ) * width of map window;] [For relative coordinates. Doesn't appear to work/ x-c-c = 0]
 		if the room entry is not the location:
 			if there is a display entry:
 				if the map-section entry is the current-map: [map-section of the location:]
@@ -248,9 +234,6 @@ Rule for refreshing the map window:
 	[Draw the map width indicator icon]
 	if the width of map window <= 910:
 		if the width of map window >= 890:
-			[focus main window;
-			say "[width of map window]";
-			focus map window;]
 			draw the Figure of Map-Width-Good in the map window at x 2 and y 430 scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
@@ -278,13 +261,13 @@ flag-switch is [0] 1.
 					
 Rule for refreshing the character-row window:
 	if flag-switch is:
-		-- 0:
+		-- 0: [Sample images]
 			draw the Figure of Beast-People in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
 			draw the Figure of Dogman in the character-row window at x 225 and y 0 scaled to width 127 and height 169;
 			draw the Figure of Montgomery in the character-row window at x 352 and y 0 scaled to width 127 and height 169;
-			[draw the Figure of Montgomery in the character-row window at x 0 and y 0 scaled to width 127 and height 169;]
 		-- 1:
-			clear the character-row window;
+			[clear the character-row window;] [This doesn't clear the window of previous images. Why?]
+			draw Figure of Blank-Character-Row in the character-row window at x 0 and y 0;
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
 					if the type entry is "Portrait":
@@ -294,27 +277,15 @@ Rule for refreshing the character-row window:
 			
 Rule for refreshing the character-name window:
 	if flag-switch is:
-		-- 0:
+		-- 0: [Sample text]
 			[say " 0000000000000000000 11111111111 22222222222 ";]
 			say "    Beast People       Dogman    Montgomery ";
-			[say " Montgomery ";]
 		-- 1:
 			clear the character-name window;
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
 					say " [people entry] ";
 
-[
-Table 3 - Character Display Information
-people	image	type	displayed	position
-Montgomery	Figure of Montgomery	"Portrait"	false	0
-Dogman	Figure of Dogman	"Portrait"	false	0
-Beast People	Figure of Beast-People	"Landscape"	false	0		
-]	
-	
-
-	
-	
 
 
 Chapter - Styles
@@ -793,6 +764,8 @@ Book - Characters
 [Figure of Sample-Characters is the file "character-row-sample-lost.png".]
 Figure of Sample-Characters is the file "character-row-sample-moreau.png".
 
+Figure of Blank-Character-Row is the file "character-row-blank-0.png".
+
 Figure of Montgomery is the file "character-montgomery-0.png".
 Figure of Dogman is the file "character-dogman-0.png".
 Figure of Beast-People is the file "character-beastpeople-0.png".
@@ -969,6 +942,7 @@ Book - General
 
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 Test me2 with "test me / north / northeast / north".
+Test me3 with "test me / north / west / examine knife".
 
 Test bug with "north / take knife / east/ take cloth".
 
