@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5992]
+[WORDS - 6040]
 
 Table of Releases
 release	notes
@@ -30,25 +30,21 @@ Part - Windows
 
 Chapter - Setup
 
+Section - Title Window
+
 The title window is a graphics g-window spawned by the main window.
 The position of the title window is g-placeabove.
 The scale method of the title window is g-fixed-size.
 The measurement of the title window is 670.
 
-The map window is a graphics g-window spawned by the main window.
-The position of the map window is g-placeabove.
-The scale method of the map window is g-fixed-size.
-The measurement of the map window is 452.
-
-The entire-map window is a graphics g-window spawned by the main window.
-The position of the entire-map window is g-placeabove.
-The scale method of the entire-map window is g-fixed-size.
-The measurement of the entire-map window is 966.
+Section - Sidebar Window
 
 The right-sidebar window is a graphics g-window spawned by the main window.
 The position of the right-sidebar window is g-placeright.
 The scale method of the right-sidebar window is g-fixed-size.
 The measurement of the right-sidebar window is 290.
+
+Section - Location Windows
 
 The title-room window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-room window is g-placeabove.
@@ -64,6 +60,8 @@ The description-room window is a text buffer g-window spawned by the right-sideb
 The position of the description-room window is g-placeabove.
 The scale method of the description-room window is g-fixed-size.
 The measurement of the description-room window is 9.
+
+Section - Inventory Windows
 
 The title-inventory window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-inventory window is g-placeabove.
@@ -85,6 +83,8 @@ The position of the description-inventory window is g-placeabove.
 The scale method of the description-inventory window is g-fixed-size.
 The measurement of the description-inventory window is 3.
 
+Section - Help & Debug Windows
+
 The title-help window is a text grid g-window spawned by the right-sidebar window.
 The position of the title-help window is g-placeabove.
 The scale method of the title-help window is g-fixed-size.
@@ -105,6 +105,20 @@ The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
 The measurement of the contents-debug window is 10. [5.]
 
+Section - Map Windows
+
+The map window is a graphics g-window spawned by the main window.
+The position of the map window is g-placeabove.
+The scale method of the map window is g-fixed-size.
+The measurement of the map window is 452.
+
+The entire-map window is a graphics g-window spawned by the main window.
+The position of the entire-map window is g-placeabove.
+The scale method of the entire-map window is g-fixed-size.
+The measurement of the entire-map window is 966.
+
+Section - Character Windows
+
 The character-row window is a graphics g-window spawned by the main window.
 The position of the character-row window is g-placeabove.
 The scale method of the character-row window is g-fixed-size.
@@ -115,12 +129,10 @@ The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
 
-[The left-sidebar window is a text grid g-window spawned by the main window.
-The position of the left-sidebar window is g-placeleft.
-The scale method of the left-sidebar window is g-fixed-size.
-The measurement of the left-sidebar window is 10.]
 
 Chapter - Rules
+
+Section - Location Windows
 
 Rule for refreshing the title-room window:
 	say "[location]";
@@ -134,6 +146,8 @@ Rule for refreshing the description-room window:
 		focus description-room window;
 	after printing the locale description of a room (called the locale):
 		focus main window;
+
+Section - Inventory Windows
 
 Rule for refreshing the title-inventory window:
 	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
@@ -184,6 +198,8 @@ Rule for refreshing the description-inventory window:
 		try taking inventory;
 	refresh the title-inventory window;
 
+Section - Help & Debug Windows
+
 Rule for refreshing the title-help window:
 	say "Help";
 	
@@ -206,6 +222,8 @@ Rule for refreshing the contents-debug window:
 				-- "width of map window": now obj is width of map window;
 			[]
 			say "[label entry]: [obj][line break]";]
+
+Section - Map Windows
 	
 x-calculated-coordinate is a number that varies.
 current-map is a figure name that varies.
@@ -256,17 +274,21 @@ Rule for refreshing the entire-map window:
 				otherwise:
 					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 
+Section - Character Windows
+	
 flag-switch is a number that varies.
-flag-switch is [0] 1.	
+flag-switch is 0 [1].	
 	
 image-x is a number that varies.
 					
 Rule for refreshing the character-row window:
 	if flag-switch is:
 		-- 0: [Sample images]
-			draw the Figure of Beast-People in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
-			draw the Figure of Dogman in the character-row window at x 225 and y 0 scaled to width 127 and height 169;
-			draw the Figure of Montgomery in the character-row window at x 352 and y 0 scaled to width 127 and height 169;
+			draw the Figure of Moreau in the character-row window at x 0 and y 0 scaled to width 127 and height 169;
+			draw the Figure of Beast-People in the character-row window at x 128 and y 0 scaled to width 224 and height 169;
+			draw the Figure of Dogman in the character-row window at x 353 and y 0 scaled to width 127 and height 169;
+			draw the Figure of Montgomery in the character-row window at x 481 and y 0 scaled to width 127 and height 169;
+			draw the Figure of Moreau-Assistant in the character-row window at x 609 and y 0 scaled to width 127 and height 169;
 		-- 1:
 			[clear the character-row window;] [This doesn't clear the window of previous images. Why?]
 			draw Figure of Blank-Character-Row in the character-row window at x 0 and y 0;
@@ -291,8 +313,10 @@ padding-needed is a number that varies.
 Rule for refreshing the character-name window:
 	if flag-switch is:
 		-- 0: [Sample text]
+			[say "011111111111022222222222222222220333333333330444444444440555555555550";]
+			say "   Moreau       Beast People       Dogman    Montgomery   Assistant  ";
 			[say " 0000000000000000000 11111111111 22222222222 ";]
-			say "    Beast People       Dogman    Montgomery ";
+			[say "    Beast People       Dogman    Montgomery ";]
 		-- 1:
 			clear the character-name window;
 			say " ";
