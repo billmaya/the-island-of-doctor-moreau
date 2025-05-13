@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6164]
+[WORDS - 6099]
 
 Table of Releases
 release	notes
@@ -277,7 +277,7 @@ Rule for refreshing the entire-map window:
 Section - Character Windows
 	
 flag-switch is a number that varies.
-flag-switch is [0] 1.	
+flag-switch is 0 [1].	
 	
 image-x is a number that varies.
 					
@@ -316,8 +316,6 @@ Rule for refreshing the character-name window:
 		-- 0: [Sample text]
 			[say "011111111111022222222222222222220333333333330444444444440555555555550";]
 			say "   Moreau       Beast People       Dogman    Montgomery   Assistant  ";
-			[say " 0000000000000000000 11111111111 22222222222 ";]
-			[say "    Beast People       Dogman    Montgomery ";]
 		-- 1:
 			clear the character-name window;
 			say " ";
@@ -776,11 +774,6 @@ Figure of Title is the file "the-dream-0.png".
 
 Book - Mapping
 
-[Figure of Map-Island-1 is the file "mapgen4-195-1.png".
-Figure of Map-Island-2 is the file "mapgen4-195-2.png".
-
-Figure of Entire-Island is the file "mapgen4-195.png".]
-
 Figure of Map-Island-1 is the file "mapgen4-195-1-gray.png".
 Figure of Map-Island-2 is the file "mapgen4-195-2-gray.png".
 
@@ -818,9 +811,6 @@ Book - Things
 Figure of Knife-0 is the file "knife-0.png".
 
 Book - Characters
-
-[Figure of Sample-Characters is the file "character-row-sample-lost.png".]
-Figure of Sample-Characters is the file "character-row-sample-moreau.png".
 
 Figure of Blank-Character-Row is the file "character-row-blank-0.png".
 
