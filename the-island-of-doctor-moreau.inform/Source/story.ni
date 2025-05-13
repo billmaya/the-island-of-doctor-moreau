@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5692]
+[WORDS - 6063]
 
 Table of Releases
 release	notes
@@ -258,6 +258,8 @@ Rule for refreshing the entire-map window:
 
 flag-switch is a number that varies.
 flag-switch is [0] 1.	
+	
+image-x is a number that varies.
 					
 Rule for refreshing the character-row window:
 	if flag-switch is:
@@ -268,13 +270,23 @@ Rule for refreshing the character-row window:
 		-- 1:
 			[clear the character-row window;] [This doesn't clear the window of previous images. Why?]
 			draw Figure of Blank-Character-Row in the character-row window at x 0 and y 0;
+			now image-x is 0;
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
 					if the type entry is "Portrait":
-						draw the image entry in the character-row window at x 0 and y 0 scaled to width 127 and height 169;
+						draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
+						now image-x is image-x + 127;
 					otherwise:
-						draw the image entry in the character-row window at x 0 and y 0 scaled to width 224 and height 169;
+						draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
+						now image-x is image-x + 224;
+
+[name-string is text that varies.]
+portrait-name-length is a number that varies.
+portrait-name-length is 11.
 			
+landscape-name-length is a number that varies.
+landscape-name-length is 19.
+				
 Rule for refreshing the character-name window:
 	if flag-switch is:
 		-- 0: [Sample text]
@@ -282,9 +294,37 @@ Rule for refreshing the character-name window:
 			say "    Beast People       Dogman    Montgomery ";
 		-- 1:
 			clear the character-name window;
+			say " ";
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
-					say " [people entry] ";
+					[if there is a display-name entry:
+						say " [display-name entry] ";
+					otherwise:]
+					if the type entry is "Portrait":
+						let name-length be number of characters in display-name entry;
+						let padding-needed be portrait-name-length - name-length;
+						let prefix-padding be padding-needed / 2;
+						repeat with counter running from 1 to prefix-padding:
+							say " ";
+						say "[display-name entry]";
+						let suffix-padding be padding-needed - prefix-padding;
+						repeat with counter running from 1 to suffix-padding:
+							say " ";
+						say " ";
+					otherwise:
+						let name-length be number of characters in display-name entry;
+						let padding-needed be landscape-name-length - name-length;
+						let prefix-padding be padding-needed / 2;
+						repeat with counter running from 1 to prefix-padding:
+							say " ";
+						say "[display-name entry]";
+						let suffix-padding be padding-needed - prefix-padding;
+						repeat with counter running from 1 to suffix-padding:
+							say " ";
+						say " ";
+					[now name-string is name-string + display-name entry;
+					say "[name-string]";]
+					[say " [display-name entry] ";]
 
 
 
@@ -768,7 +808,11 @@ Figure of Blank-Character-Row is the file "character-row-blank-0.png".
 
 Figure of Montgomery is the file "character-montgomery-0.png".
 Figure of Dogman is the file "character-dogman-0.png".
-Figure of Beast-People is the file "character-beastpeople-0.png".
+Figure of Beast-People is the file "character-beast-people-0.png".
+
+Figure of Moreau is the file "character-moreau-0.png".
+Figure of Moreau-Assistant is the file "character-moreau-assistant-0.png".
+Figure of Hybrid-Creature is the file "character-hybrid-creature-0.png".
 
 Book - Scenes
 
@@ -795,7 +839,7 @@ Muddy Path	Figure of Map-Island-1	225	205	--	--
 Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	true
 Deep Jungle	Figure of Map-Island-1	300	115	--	true
 Hidden Valley	Figure of Map-Island-2	375	345	--	true
-Moreau Compound	Figure of Map-Island-2	375	225	--	true
+Moreau-Compound	Figure of Map-Island-2	375	225	--	true
 
 [For main map]
 Table 2 - Room Main Map Locations
@@ -807,7 +851,7 @@ Muddy Path	220	694	--	--
 Volcanic Caldera	285	766	Figure of Icon-Volcanic-Caldera	true
 Deep Jungle	300	604	--	true
 Hidden Valley	375	373	--	true
-Moreau Compound	375	250	--	true
+Moreau-Compound	375	250	--	true
 
 
 Book - Beach
@@ -868,11 +912,11 @@ The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
 
 Book - Moreau Compound
 
-The Moreau Compound is a room. The Moreau Compound is north of the Hidden Valley.
+The Moreau-Compound is a room. The Moreau-Compound is north of the Hidden Valley.
 
-The description of the Moreau Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau Compound is "Moreau's Compound".
+The description of the Moreau-Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau-Compound is "Moreau's Compound".
 
-The illustration of the Moreau Compound is Figure of Moreau-Compound-0.
+The illustration of the Moreau-Compound is Figure of Moreau-Compound-0.
 
 Book - Regions
 
@@ -881,11 +925,16 @@ Volume - Characters
 
 Book - Character Display Information
 
+[Order of characters in table determines how they appear in the character-row window, left to right, if they are in same roomnor.]
+
 Table 3 - Character Display Information
-people	image	type	displayed	position
-Montgomery	Figure of Montgomery	"Portrait"	false	0
-Dogman	Figure of Dogman	"Portrait"	false	0
-Beast People	Figure of Beast-People	"Landscape"	false	0
+people	image	display-name	type	displayed	position
+Montgomery	Figure of Montgomery	"Montgomery"	"Portrait"	false	0
+Beast People	Figure of Beast-People	"Beast People"	"Landscape"	false	0
+Dogman	Figure of Dogman	"Dogman"	"Portrait"	false	0
+Moreau	Figure of Moreau	"Moreau"	"Portrait" 	false	0
+Hybrid Creature	Figure of Hybrid-Creature	"Hybrid Creature"	"Landscape"	false	0
+Moreau Assistant	Figure of Moreau-Assistant	"Assistant"	"Portrait"	false	0
 
 Book - Montgomery
 
@@ -900,7 +949,7 @@ The Dogman is a person.
 The Dogman is male.
 The indefinite article of the Dogman is "the".
 
-The Dogman is in the Muddy Path.
+The Dogman is in the [Ruins] [Muddy Path] Deep Jungle.
 
 Book - Beast People
 
@@ -909,6 +958,28 @@ The Beast People are neuter.
 The Beast People are plural-named.
 
 The Beast People are in the Deep Jungle.
+
+Book - Moreau
+
+Moreau is a person.
+Moreau is male.
+
+Moreau is in Moreau-Compound.
+
+Book - Moreau Assistant
+
+Moreau Assistant is a person.
+Moreau Assistant is neuter.
+The printed name of Moreau Assistant is "Moreau's Assistant". 
+
+Moreau Assistant is in Moreau-Compound.
+
+Book - Hybrid Creature
+
+Hybrid Creature is a person.
+Hybrid Creature is neuter.
+
+Hybrid Creature is in Moreau-Compound.
 
 
 
