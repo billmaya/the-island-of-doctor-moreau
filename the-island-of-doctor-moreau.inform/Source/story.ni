@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6063]
+[WORDS - 5992]
 
 Table of Releases
 release	notes
@@ -280,12 +280,13 @@ Rule for refreshing the character-row window:
 						draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
 						now image-x is image-x + 224;
 
-[name-string is text that varies.]
 portrait-name-length is a number that varies.
 portrait-name-length is 11.
 			
 landscape-name-length is a number that varies.
 landscape-name-length is 19.
+	
+padding-needed is a number that varies.
 				
 Rule for refreshing the character-name window:
 	if flag-switch is:
@@ -297,34 +298,19 @@ Rule for refreshing the character-name window:
 			say " ";
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
-					[if there is a display-name entry:
-						say " [display-name entry] ";
-					otherwise:]
+					let name-length be number of characters in display-name entry;
 					if the type entry is "Portrait":
-						let name-length be number of characters in display-name entry;
-						let padding-needed be portrait-name-length - name-length;
-						let prefix-padding be padding-needed / 2;
-						repeat with counter running from 1 to prefix-padding:
-							say " ";
-						say "[display-name entry]";
-						let suffix-padding be padding-needed - prefix-padding;
-						repeat with counter running from 1 to suffix-padding:
-							say " ";
-						say " ";
+						now padding-needed is portrait-name-length - name-length;
 					otherwise:
-						let name-length be number of characters in display-name entry;
-						let padding-needed be landscape-name-length - name-length;
-						let prefix-padding be padding-needed / 2;
-						repeat with counter running from 1 to prefix-padding:
-							say " ";
-						say "[display-name entry]";
-						let suffix-padding be padding-needed - prefix-padding;
-						repeat with counter running from 1 to suffix-padding:
-							say " ";
+						now padding-needed is landscape-name-length - name-length;
+					let prefix-padding be padding-needed / 2;
+					repeat with counter running from 1 to prefix-padding:
 						say " ";
-					[now name-string is name-string + display-name entry;
-					say "[name-string]";]
-					[say " [display-name entry] ";]
+					say "[display-name entry]";
+					let suffix-padding be padding-needed - prefix-padding;
+					repeat with counter running from 1 to suffix-padding:
+						say " ";
+					say " ";
 
 
 
@@ -583,12 +569,14 @@ Show Map is a rulebook.
 A show map rule:
 	close map window;
 	close character-row window;
+	close character-name window;
 	open entire-map window;
 	refresh entire-map window;
 	pause the game;
 	close entire-map window;
 	open map window;
 	open character-row window;
+	open character-name window;
 	refresh map window;
 
 Part - Change Current Location Windows
