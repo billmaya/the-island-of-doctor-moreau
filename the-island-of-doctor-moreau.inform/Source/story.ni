@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6074]
+[WORDS - 6164]
 
 Table of Releases
 release	notes
@@ -277,7 +277,7 @@ Rule for refreshing the entire-map window:
 Section - Character Windows
 	
 flag-switch is a number that varies.
-flag-switch is 0 [1].	
+flag-switch is [0] 1.	
 	
 image-x is a number that varies.
 					
@@ -295,12 +295,13 @@ Rule for refreshing the character-row window:
 			now image-x is 0;
 			repeat through the Table of Character Display Information:
 				if the location of the people entry is the location of the player:
-					if the type entry is "Portrait":
-						draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
-						now image-x is image-x + 127;
-					otherwise:
-						draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
-						now image-x is image-x + 224;
+					if there is an image entry:
+						if the type entry is "Portrait":
+							draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
+							now image-x is image-x + 127;
+						otherwise:
+							draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
+							now image-x is image-x + 224;
 
 portrait-name-length is a number that varies.
 portrait-name-length is 11.
@@ -942,7 +943,13 @@ Volume - Characters
 
 Book - Character Display Information
 
-[Order of characters in table determines how they appear in the character-row window, left to right, if they are in same roomnor.]
+[
+Order of characters in table determines how they appear in the character-row window, left to right, if they are in same room.
+
+But I might want to use the position column to handle this explicitly.
+
+For example, if Montgomery's position was 2, Moreau's position was 1, and Dogman's position was 3, if Moreau and Montgomery appeared in the same room Moreau would be displayed first, then Montgomery. If all three characters were in the same room, the display order would be Moreau, Montgomery, and Dogman.
+]
 
 Table 3 - Character Display Information
 people	image	display-name	type	displayed	position
@@ -952,6 +959,7 @@ Dogman	Figure of Dogman	"Dogman"	"Portrait"	false	0
 Moreau	Figure of Moreau	"Moreau"	"Portrait" 	false	0
 Hybrid Creature	Figure of Hybrid-Creature	"Hybrid Creature"	"Landscape"	false	0
 Moreau Assistant	Figure of Moreau-Assistant	"Assistant"	"Portrait"	false	0
+Ghost	--	"Ghost"	"Portrait"	false	0
 
 Book - Montgomery
 
@@ -997,6 +1005,13 @@ Hybrid Creature is a person.
 Hybrid Creature is neuter.
 
 Hybrid Creature is in Moreau-Compound.
+
+Book - Ghost
+
+Ghost is a person.
+Ghost is neuter.
+
+Ghost is in the Ruins [Muddy Path].
 
 
 
