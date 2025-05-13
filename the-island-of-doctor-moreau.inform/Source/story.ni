@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6040]
+[WORDS - 6074]
 
 Table of Releases
 release	notes
@@ -775,10 +775,15 @@ Figure of Title is the file "the-dream-0.png".
 
 Book - Mapping
 
-Figure of Map-Island-1 is the file "mapgen4-195-1.png".
+[Figure of Map-Island-1 is the file "mapgen4-195-1.png".
 Figure of Map-Island-2 is the file "mapgen4-195-2.png".
 
-Figure of Entire-Island is the file "mapgen4-195.png".
+Figure of Entire-Island is the file "mapgen4-195.png".]
+
+Figure of Map-Island-1 is the file "mapgen4-195-1-gray.png".
+Figure of Map-Island-2 is the file "mapgen4-195-2-gray.png".
+
+Figure of Entire-Island is the file "mapgen4-195-gray.png".
 
 Book - Icons
 
