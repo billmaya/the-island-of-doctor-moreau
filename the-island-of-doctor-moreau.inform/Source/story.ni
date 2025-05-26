@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6099]
+[WORDS - 6182]
 
 Table of Releases
 release	notes
