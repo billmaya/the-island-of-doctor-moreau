@@ -21,8 +21,12 @@ Include Basic Screen Effects by Emily Short. [v7/140425. Required to change stat
 Include Basic Help Menu by Emily Short.
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
-[Include Conversation Package by Eric Eve.] [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
+Include Conversation Package by Eric Eve. [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
+Include List Control by Eric Eve.
+
 [Include Conversation Rules by Eric Eve.] [Contains Epistemology, Conversation Framework, and List Control]
+
+
 
 Book - User Interface
 
@@ -315,7 +319,7 @@ Rule for refreshing the character-name window:
 	if flag-switch is:
 		-- 0: [Sample text]
 			[say "011111111111022222222222222222220333333333330444444444440555555555550";]
-			say "   Moreau       Beast People       Dogman    Montgomery   Assistant  ";
+			say "   Moreau       Beast People       Dogman    MONTGOMERY   Assistant  ";
 		-- 1:
 			clear the character-name window;
 			say " ";
@@ -505,7 +509,7 @@ graphics-mode is true.]
 Part - Debug Mode
 
 debug-mode is a truth state that varies.
-debug-mode is true. [false.]
+debug-mode is [true.] false.
 
 Switch debug mode is an action out of world.
 
@@ -700,7 +704,7 @@ A change inventory windows rule:
 
 Book - Release
 
-[Release along with an interpreter.] [and source text.]
+Release along with an interpreter. [and source text.]
 
 Volume - Beginning The Story
 
@@ -1003,6 +1007,49 @@ Ghost is neuter.
 
 Ghost is in the Ruins [Muddy Path].
 
+Volume - Conversations
+
+[Should I have a Default section for all characters?]
+
+Book - Montgomery
+
+Book - Beast People
+
+Book - Dogman
+
+Book - Moreau
+
+Book - Moreau Assistant
+
+Book - TEMPLATE
+
+Part - Suggestions
+
+Part - Responses
+
+Chapter - Hello
+
+Chapter - Goodbye
+
+Chapter - Ask/Tell/Show/Give OR Location (can duplicate)
+
+Section - Requests - "Ask [someone] for [thing]"
+
+Section - Quizzing - "Ask [someone] about [thing]"
+
+Section - Informing - "Tell [someone] about [thing]"
+
+Section - Imploring - "Ask [someone] for ['text']"
+
+Section - Showing
+
+Section - Giving
+
+Section - Testing
+
+Chapter - Default Responses
+
+Part - Testing
 
 
 Volume - Things
