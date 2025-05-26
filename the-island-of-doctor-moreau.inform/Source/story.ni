@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6182]
+[WORDS - 6285]
 
 Table of Releases
 release	notes
@@ -132,6 +132,11 @@ The character-name window is a text grid g-window spawned by the main window.
 The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
+
+The character-topic window is a text grid g-window spawned by the main window.
+The position of the character-topic window is g-placeabove.
+The scale method of the character-topic window is g-fixed-size.
+The measurement of the character-topic window is 4.
 
 
 Chapter - Rules
@@ -339,6 +344,12 @@ Rule for refreshing the character-name window:
 						say " ";
 					say " ";
 
+Rule for refreshing the character-topic window:
+	if flag-switch is:
+		-- 0: [Sample text]
+			say "[line break][roman type]ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type]TELL about: [italic type] Dogman | Moreau";
+		-- 1:
+			say " ";
 
 
 Chapter - Styles
@@ -740,10 +751,12 @@ When play begins:
 	open map window;
 	open character-row window;
 	open character-name window;
+	open character-topic window;
 	refresh the map window;
 	refresh the graphics-room window;
 	refresh the character-row window;
 	refresh the character-name window;
+	refresh the character-topic window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -760,6 +773,7 @@ Every turn:
 	refresh the map window;
 	refresh the character-row window;
 	refresh the character-name window;
+	refresh the character-topic window;
 	silently try looking;
 
 Volume - Figures
