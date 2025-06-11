@@ -811,7 +811,12 @@ Every turn:
 	otherwise:
 		close the character-name window;
 		close the character-row window;
-	refresh the character-topic window;
+	if the current interlocutor is not nothing:
+		if the character-topic window is g-unpresent:
+			open the character-topic window;
+			refresh the character-topic window;
+	otherwise:
+		close the character-topic window;
 	silently try looking;
 
 Volume - Figures
