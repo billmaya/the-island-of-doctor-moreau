@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6285]
+[WORDS -  6486]
 
 Table of Releases
 release	notes
@@ -132,11 +132,12 @@ The character-name window is a text grid g-window spawned by the main window.
 The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
+[The background color of the character-name window is "#FF0000". ["#FFFFFF".]]
 
 The character-topic window is a text grid g-window spawned by the main window.
 The position of the character-topic window is g-placeabove.
 The scale method of the character-topic window is g-fixed-size.
-The measurement of the character-topic window is 4.
+The measurement of the character-topic window is 4. [5.]
 
 
 Chapter - Rules
@@ -286,7 +287,7 @@ Rule for refreshing the entire-map window:
 Section - Character Windows
 	
 flag-switch is a number that varies.
-flag-switch is 0 [1].	
+flag-switch is [0.] 1.	
 	
 image-x is a number that varies.
 					
@@ -344,15 +345,45 @@ Rule for refreshing the character-name window:
 						say " ";
 					say " ";
 
+To say demo-person: say "Montgomery";
+
 Rule for refreshing the character-topic window:
 	if flag-switch is:
 		-- 0: [Sample text]
-			say "[line break][roman type]ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type]TELL about: [italic type] Dogman | Moreau";
+			say "[line break][roman type] ASK [demo-person] about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL [demo-person] about: [italic type]Dogman | Moreau[line break][roman type] ASK [demo-person] for: [italic type]";
+			[say "[italic type]                         SOME SUGGESTED CONVERSATION TOPICS[line break][line break][roman type] ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL about: [italic type] Dogman | Moreau";]
 		-- 1:
 			say " ";
 
 
+
 Chapter - Styles
+
+Table of User Styles (continued)
+window	reversed 	style name	color	italic	relative size
+character-name	true 	--	--	--	--
+character-topic	false	--	--	--	--
+
+
+[all-styles	"#FF0000"	true	--
+header-style	"#0000FF"	false	1
+special-style-1	"#00FF00"]
+
+[ from Flexible Window.i7x
+Table of User Styles
+window (a g-window)	
+style name (a glulx text style)	
+background color (a text)	
+color (a text)	
+first line indentation (a number)	
+fixed width (a truth state)	
+font weight (a font weight)	
+indentation (a number)	
+italic (a truth state)	
+justification (a text justification)	
+relative size (a number)	
+reversed (a truth state)
+]
 
 Part - Status Line
 
@@ -749,14 +780,11 @@ When play begins:
 		open title-debug window;
 		open contents-debug window;
 	open map window;
-	open character-row window;
-	open character-name window;
-	open character-topic window;
-	refresh the map window;
+	[refresh the map window;
 	refresh the graphics-room window;
 	refresh the character-row window;
 	refresh the character-name window;
-	refresh the character-topic window;
+	refresh the character-topic window;]
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
@@ -771,8 +799,15 @@ Every turn:
 	if debug-mode is true:
 		refresh the contents-debug window;
 	refresh the map window;
-	refresh the character-row window;
-	refresh the character-name window;
+	let people-in-the-room be the list of people who are not the player in the location of the player;
+	if the number of entries in people-in-the-room is greater than zero:
+		open the character-row window;
+		open the character-name window;
+		refresh the character-row window;
+		refresh the character-name window;
+	otherwise:
+		close the character-name window;
+		close the character-row window;
 	refresh the character-topic window;
 	silently try looking;
 
@@ -982,7 +1017,7 @@ The Dogman is a person.
 The Dogman is male.
 The indefinite article of the Dogman is "the".
 
-The Dogman is in the [Ruins] [Muddy Path] Deep Jungle.
+The Dogman is in the Ruins [Muddy Path] [Deep Jungle].
 
 Book - Beast People
 
@@ -1019,7 +1054,7 @@ Book - Ghost
 Ghost is a person.
 Ghost is neuter.
 
-Ghost is in the Ruins [Muddy Path].
+[Ghost is in the Ruins] [Muddy Path].
 
 Volume - Conversations
 
