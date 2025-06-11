@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6486]
+[WORDS -  6496]
 
 Table of Releases
 release	notes
@@ -339,7 +339,10 @@ Rule for refreshing the character-name window:
 					let prefix-padding be padding-needed / 2;
 					repeat with counter running from 1 to prefix-padding:
 						say " ";
-					say "[display-name entry]";
+					if the current interlocutor is the people entry:
+						say "[display-name entry]" in upper case;
+					otherwise:
+						say "[display-name entry]";
 					let suffix-padding be padding-needed - prefix-padding;
 					repeat with counter running from 1 to suffix-padding:
 						say " ";
@@ -1001,7 +1004,7 @@ Beast People	Figure of Beast-People	"Beast People"	"Landscape"	false	0
 Dogman	Figure of Dogman	"Dogman"	"Portrait"	false	0
 Moreau	Figure of Moreau	"Moreau"	"Portrait" 	false	0
 Hybrid Creature	Figure of Hybrid-Creature	"Hybrid Creature"	"Landscape"	false	0
-Moreau Assistant	Figure of Moreau-Assistant	"Assistant"	"Portrait"	false	0
+Assistant	Figure of Moreau-Assistant	"Assistant"	"Portrait"	false	0
 Ghost	--	"Ghost"	"Portrait"	false	0
 
 Book - Montgomery
@@ -1034,13 +1037,13 @@ Moreau is male.
 
 Moreau is in Moreau-Compound.
 
-Book - Moreau Assistant
+Book - Assistant
 
-Moreau Assistant is a person.
-Moreau Assistant is neuter.
-The printed name of Moreau Assistant is "Moreau's Assistant". 
+Assistant is a person.
+Assistant is neuter.
+The printed name of Assistant is "Moreau's Assistant". 
 
-Moreau Assistant is in Moreau-Compound.
+Assistant is in Moreau-Compound.
 
 Book - Hybrid Creature
 
