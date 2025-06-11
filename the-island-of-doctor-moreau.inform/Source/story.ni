@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6496]
+[WORDS -  6474]
 
 Table of Releases
 release	notes
@@ -23,10 +23,6 @@ Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding 
 
 Include Conversation Package by Eric Eve. [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
 Include List Control by Eric Eve.
-
-[Include Conversation Rules by Eric Eve.] [Contains Epistemology, Conversation Framework, and List Control]
-
-
 
 Book - User Interface
 
@@ -132,7 +128,6 @@ The character-name window is a text grid g-window spawned by the main window.
 The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
-[The background color of the character-name window is "#FF0000". ["#FFFFFF".]]
 
 The character-topic window is a text grid g-window spawned by the main window.
 The position of the character-topic window is g-placeabove.
@@ -783,11 +778,6 @@ When play begins:
 		open title-debug window;
 		open contents-debug window;
 	open map window;
-	[refresh the map window;
-	refresh the graphics-room window;
-	refresh the character-row window;
-	refresh the character-name window;
-	refresh the character-topic window;]
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	[now suggest-on-greeting is false.]
