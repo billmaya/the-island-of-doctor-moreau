@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6474]
+[WORDS -  6489]
 
 Table of Releases
 release	notes
@@ -538,6 +538,10 @@ After going to a room (this is the check illustration rule):
 		now display-room-illustration is false;
 	follow the Change Location Windows rules;
 	continue the action;
+
+After reading a command:
+	clear the main window;
+	say "[command prompt][bold type][player's command] [roman type][line break]";
 	
 Book - Out Of World Actions
 
@@ -764,7 +768,6 @@ When play begins:
 	say "[banner text]";
 	pause the game;
 	close the title window;
-	[open left-sidebar window;]
 	open right-sidebar window;
 	open title-room window;
 	open graphics-room window;
@@ -808,6 +811,7 @@ Every turn:
 	otherwise:
 		close the character-topic window;
 	silently try looking;
+
 
 Volume - Figures
 
