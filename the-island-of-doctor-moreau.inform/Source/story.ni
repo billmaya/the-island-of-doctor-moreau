@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6732]
+[WORDS -  6721]
 
 Table of Releases
 release	notes
@@ -649,8 +649,6 @@ A show map rule:
 	pause the game;
 	close entire-map window;
 	open map window;
-	[open character-row window;
-	open character-name window;]
 	let people-in-the-room be the list of people who are not the player in the location of the player;
 	if the number of entries in people-in-the-room is greater than zero:
 		open the character-row window;
@@ -660,7 +658,6 @@ A show map rule:
 	otherwise:
 		close the character-name window;
 		close the character-row window;
-	say "[current interlocutor]";
 	if the current interlocutor is not nothing: 
 		if the character-topic window is g-unpresent:
 			open the character-topic window;
