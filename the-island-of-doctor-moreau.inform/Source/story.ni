@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6489]
+[WORDS -  6586]
 
 Table of Releases
 release	notes
@@ -351,7 +351,8 @@ Rule for refreshing the character-topic window:
 			say "[line break][roman type] ASK [demo-person] about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL [demo-person] about: [italic type]Dogman | Moreau[line break][roman type] ASK [demo-person] for: [italic type]";
 			[say "[italic type]                         SOME SUGGESTED CONVERSATION TOPICS[line break][line break][roman type] ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL about: [italic type] Dogman | Moreau";]
 		-- 1:
-			say " ";
+			[say " ";]
+			try listing suggested topics;
 
 
 
@@ -783,7 +784,7 @@ When play begins:
 	open map window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
-	[now suggest-on-greeting is false.]
+	now suggest-on-greeting is false.
 
 Book - Every Turn
 
@@ -807,7 +808,7 @@ Every turn:
 	if the current interlocutor is not nothing:
 		if the character-topic window is g-unpresent:
 			open the character-topic window;
-			refresh the character-topic window;
+		refresh the character-topic window;
 	otherwise:
 		close the character-topic window;
 	silently try looking;
@@ -1006,12 +1007,48 @@ Hybrid Creature	Figure of Hybrid-Creature	"Hybrid Creature"	"Landscape"	false	0
 Assistant	Figure of Moreau-Assistant	"Assistant"	"Portrait"	false	0
 Ghost	--	"Ghost"	"Portrait"	false	0
 
+Book - Familiarity
+
+Moreau is familiar.
+Dogman is familiar.
+
+Book - Subjects
+
 Book - Montgomery
 
 Montgomery is a person.
 Montgomery is male.
 
 Montgomery is in the Ruins.
+
+Part - Conversation
+
+Chapter - Suggestions
+
+The ask-suggestions are { Dogman, Moreau, self-suggestion }.
+
+Chapter - Hello
+
+Chapter - Goodbye
+
+Chapter - Ask/Tell/Show/Give Responses
+
+Section - Requests - "Ask [someone] for [thing]"
+
+Section - Quizzing - "Ask [someone] about [thing]"
+
+Section - Informing - "Tell [someone] about [thing]"
+
+Section - Imploring - "Ask [someone] for ['text']"
+
+Section - Showing
+
+Section - Giving
+
+Chapter - Default Responses
+
+Chapter - Testing
+
 
 Book - Dogman
 
@@ -1020,6 +1057,34 @@ The Dogman is male.
 The indefinite article of the Dogman is "the".
 
 The Dogman is in the Ruins [Muddy Path] [Deep Jungle].
+
+Part - Conversation
+
+Chapter - Suggestions
+
+The ask-suggestions are { Montgomery, Moreau, self-suggestion }.
+
+Chapter - Hello
+
+Chapter - Goodbye
+
+Chapter - Ask/Tell/Show/Give Responses
+
+Section - Requests - "Ask [someone] for [thing]"
+
+Section - Quizzing - "Ask [someone] about [thing]"
+
+Section - Informing - "Tell [someone] about [thing]"
+
+Section - Imploring - "Ask [someone] for ['text']"
+
+Section - Showing
+
+Section - Giving
+
+Chapter - Default Responses
+
+Chapter - Testing
 
 Book - Beast People
 
@@ -1058,31 +1123,17 @@ Ghost is neuter.
 
 [Ghost is in the Ruins] [Muddy Path].
 
-Volume - Conversations
+Book - CONVERSATION TEMPLATE
 
-[Should I have a Default section for all characters?]
+Part - Conversation
 
-Book - Montgomery
-
-Book - Beast People
-
-Book - Dogman
-
-Book - Moreau
-
-Book - Moreau Assistant
-
-Book - TEMPLATE
-
-Part - Suggestions
-
-Part - Responses
+Chapter - Suggestions
 
 Chapter - Hello
 
 Chapter - Goodbye
 
-Chapter - Ask/Tell/Show/Give OR Location (can duplicate)
+Chapter - Ask/Tell/Show/Give Responses
 
 Section - Requests - "Ask [someone] for [thing]"
 
@@ -1096,11 +1147,9 @@ Section - Showing
 
 Section - Giving
 
-Section - Testing
-
 Chapter - Default Responses
 
-Part - Testing
+Chapter - Testing
 
 
 Volume - Things
