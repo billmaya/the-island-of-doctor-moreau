@@ -5,12 +5,12 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6586]
+[WORDS -  6732]
 
 Table of Releases
 release	notes
 "1"	""
-
+ 
 Volume - Setup
 
 Book - Extensions
@@ -129,11 +129,10 @@ The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
 
-The character-topic window is a text grid g-window spawned by the main window.
+The character-topic window is a text [grid] buffer g-window spawned by the main window.
 The position of the character-topic window is g-placeabove.
 The scale method of the character-topic window is g-fixed-size.
-The measurement of the character-topic window is 4. [5.]
-
+The measurement of the character-topic window is [2.] 3. [4.] [5.]
 
 Chapter - Rules
 
@@ -351,7 +350,7 @@ Rule for refreshing the character-topic window:
 			say "[line break][roman type] ASK [demo-person] about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL [demo-person] about: [italic type]Dogman | Moreau[line break][roman type] ASK [demo-person] for: [italic type]";
 			[say "[italic type]                         SOME SUGGESTED CONVERSATION TOPICS[line break][line break][roman type] ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL about: [italic type] Dogman | Moreau";]
 		-- 1:
-			[say " ";]
+			[say "[line break]";]
 			try listing suggested topics;
 
 
@@ -640,16 +639,38 @@ Chapter - Show Map Rulebook
 Show Map is a rulebook.
 A show map rule:
 	close map window;
-	close character-row window;
-	close character-name window;
+	if the character-row window is g-present:
+		close character-row window;
+		close character-name window;
+	if the character-topic window is g-present:
+		close the character-topic window;
 	open entire-map window;
 	refresh entire-map window;
 	pause the game;
 	close entire-map window;
 	open map window;
-	open character-row window;
-	open character-name window;
+	[open character-row window;
+	open character-name window;]
+	let people-in-the-room be the list of people who are not the player in the location of the player;
+	if the number of entries in people-in-the-room is greater than zero:
+		open the character-row window;
+		open the character-name window;
+		refresh the character-row window;
+		refresh the character-name window;
+	otherwise:
+		close the character-name window;
+		close the character-row window;
+	say "[current interlocutor]";
+	if the current interlocutor is not nothing: 
+		if the character-topic window is g-unpresent:
+			open the character-topic window;
+		refresh the character-topic window;
+	otherwise:
+		close the character-topic window;
 	refresh map window;
+
+
+
 
 Part - Change Current Location Windows
 
@@ -1012,6 +1033,9 @@ Book - Familiarity
 Moreau is familiar.
 Dogman is familiar.
 
+rusty knife is familiar.
+piece of red cloth is familiar.
+
 Book - Subjects
 
 Book - Montgomery
@@ -1026,6 +1050,7 @@ Part - Conversation
 Chapter - Suggestions
 
 The ask-suggestions are { Dogman, Moreau, self-suggestion }.
+The tell-suggestions are { rusty knife, piece of red cloth }.
 
 Chapter - Hello
 
