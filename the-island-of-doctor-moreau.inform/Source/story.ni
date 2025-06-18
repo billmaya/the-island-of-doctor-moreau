@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6721]
+[WORDS -  6775]
 
 Table of Releases
 release	notes
@@ -253,14 +253,14 @@ Rule for refreshing the map window:
 						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-	[Draw the map width indicator icon]
-	if the width of map window <= 910:
+	[Draw the map width indicator icon] [code moved to status bar]
+	[if the width of map window <= 910:
 		if the width of map window >= 890:
 			draw the Figure of Map-Width-Good in the map window at x 2 and y 430 scaled to width 20 and height 20;
 		otherwise:
 			draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
 	otherwise:
-		draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
+		draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;]
 
 Rule for refreshing the entire-map window:
 	draw the Figure of Entire-Island in the entire-map window;
@@ -397,7 +397,7 @@ left	central	right
 " "	"[story description]"	" "
 " "	" "	"                [top rose]"
 " "	" "	"       [middle rose]"
-" "	" "	"       [bottom rose]"
+" [map width indicator]"	" "	"       [bottom rose]"
 
 Table of Empty Status
 left	central	right
@@ -453,6 +453,15 @@ To say bottom rose:
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]S [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
 	let place be the room southeast from the location;
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
+
+To say map width indicator:
+	if the width of map window <= 910:
+		if the width of map window >= 890:
+			say "";
+		otherwise:
+			say "[italic type]Resize map window <- until message disappears";
+	otherwise:
+		say "[italic type]Resize map window -> until message disappears";
 
 Rule for constructing the status line:
 	if time of day is 9:00 AM:
@@ -717,7 +726,7 @@ A change location windows rule (this is the change orientation of location windo
 		open title-debug window;
 		open contents-debug window;
 
- Part - Change Inventory Windows
+Part - Change Inventory Windows
 
 display-inventory-illustration is a truth state that varies.
 display-inventory-illustration is false.
