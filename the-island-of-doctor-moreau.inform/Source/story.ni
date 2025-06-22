@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6775]
+[WORDS -  6874]
 
 Table of Releases
 release	notes
@@ -556,8 +556,34 @@ Book - Out Of World Actions
 
 Part - Graphics Mode
 
-[graphics-mode is a truth state that varies.
-graphics-mode is true.]
+graphics-mode is a truth state that varies.
+graphics-mode is true.
+
+Switch graphics mode is an action out of world.
+Report switch graphics mode:
+	if graphics-mode is false:
+		now graphics-mode is true;
+	otherwise:
+		now graphics-mode is false;
+	say "GRAPHICS MODE IS [graphics-mode].[line break]";
+	follow the Graphics rules;
+
+Understand "graphics" as switch graphics mode.
+
+Chapter - Graphics Mode Rulebook
+
+Graphics rules is a rulebook.
+
+A graphics rule:
+	if graphics-mode is true:
+		say "I'M THE GRAPHICS-MODE = TRUE RULE!";
+
+A graphics rule:
+	if graphics-mode is false:
+		say "I'M THE GRAPHICS-MODE = FALSE RULE!";
+
+
+
 
 Part - Debug Mode
 
@@ -1214,6 +1240,7 @@ Book - General
 Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 Test me2 with "test me / north / northeast / north".
 Test me3 with "test me / north / west / examine knife".
+Test me4 with "test me3 / say hello to dogman / examine knife".
 
 Test bug with "north / take knife / east/ take cloth".
 
