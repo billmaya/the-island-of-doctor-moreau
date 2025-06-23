@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7196]
+[WORDS -  7221]
 
 Table of Releases
 release	notes
@@ -493,14 +493,16 @@ Chapter - Rooms
 Section - Room Heading
 
 This is the modified room description heading rule:
-	refresh the title-room window;
+	if graphics-mode is true:
+		refresh the title-room window;
 
 The modified room description heading rule substitutes for the room description heading rule.
 
 Section - Room Description
 
 This is the modified room description body text rule:
-	refresh the description-room window;
+	if graphics-mode is true:
+		refresh the description-room window;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
@@ -509,7 +511,8 @@ Section - Room Graphics
 [The display room graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
 
 This is the display room graphics rule:
-	refresh the graphics-room window;
+	if graphics-mode is true:
+		refresh the graphics-room window;
 
 Chapter - Examine
 
@@ -766,41 +769,43 @@ Chapter - Change Location Windows Rulebook
 Change Location Windows is a rulebook.
 
 A change location windows rule (this is the change orientation of location windows rule):
-	if debug-mode is true: [close debug windows]
-		close contents-debug window; 
-		close title-debug window;
-	if help-mode is true: [close help windows]
-		close contents-help window;
-		close title-help window;
-	[Close Inventory windows]
-	close list-inventory;
-	close title-inventory;
-	[Modify Room windows]
-	close description-room window;
-	if display-room-illustration is false:
-		close graphics-room window;
-		now the measurement of the description-room window is 18;
-		open description-room window;
-		refresh description-room window;
-	otherwise:
-		open graphics-room window;
-		refresh graphics-room window;
-		now the measurement of the description-room window is 9;
-		open description-room window;
-		refresh description-room window;
-	[Open Inventory windows]
-	open title-inventory window;
-	if display-inventory-illustration is false:
-		open list-inventory window;
-	otherwise:
-		open graphics-inventory window;
-		open description-inventory window;
-	if help-mode is true: [open help windows]
-		open title-help window;
-		open contents-help window;
-	if debug-mode is true: [open debug windows]
-		open title-debug window;
-		open contents-debug window;
+	if graphics-mode is true:
+		if debug-mode is true: [close debug windows]
+			close contents-debug window; 
+			close title-debug window;
+		if help-mode is true: [close help windows]
+			close contents-help window;
+			close title-help window;
+		[Close Inventory windows]
+		close list-inventory;
+		close title-inventory;
+		[Modify Room windows]
+		close description-room window;
+		if display-room-illustration is false:
+			close graphics-room window;
+			now the measurement of the description-room window is 18;
+			open description-room window;
+			refresh description-room window;
+		otherwise:
+			open graphics-room window;
+			refresh graphics-room window;
+			now the measurement of the description-room window is 9;
+			open description-room window;
+			refresh description-room window;
+		[Open Inventory windows]
+		open title-inventory window;
+		if display-inventory-illustration is false:
+			open list-inventory window;
+		otherwise:
+			open graphics-inventory window;
+			open description-inventory window;
+		if help-mode is true: [open help windows]
+			open title-help window;
+			open contents-help window;
+		if debug-mode is true: [open debug windows]
+			open title-debug window;
+			open contents-debug window;
+
 
 Part - Change Inventory Windows
 
@@ -813,42 +818,44 @@ Change Inventory Windows is a rulebook.
 
 Change Inventory Windows is a rulebook.
 A change inventory windows rule:
-	if debug-mode is true: [close debug windows]
-		close contents-debug window;
-		close title-debug window;
-	if help-mode is true: [close help windows]
-		close contents-help window;
-		close title-help window;
-	[Close Inventory contents window]
-	close title-inventory window;
-	close list-inventory window;
-	close graphics-inventory window;
-	close description-inventory window;
-	[Close Room windows]
-	close title-room window;
-	close graphics-room window;
-	close description-room window;
-	open title-room window;
-	if display-room-illustration is true:
-		open graphics-room window;
-		now the measurement of the description-room window is 9;
-		open description-room window;
-	otherwise:
-		now the measurement of the description-room window is 18;
-		open description-room window;
-	[Modify Inventory contents windows]
-	open title-inventory window;
-	if display-inventory-illustration is true: 
-		open graphics-inventory window;
-		open description-inventory window;
-	otherwise:
-		open list-inventory window;
-	if help-mode is true: [open help windows]
-		open title-help window;
-		open contents-help window;
-	if debug-mode is true: [open debug windows]
-		open title-debug window;
-		open contents-debug window;
+	if graphics-mode is true:
+		if debug-mode is true: [close debug windows]
+			close contents-debug window;
+			close title-debug window;
+		if help-mode is true: [close help windows]
+			close contents-help window;
+			close title-help window;
+		[Close Inventory contents window]
+		close title-inventory window;
+		close list-inventory window;
+		close graphics-inventory window;
+		close description-inventory window;
+		[Close Room windows]
+		close title-room window;
+		close graphics-room window;
+		close description-room window;
+		open title-room window;
+		if display-room-illustration is true:
+			open graphics-room window;
+			now the measurement of the description-room window is 9;
+			open description-room window;
+		otherwise:
+			now the measurement of the description-room window is 18;
+			open description-room window;
+		[Modify Inventory contents windows]
+		open title-inventory window;
+		if display-inventory-illustration is true: 
+			open graphics-inventory window;
+			open description-inventory window;
+		otherwise:
+			open list-inventory window;
+		if help-mode is true: [open help windows]
+			open title-help window;
+			open contents-help window;
+		if debug-mode is true: [open debug windows]
+			open title-debug window;
+			open contents-debug window;
+
 
 Book - Release
 
