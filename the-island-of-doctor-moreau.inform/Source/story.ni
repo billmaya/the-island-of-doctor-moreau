@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  6874]
+[WORDS -  7196]
 
 Table of Releases
 release	notes
@@ -565,7 +565,7 @@ Report switch graphics mode:
 		now graphics-mode is true;
 	otherwise:
 		now graphics-mode is false;
-	say "GRAPHICS MODE IS [graphics-mode].[line break]";
+	say "Graphics Mode: [if graphics-mode is true]ON[else]OFF[end if].[line break]";
 	follow the Graphics rules;
 
 Understand "graphics" as switch graphics mode.
@@ -576,11 +576,61 @@ Graphics rules is a rulebook.
 
 A graphics rule:
 	if graphics-mode is true:
-		say "I'M THE GRAPHICS-MODE = TRUE RULE!";
+		[say "I'M THE GRAPHICS-MODE = TRUE RULE!";]
+		open the right-sidebar window;
+		open the title-room window;
+		open the graphics-room window;
+		open the description-room window;
+		open the title-inventory window; 
+		if display-inventory-illustration is false:
+			open the list-inventory window;
+		otherwise:
+			open the description-inventory window;
+		if help-mode is true:
+			open the title-help window;
+			open the contents-help window;
+		if debug-mode is true:
+			open the title-debug window;
+			open the contents-debug window;
+		open map window;
+		let people-in-the-room be the list of people who are not the player in the location of the player;
+		if the number of entries in people-in-the-room is greater than zero:
+			open the character-row window;
+			open the character-name window;
+			refresh the character-row window;
+			refresh the character-name window;
+		if the current interlocutor is not nothing:
+			if the character-topic window is g-unpresent:
+				open the character-topic window;
+				refresh the character-topic window;
+		otherwise:
+			close the character-topic window;
 
 A graphics rule:
 	if graphics-mode is false:
-		say "I'M THE GRAPHICS-MODE = FALSE RULE!";
+		[say "I'M THE GRAPHICS-MODE = FALSE RULE!";]
+		if the current interlocutor is not nothing:
+			close the character-topic window;
+		let people-in-the-room be the list of people who are not the player in the location of the player;
+		if the number of entries in people-in-the-room is greater than zero:
+			close the character-name window;
+			close the character-row window;
+		close the map window;
+		if debug-mode is true:
+			close the contents-debug window;
+			close the title-debug window;
+		if help-mode is true:
+			close the contents-help window;
+			close the title-help window;
+		if display-inventory-illustration is false:
+			close the list-inventory window;
+		otherwise:
+			close the description-inventory window;
+		close the title-inventory window;
+		close the description-room window;
+		close the graphics-room window;
+		close the title-room window;
+		close the right-sidebar window;
 
 
 
@@ -822,19 +872,20 @@ When play begins:
 	say "[banner text]";
 	pause the game;
 	close the title window;
-	open right-sidebar window;
-	open title-room window;
-	open graphics-room window;
-	open description-room window;
-	open title-inventory window; 
-	open list-inventory window;
-	if help-mode is true:
-		open title-help window;
-		open contents-help window;
-	if debug-mode is true:
-		open title-debug window;
-		open contents-debug window;
-	open map window;
+	if graphics-mode is true:
+		open the right-sidebar window;
+		open the title-room window;
+		open the graphics-room window;
+		open the description-room window;
+		open the title-inventory window; 
+		open the list-inventory window;
+		if help-mode is true:
+			open the title-help window;
+			open the contents-help window;
+		if debug-mode is true:
+			open the title-debug window;
+			open the contents-debug window;
+		open the map window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	now suggest-on-greeting is false.
@@ -842,29 +893,30 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	if display-inventory-illustration is false:
-		refresh the list-inventory window;
-	otherwise:
-		refresh the description-inventory window;
-	if debug-mode is true:
-		refresh the contents-debug window;
-	refresh the map window;
-	let people-in-the-room be the list of people who are not the player in the location of the player;
-	if the number of entries in people-in-the-room is greater than zero:
-		open the character-row window;
-		open the character-name window;
-		refresh the character-row window;
-		refresh the character-name window;
-	otherwise:
-		close the character-name window;
-		close the character-row window;
-	if the current interlocutor is not nothing:
-		if the character-topic window is g-unpresent:
-			open the character-topic window;
-		refresh the character-topic window;
-	otherwise:
-		close the character-topic window;
-	silently try looking;
+	if graphics-mode is true:
+		if display-inventory-illustration is false:
+			refresh the list-inventory window;
+		otherwise:
+			refresh the description-inventory window;
+		if debug-mode is true:
+			refresh the contents-debug window;
+		refresh the map window;
+		let people-in-the-room be the list of people who are not the player in the location of the player;
+		if the number of entries in people-in-the-room is greater than zero:
+			open the character-row window;
+			open the character-name window;
+			refresh the character-row window;
+			refresh the character-name window;
+		otherwise:
+			close the character-name window;
+			close the character-row window;
+		if the current interlocutor is not nothing:
+			if the character-topic window is g-unpresent:
+				open the character-topic window;
+			refresh the character-topic window;
+		otherwise:
+			close the character-topic window;
+		silently try looking;
 
 
 Volume - Figures
