@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7221]
+[WORDS -  7328]
 
 Table of Releases
 release	notes
@@ -455,13 +455,16 @@ To say bottom rose:
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
 
 To say map width indicator:
-	if the width of map window <= 910:
-		if the width of map window >= 890:
-			say "";
+	if graphics-mode is true:
+		if the width of map window <= 910:
+			if the width of map window >= 890:
+				say "";
+			otherwise:
+				say "[italic type]Resize map window <- until message disappears";
 		otherwise:
-			say "[italic type]Resize map window <- until message disappears";
+			say "[italic type]Resize map window -> until message disappears";
 	otherwise:
-		say "[italic type]Resize map window -> until message disappears";
+		say "";
 
 Rule for constructing the status line:
 	if time of day is 9:00 AM:
@@ -495,6 +498,12 @@ Section - Room Heading
 This is the modified room description heading rule:
 	if graphics-mode is true:
 		refresh the title-room window;
+	otherwise:
+		focus main window;
+		say "[bold type][location][roman type]";
+		[say "GRAPHICS OFF 1";]
+		[try looking;]
+		continue the action;
 
 The modified room description heading rule substitutes for the room description heading rule.
 
@@ -503,6 +512,11 @@ Section - Room Description
 This is the modified room description body text rule:
 	if graphics-mode is true:
 		refresh the description-room window;
+	otherwise:
+		focus main window;
+		say "[description of location][paragraph break]";
+		[say "GRAPHICS OFF 2";]
+		continue the action;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
@@ -519,41 +533,54 @@ Chapter - Examine
 Section - Standard Examine
 
 Before examining something:
-	if the player has the noun part of the current action:
-		if the illustration of the noun part of the current action is not Figure of No-Image:
-			now display-inventory-illustration is true;
-		otherwise:
-			now display-inventory-illustration is false;
-		follow the Change Inventory Windows rules;
-		if display-inventory-illustration is false:
-			refresh the list-inventory window;
-		otherwise:
-			refresh the description-inventory window;
-		stop the action;
+	if graphics-mode is true:
+		if the player has the noun part of the current action:
+			if the illustration of the noun part of the current action is not Figure of No-Image:
+				now display-inventory-illustration is true;
+			otherwise:
+				now display-inventory-illustration is false;
+			follow the Change Inventory Windows rules;
+			if display-inventory-illustration is false:
+				refresh the list-inventory window;
+			otherwise:
+				refresh the description-inventory window;
+			stop the action;
 	otherwise:
+		[focus main window;]
 		continue the action;
 
 Book - Instead Of Rules
 
 Instead of taking inventory:
-	if the number of things enclosed by the player is 0:
-		say "";
+	if graphics-mode is true:
+		if the number of things enclosed by the player is 0:
+			say "";
+		otherwise:
+			list the contents of the player, with newlines;
 	otherwise:
-		list the contents of the player, with newlines;
+		[focus main window;]
+		continue the action;
+
 
 Book - After Rules
 
 After going to a room (this is the check illustration rule):
-	if the illustration of location is not Figure of No-Image:
-		now display-room-illustration is true;
+	if graphics-mode is true:
+		if the illustration of location is not Figure of No-Image:
+			now display-room-illustration is true;
+		otherwise:
+			now display-room-illustration is false;
+		follow the Change Location Windows rules;
+		continue the action;
 	otherwise:
-		now display-room-illustration is false;
-	follow the Change Location Windows rules;
-	continue the action;
+		continue the action;
 
 After reading a command:
-	clear the main window;
-	say "[command prompt][bold type][player's command] [roman type][line break]";
+	if graphics-mode is true:
+		clear the main window;
+		say "[command prompt][bold type][player's command] [roman type][line break]";
+	otherwise:
+		continue the action;
 	
 Book - Out Of World Actions
 
@@ -635,9 +662,6 @@ A graphics rule:
 		close the title-room window;
 		close the right-sidebar window;
 
-
-
-
 Part - Debug Mode
 
 debug-mode is a truth state that varies.
@@ -673,7 +697,6 @@ true	"Player Location"	"location"
 --	"x-calculated-coordinate"	"x-calculated-coordinate"
 --	"Action"	"action name part of current action"
 --	"Noun"	"noun part of the current action"
-	
 
 
 Part - Help Mode
@@ -716,7 +739,11 @@ Part - Map Mode
 
 Request map mode is an action out of world.
 Report request map mode:
-	follow the Show Map rules;
+	if graphics-mode is true:
+		follow the Show Map rules;
+	otherwise:
+		say "That command cannot be used when Graphics Mode is OFF[line break]";
+		[continue the action;]
 
 Understand "map" as request map mode.
 Understand "show map" as request map mode.
@@ -924,6 +951,8 @@ Every turn:
 		otherwise:
 			close the character-topic window;
 		silently try looking;
+	otherwise:
+		continue the action;
 
 
 Volume - Figures
