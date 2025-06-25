@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7328]
+[WORDS -  7331]
 
 Table of Releases
 release	notes
@@ -591,11 +591,13 @@ graphics-mode is true.
 
 Switch graphics mode is an action out of world.
 Report switch graphics mode:
+	clear main window;
+	say "[command prompt][bold type][player's command] [roman type][line break]";
 	if graphics-mode is false:
 		now graphics-mode is true;
 	otherwise:
 		now graphics-mode is false;
-	say "Graphics Mode: [if graphics-mode is true]ON[else]OFF[end if].[line break]";
+	say "Graphics Mode: [if graphics-mode is true]ON[else]OFF[end if][line break]";
 	follow the Graphics rules;
 
 Understand "graphics" as switch graphics mode.
@@ -606,7 +608,6 @@ Graphics rules is a rulebook.
 
 A graphics rule:
 	if graphics-mode is true:
-		[say "I'M THE GRAPHICS-MODE = TRUE RULE!";]
 		open the right-sidebar window;
 		open the title-room window;
 		open the graphics-room window;
@@ -638,7 +639,6 @@ A graphics rule:
 
 A graphics rule:
 	if graphics-mode is false:
-		[say "I'M THE GRAPHICS-MODE = FALSE RULE!";]
 		if the current interlocutor is not nothing:
 			close the character-topic window;
 		let people-in-the-room be the list of people who are not the player in the location of the player;
@@ -742,8 +742,7 @@ Report request map mode:
 	if graphics-mode is true:
 		follow the Show Map rules;
 	otherwise:
-		say "That command cannot be used when Graphics Mode is OFF[line break]";
-		[continue the action;]
+		say "That command cannot be used when Graphics Mode is turned OFF (type 'graphics' to turn Graphics Mode ON).[line break]";
 
 Understand "map" as request map mode.
 Understand "show map" as request map mode.
