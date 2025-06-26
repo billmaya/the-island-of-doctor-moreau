@@ -5,7 +5,7 @@ The release number is 1.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7331]
+[WORDS -  7332]
 
 Table of Releases
 release	notes
@@ -475,9 +475,9 @@ Rule for constructing the status line:
 		say default letters;
 		rule succeeds;
 		
-Chapter - Banner Text
+Part - Banner Text
 
-Section - Printing
+Chapter - Printing
 
 Rule for printing the banner text:
 	if the time of day is not 9:00 AM:
@@ -485,7 +485,7 @@ Rule for printing the banner text:
 	otherwise:
 		continue the action;
 
-Section - Removing Extra Lines
+Chapter - Removing Extra Lines
 
 The initial whitespace rule does nothing.
 
@@ -558,7 +558,6 @@ Instead of taking inventory:
 		otherwise:
 			list the contents of the player, with newlines;
 	otherwise:
-		[focus main window;]
 		continue the action;
 
 
@@ -587,7 +586,7 @@ Book - Out Of World Actions
 Part - Graphics Mode
 
 graphics-mode is a truth state that varies.
-graphics-mode is true.
+graphics-mode is [false.] true.
 
 Switch graphics mode is an action out of world.
 Report switch graphics mode:
@@ -636,6 +635,7 @@ A graphics rule:
 				refresh the character-topic window;
 		otherwise:
 			close the character-topic window;
+		silently try looking;
 
 A graphics rule:
 	if graphics-mode is false:
@@ -779,6 +779,7 @@ A show map rule:
 	otherwise:
 		close the character-topic window;
 	refresh map window;
+	
 
 
 
