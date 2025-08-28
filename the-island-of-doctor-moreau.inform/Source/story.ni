@@ -1,11 +1,11 @@
 The story title is "The Island of Doctor Moreau".
 The story author is "Bill Maya".
 The story genre is "Science Fiction".
-The release number is 1.
+The release number is 2.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7441]
+[WORDS -  7412]
 
 Table of Releases
 release	notes
@@ -17,7 +17,7 @@ release	notes
 		    >graphics : Turns graphics mode on/off.
 		    >help : Displays help window.
 		    >debug : Displays debug window"
-"2"		"Window code commented out: title-character, title-room, map. 
+"2"		"Window display/hide code commented out: title-character, title-room, map. 
             Map width indicator code commented out. 
             Room name moved to status bar."
  
@@ -637,7 +637,7 @@ A graphics rule:
 		if debug-mode is true:
 			open the title-debug window;
 			open the contents-debug window;
-		open map window;
+		[open map window;]
 		let people-in-the-room be the list of people who are not the player in the location of the player;
 		if the number of entries in people-in-the-room is greater than zero:
 			open the character-row window;
@@ -660,7 +660,7 @@ A graphics rule:
 		if the number of entries in people-in-the-room is greater than zero:
 			close the character-name window;
 			close the character-row window;
-		close the map window;
+		[close the map window;]
 		if debug-mode is true:
 			close the contents-debug window;
 			close the title-debug window;
@@ -674,7 +674,7 @@ A graphics rule:
 		close the title-inventory window;
 		close the description-room window;
 		close the graphics-room window;
-		close the title-room window;
+		[close the title-room window;]
 		close the right-sidebar window;
 
 Part - Debug Mode
@@ -715,6 +715,11 @@ true	"Player Location"	"location"
 
 
 Part - Help Mode
+
+[This adds a blank row to the status bar when >help is called]
+Table of Deep Menu Status (continued)
+left	central	right
+""	""	""
 
 [help-mode exists in other parts of the code so it has not been commented out but it has been set to false.]
 [Currently, we'll be using Emily Short's Basic Help Menu extension to display instructions and help in the main window.]
