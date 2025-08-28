@@ -17,6 +17,9 @@ release	notes
 		    >graphics : Turns graphics mode on/off.
 		    >help : Displays help window.
 		    >debug : Displays debug window"
+"2"		"Window code commented out: title-character, title-room, map. 
+            Map width indicator code commented out. 
+            Room name moved to status bar."
  
 Volume - Setup
 
@@ -125,11 +128,6 @@ The scale method of the entire-map window is g-fixed-size.
 The measurement of the entire-map window is 966.
 
 Section - Character Windows
-
-[The title-character window is a text grid g-window spawned by the main window.
-The position of the title-character window is g-placeabove.
-The scale method of the title-character window is g-fixed-size.
-The measurement of the title-character window is 2.] [*] 
 
 The character-row window is a graphics g-window spawned by the main window.
 The position of the character-row window is g-placeabove.
@@ -409,16 +407,16 @@ left	central	right
 " "	"[story description]"	" "
 " "	" "	"                [top rose]"
 " "	" "	"       [middle rose]"
-" [map width indicator]"	" "	"       [bottom rose]"
+" "	" "	"       [bottom rose]"
+" "	" "	"[location]"
 
-[" "	" "	"       [bottom rose]"
-" "	" "	"[location]"] [*]
-
+[" [map width indicator]"	" "	"       [bottom rose]"]
 
 
 Table of Empty Status
 left	central	right
 " "	"[story description]"	" "
+" "	" "	" "
 " "	" "	" "
 " "	" "	" "
 " "	" "	" "
@@ -625,7 +623,7 @@ Graphics rules is a rulebook.
 A graphics rule:
 	if graphics-mode is true:
 		open the right-sidebar window;
-		open the title-room window; [*]
+		[open the title-room window;]
 		open the graphics-room window;
 		open the description-room window;
 		open the title-inventory window; 
@@ -769,7 +767,7 @@ Chapter - Show Map Rulebook
 
 Show Map is a rulebook.
 A show map rule:
-	close map window; [*]
+	[close map window;]
 	if the character-row window is g-present:
 		close character-row window;
 		close character-name window;
@@ -779,7 +777,7 @@ A show map rule:
 	refresh entire-map window;
 	pause the game;
 	close entire-map window;
-	open map window; [*]
+	[open map window;]
 	let people-in-the-room be the list of people who are not the player in the location of the player;
 	if the number of entries in people-in-the-room is greater than zero:
 		open the character-row window;
@@ -795,7 +793,7 @@ A show map rule:
 		refresh the character-topic window;
 	otherwise:
 		close the character-topic window;
-	refresh map window; [*]
+	[refresh map window;]
 	
 
 
@@ -878,7 +876,7 @@ A change inventory windows rule:
 		close title-room window;
 		close graphics-room window;
 		close description-room window;
-		open title-room window; [*]
+		[open title-room window;]
 		if display-room-illustration is true:
 			open graphics-room window;
 			now the measurement of the description-room window is 9;
@@ -925,7 +923,7 @@ When play begins:
 	close the title window;
 	if graphics-mode is true:
 		open the right-sidebar window;
-		open the title-room window; [*]
+		[open the title-room window;]
 		open the graphics-room window;
 		open the description-room window;
 		open the title-inventory window; 
@@ -936,8 +934,7 @@ When play begins:
 		if debug-mode is true:
 			open the title-debug window;
 			open the contents-debug window;
-		[open the title-character window;] [*]
-		open the map window; [*]
+		[open the map window;]
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	now suggest-on-greeting is false.
@@ -952,7 +949,7 @@ Every turn:
 			refresh the description-inventory window;
 		if debug-mode is true:
 			refresh the contents-debug window;
-		refresh the map window; [*]
+		[refresh the map window;]
 		let people-in-the-room be the list of people who are not the player in the location of the player;
 		if the number of entries in people-in-the-room is greater than zero:
 			open the character-row window;
