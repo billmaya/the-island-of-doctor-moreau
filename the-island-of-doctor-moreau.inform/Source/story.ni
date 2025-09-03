@@ -5,7 +5,7 @@ The release number is 3.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  5478]
+[WORDS - 5495]
 
 Table of Releases
 release	notes
@@ -23,6 +23,7 @@ release	notes
 		  Disabled graphics-mode.
 		  Disabled >map|show map|show entire map.
 		  Added scroll-mode."
+"3" 	"Removed all code related to drawing and updating the title-room, map, and entire-map windows."
  
 Volume - Setup
 
