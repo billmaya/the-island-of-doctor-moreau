@@ -5,7 +5,7 @@ The release number is 2.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7437]
+[WORDS -  7502]
 
 Table of Releases
 release	notes
@@ -19,7 +19,10 @@ release	notes
 		    >debug : Displays debug window"
 "2"		"Window display/hide code commented out: title-character, title-room, map. 
             Map width indicator code commented out. 
-            Room name moved to status bar."
+            Room name moved to status bar.
+		  Disabled graphics-mode.
+		  Disabled >map|show map|show entire map.
+		  Added scroll-mode."
  
 Volume - Setup
 
@@ -590,7 +593,8 @@ After going to a room (this is the check illustration rule):
 		continue the action;
 
 After reading a command:
-	if graphics-mode is true:
+	[if graphics-mode is true:]
+	if scroll-mode is false:
 		clear the main window;
 		say "[command prompt][bold type][player's command] [roman type][line break]";
 	otherwise:
@@ -603,7 +607,7 @@ Part - Graphics Mode
 graphics-mode is a truth state that varies.
 graphics-mode is [false.] true.
 
-Switch graphics mode is an action out of world.
+[Switch graphics mode is an action out of world.
 Report switch graphics mode:
 	clear main window;
 	say "[command prompt][bold type][player's command] [roman type][line break]";
@@ -614,11 +618,11 @@ Report switch graphics mode:
 	say "Graphics Mode: [if graphics-mode is true]ON[else]OFF[end if][line break]";
 	follow the Graphics rules;
 
-Understand "graphics" as switch graphics mode.
+Understand "graphics" as switch graphics mode.]
 
 Chapter - Graphics Mode Rulebook
 
-Graphics rules is a rulebook.
+[Graphics rules is a rulebook.
 
 A graphics rule:
 	if graphics-mode is true:
@@ -675,7 +679,7 @@ A graphics rule:
 		close the description-room window;
 		close the graphics-room window;
 		[close the title-room window;]
-		close the right-sidebar window;
+		close the right-sidebar window;]
 
 Part - Debug Mode
 
@@ -757,7 +761,7 @@ Understand "help" as switch help mode.]
 
 Part - Map Mode
 
-Request map mode is an action out of world.
+[Request map mode is an action out of world.
 Report request map mode:
 	if graphics-mode is true:
 		follow the Show Map rules;
@@ -766,11 +770,11 @@ Report request map mode:
 
 Understand "map" as request map mode.
 Understand "show map" as request map mode.
-Understand "show entire map" as request map mode.
+Understand "show entire map" as request map mode.]
 
 Chapter - Show Map Rulebook
 
-Show Map is a rulebook.
+[Show Map is a rulebook.
 A show map rule:
 	[close map window;]
 	if the character-row window is g-present:
@@ -798,11 +802,14 @@ A show map rule:
 		refresh the character-topic window;
 	otherwise:
 		close the character-topic window;
-	[refresh map window;]
+	[refresh map window;]]
 	
+Part - Scroll Mode
 
+[If scroll-mode is false, only one command and its results will be displayed in the main window (main window is cleared by After reading a command: code]
 
-
+scroll-mode is a truth state that varies.
+scroll-mode is false. [true.]
 
 Part - Change Current Location Windows
 
