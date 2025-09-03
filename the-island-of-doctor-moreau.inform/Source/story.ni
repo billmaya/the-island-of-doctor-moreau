@@ -1,11 +1,11 @@
 The story title is "The Island of Doctor Moreau".
 The story author is "Bill Maya".
 The story genre is "Science Fiction".
-The release number is 2.
+The release number is 3.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS -  7502]
+[WORDS -  5478]
 
 Table of Releases
 release	notes
@@ -34,7 +34,7 @@ Include Basic Screen Effects by Emily Short. [v7/140425. Required to change stat
 Include Basic Help Menu by Emily Short.
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
 
-Include Conversation Package by Eric Eve. [Contains Epistemology, Conversation Framework, Conversation Suggestions and Conversation Defaults extensions]
+Include Conversation Package by Eric Eve.
 Include List Control by Eric Eve.
 
 Book - User Interface
@@ -58,11 +58,6 @@ The scale method of the right-sidebar window is g-fixed-size.
 The measurement of the right-sidebar window is 290.
 
 Section - Location Windows
-
-The title-room window is a text grid g-window spawned by the right-sidebar window.
-The position of the title-room window is g-placeabove.
-The scale method of the title-room window is g-fixed-size.
-The measurement of the title-room window is 2. 
 
 The graphics-room window is a graphics g-window spawned by the right-sidebar window. 
 The position of the graphics-room window is g-placeabove.
@@ -116,19 +111,7 @@ The measurement of the title-debug window is 2.
 The contents-debug window is a text buffer g-window spawned by the right-sidebar window.
 The position of the contents-debug window is g-placeabove.
 The scale method of the contents-debug window is g-fixed-size.
-The measurement of the contents-debug window is 10. [5.]
-
-Section - Map Windows
-
-The map window is a graphics g-window spawned by the main window.
-The position of the map window is g-placeabove.
-The scale method of the map window is g-fixed-size.
-The measurement of the map window is 452.
-
-The entire-map window is a graphics g-window spawned by the main window.
-The position of the entire-map window is g-placeabove.
-The scale method of the entire-map window is g-fixed-size.
-The measurement of the entire-map window is 966.
+The measurement of the contents-debug window is 10.
 
 Section - Character Windows
 
@@ -142,17 +125,14 @@ The position of the character-name window is g-placeabove.
 The scale method of the character-name window is g-fixed-size.
 The measurement of the character-name window is 1.
 
-The character-topic window is a text [grid] buffer g-window spawned by the main window.
+The character-topic window is a text buffer g-window spawned by the main window.
 The position of the character-topic window is g-placeabove.
 The scale method of the character-topic window is g-fixed-size.
-The measurement of the character-topic window is [2.] 3. [4.] [5.]
+The measurement of the character-topic window is 3.
 
 Chapter - Rules
 
 Section - Location Windows
-
-Rule for refreshing the title-room window:
-	say "[location]";
 
 Rule for refreshing the graphics-room window:
 	draw the illustration of the location in graphics-room window;
@@ -231,7 +211,7 @@ obj is an object variable.
 Rule for refreshing the contents-debug window:
 	say "";
 	showme location;
-	showme width of map window;
+	[showme width of map window;]
 	[repeat through the Table of Debug Variables:
 		if there is a display entry:
 			if the data entry is:
@@ -240,85 +220,23 @@ Rule for refreshing the contents-debug window:
 			[]
 			say "[label entry]: [obj][line break]";]
 
-Section - Map Windows
-	
-x-calculated-coordinate is a number that varies.
-current-map is a figure name that varies.
-
-Rule for refreshing the map window:
-	[Draw the map section for the current location]
-	repeat through the Table of Room Map Locations:
-		if the room entry is the location:
-			now current-map is the map-section entry; ["let current-map be the map-section entry" doesn't work.]
-			draw the map-section entry in the map window;
-	[Draw icons for other visible locations in same map section that are not player's current location - unvisited, visited, visited w/ room-specific icon]
-	repeat through the Table of Room Map Locations:
-		now x-calculated-coordinate is ( x-coordinate entry * width of map window ) / [907;] 693; [changed from let/be in line below]
-		if the room entry is not the location:
-			if there is a display entry:
-				if the map-section entry is the current-map: [map-section of the location:]
-					if the room entry is visited:
-						if there is an icon entry:
-							draw the icon entry in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-						otherwise:
-							draw the Figure of Icon-Visited-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-					otherwise:
-						draw the Figure of Icon-Unknown-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-		otherwise:
-			draw the Figure of Icon-Player-Location in the map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-	[Draw the map width indicator icon] [code moved to status bar]
-	[if the width of map window <= 910:
-		if the width of map window >= 890:
-			draw the Figure of Map-Width-Good in the map window at x 2 and y 430 scaled to width 20 and height 20;
-		otherwise:
-			draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;
-	otherwise:
-		draw the Figure of Map-Width-Bad in the map window at x 2 and y 430 scaled to width 20 and height 20;]
-
-Rule for refreshing the entire-map window:
-	draw the Figure of Entire-Island in the entire-map window;
-	repeat through the Table of Room Main Map Locations:
-		now x-calculated-coordinate is (x-coordinate entry * width of entire-map window ) / 693;
-		if the room entry is the location:
-			draw the Figure of Icon-Player-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-		otherwise:
-			if there is a display entry:
-				if the room entry is visited:
-					if there is an icon entry:
-						draw the icon entry in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-					otherwise:
-						draw the Figure of Icon-Visited-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-				otherwise:
-					draw the Figure of Icon-Unknown-Location in the entire-map window at x x-calculated-coordinate and y y-coordinate entry scaled to width 20 and height 20;
-
 Section - Character Windows
-	
-flag-switch is a number that varies.
-flag-switch is [0.] 1.	
 	
 image-x is a number that varies.
 					
 Rule for refreshing the character-row window:
-	if flag-switch is:
-		-- 0: [Sample images]
-			draw the Figure of Moreau in the character-row window at x 0 and y 0 scaled to width 127 and height 169;
-			draw the Figure of Beast-People in the character-row window at x 128 and y 0 scaled to width 224 and height 169;
-			draw the Figure of Dogman in the character-row window at x 353 and y 0 scaled to width 127 and height 169;
-			draw the Figure of Montgomery in the character-row window at x 481 and y 0 scaled to width 127 and height 169;
-			draw the Figure of Moreau-Assistant in the character-row window at x 609 and y 0 scaled to width 127 and height 169;
-		-- 1:
-			[clear the character-row window;] [This doesn't clear the window of previous images. Why?]
-			draw Figure of Blank-Character-Row in the character-row window at x 0 and y 0;
-			now image-x is 0;
-			repeat through the Table of Character Display Information:
-				if the location of the people entry is the location of the player:
-					if there is an image entry:
-						if the type entry is "Portrait":
-							draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
-							now image-x is image-x + 127;
-						otherwise:
-							draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
-							now image-x is image-x + 224;
+	[clear the character-row window;] [This doesn't clear the window of previous images. Why?]
+	draw Figure of Blank-Character-Row in the character-row window at x 0 and y 0;
+	now image-x is 0;
+	repeat through the Table of Character Display Information:
+		if the location of the people entry is the location of the player:
+			if there is an image entry:
+				if the type entry is "Portrait":
+					draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
+					now image-x is image-x + 127;
+				otherwise:
+					draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
+					now image-x is image-x + 224;
 
 portrait-name-length is a number that varies.
 portrait-name-length is 11.
@@ -329,44 +247,32 @@ landscape-name-length is 19.
 padding-needed is a number that varies.
 				
 Rule for refreshing the character-name window:
-	if flag-switch is:
-		-- 0: [Sample text]
-			[say "011111111111022222222222222222220333333333330444444444440555555555550";]
-			say "   Moreau       Beast People       Dogman    MONTGOMERY   Assistant  ";
-		-- 1:
-			clear the character-name window;
+	clear the character-name window;
+	say " ";
+	repeat through the Table of Character Display Information:
+		if the location of the people entry is the location of the player:
+			let name-length be number of characters in display-name entry;
+			if the type entry is "Portrait":
+				now padding-needed is portrait-name-length - name-length;
+			otherwise:
+				now padding-needed is landscape-name-length - name-length;
+			let prefix-padding be padding-needed / 2;
+			repeat with counter running from 1 to prefix-padding:
+				say " ";
+			if the current interlocutor is the people entry:
+				say "[display-name entry]" in upper case;
+			otherwise:
+				say "[display-name entry]";
+			let suffix-padding be padding-needed - prefix-padding;
+			repeat with counter running from 1 to suffix-padding:
+				say " ";
 			say " ";
-			repeat through the Table of Character Display Information:
-				if the location of the people entry is the location of the player:
-					let name-length be number of characters in display-name entry;
-					if the type entry is "Portrait":
-						now padding-needed is portrait-name-length - name-length;
-					otherwise:
-						now padding-needed is landscape-name-length - name-length;
-					let prefix-padding be padding-needed / 2;
-					repeat with counter running from 1 to prefix-padding:
-						say " ";
-					if the current interlocutor is the people entry:
-						say "[display-name entry]" in upper case;
-					otherwise:
-						say "[display-name entry]";
-					let suffix-padding be padding-needed - prefix-padding;
-					repeat with counter running from 1 to suffix-padding:
-						say " ";
-					say " ";
 
 To say demo-person: say "Montgomery";
 
 Rule for refreshing the character-topic window:
-	if flag-switch is:
-		-- 0: [Sample text]
-			say "[line break][roman type] ASK [demo-person] about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL [demo-person] about: [italic type]Dogman | Moreau[line break][roman type] ASK [demo-person] for: [italic type]";
-			[say "[italic type]                         SOME SUGGESTED CONVERSATION TOPICS[line break][line break][roman type] ASK about: [italic type]The Beast People | Dogman | Moreau [line break][roman type] TELL about: [italic type] Dogman | Moreau";]
-		-- 1:
-			[say "[line break]";]
-			try listing suggested topics;
-
-
+	[say "[line break]";]
+	try listing suggested topics;
 
 Chapter - Styles
 
@@ -412,9 +318,6 @@ left	central	right
 " "	" "	"       [middle rose]"
 " "	" "	"       [bottom rose]"
 " "	" "	"[location]"
-
-[" [map width indicator]"	" "	"       [bottom rose]"]
-
 
 Table of Empty Status
 left	central	right
@@ -472,18 +375,6 @@ To say bottom rose:
 	let place be the room southeast from the location;
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
 
-To say map width indicator:
-	if graphics-mode is true:
-		if the width of map window <= 910:
-			if the width of map window >= 890:
-				say "";
-			otherwise:
-				say "[italic type]Resize map window <- until message disappears";
-		otherwise:
-			say "[italic type]Resize map window -> until message disappears";
-	otherwise:
-		say "";
-
 Rule for constructing the status line:
 	if time of day is 9:00 AM:
 		fill status bar with Table of Empty Status;
@@ -514,15 +405,11 @@ Chapter - Rooms
 Section - Room Heading
 
 This is the modified room description heading rule:
-	if graphics-mode is true:
-		refresh the title-room window;
-	otherwise:
+	if graphics-mode is false:
 		focus main window;
 		say "[bold type][location][roman type]";
-		[say "GRAPHICS OFF 1";]
-		[try looking;]
 		continue the action;
-
+		
 The modified room description heading rule substitutes for the room description heading rule.
 
 Section - Room Description
@@ -533,7 +420,6 @@ This is the modified room description body text rule:
 	otherwise:
 		focus main window;
 		say "[description of location][paragraph break]";
-		[say "GRAPHICS OFF 2";]
 		continue the action;
 
 The modified room description body text rule substitutes for the room description body text rule.
@@ -606,80 +492,6 @@ Part - Graphics Mode
 
 graphics-mode is a truth state that varies.
 graphics-mode is [false.] true.
-
-[Switch graphics mode is an action out of world.
-Report switch graphics mode:
-	clear main window;
-	say "[command prompt][bold type][player's command] [roman type][line break]";
-	if graphics-mode is false:
-		now graphics-mode is true;
-	otherwise:
-		now graphics-mode is false;
-	say "Graphics Mode: [if graphics-mode is true]ON[else]OFF[end if][line break]";
-	follow the Graphics rules;
-
-Understand "graphics" as switch graphics mode.]
-
-Chapter - Graphics Mode Rulebook
-
-[Graphics rules is a rulebook.
-
-A graphics rule:
-	if graphics-mode is true:
-		open the right-sidebar window;
-		[open the title-room window;]
-		open the graphics-room window;
-		open the description-room window;
-		open the title-inventory window; 
-		if display-inventory-illustration is false:
-			open the list-inventory window;
-		otherwise:
-			open the description-inventory window;
-		if help-mode is true:
-			open the title-help window;
-			open the contents-help window;
-		if debug-mode is true:
-			open the title-debug window;
-			open the contents-debug window;
-		[open map window;]
-		let people-in-the-room be the list of people who are not the player in the location of the player;
-		if the number of entries in people-in-the-room is greater than zero:
-			open the character-row window;
-			open the character-name window;
-			refresh the character-row window;
-			refresh the character-name window;
-		if the current interlocutor is not nothing:
-			if the character-topic window is g-unpresent:
-				open the character-topic window;
-				refresh the character-topic window;
-		otherwise:
-			close the character-topic window;
-		silently try looking;
-
-A graphics rule:
-	if graphics-mode is false:
-		if the current interlocutor is not nothing:
-			close the character-topic window;
-		let people-in-the-room be the list of people who are not the player in the location of the player;
-		if the number of entries in people-in-the-room is greater than zero:
-			close the character-name window;
-			close the character-row window;
-		[close the map window;]
-		if debug-mode is true:
-			close the contents-debug window;
-			close the title-debug window;
-		if help-mode is true:
-			close the contents-help window;
-			close the title-help window;
-		if display-inventory-illustration is false:
-			close the list-inventory window;
-		otherwise:
-			close the description-inventory window;
-		close the title-inventory window;
-		close the description-room window;
-		close the graphics-room window;
-		[close the title-room window;]
-		close the right-sidebar window;]
 
 Part - Debug Mode
 
@@ -758,51 +570,6 @@ Report switch help mode:
 			open contents-debug window;
 
 Understand "help" as switch help mode.]
-
-Part - Map Mode
-
-[Request map mode is an action out of world.
-Report request map mode:
-	if graphics-mode is true:
-		follow the Show Map rules;
-	otherwise:
-		say "That command cannot be used when Graphics Mode is turned OFF (type 'graphics' to turn Graphics Mode ON).[line break]";
-
-Understand "map" as request map mode.
-Understand "show map" as request map mode.
-Understand "show entire map" as request map mode.]
-
-Chapter - Show Map Rulebook
-
-[Show Map is a rulebook.
-A show map rule:
-	[close map window;]
-	if the character-row window is g-present:
-		close character-row window;
-		close character-name window;
-	if the character-topic window is g-present:
-		close the character-topic window;
-	open entire-map window;
-	refresh entire-map window;
-	pause the game;
-	close entire-map window;
-	[open map window;]
-	let people-in-the-room be the list of people who are not the player in the location of the player;
-	if the number of entries in people-in-the-room is greater than zero:
-		open the character-row window;
-		open the character-name window;
-		refresh the character-row window;
-		refresh the character-name window;
-	otherwise:
-		close the character-name window;
-		close the character-row window;
-	if the current interlocutor is not nothing: 
-		if the character-topic window is g-unpresent:
-			open the character-topic window;
-		refresh the character-topic window;
-	otherwise:
-		close the character-topic window;
-	[refresh map window;]]
 	
 Part - Scroll Mode
 
@@ -885,7 +652,7 @@ A change inventory windows rule:
 		close graphics-inventory window;
 		close description-inventory window;
 		[Close Room windows]
-		close title-room window;
+		[close title-room window;]
 		close graphics-room window;
 		close description-room window;
 		[open title-room window;]
@@ -935,7 +702,6 @@ When play begins:
 	close the title window;
 	if graphics-mode is true:
 		open the right-sidebar window;
-		[open the title-room window;]
 		open the graphics-room window;
 		open the description-room window;
 		open the title-inventory window; 
@@ -946,7 +712,6 @@ When play begins:
 		if debug-mode is true:
 			open the title-debug window;
 			open the contents-debug window;
-		[open the map window;]
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	now suggest-on-greeting is false.
@@ -961,7 +726,6 @@ Every turn:
 			refresh the description-inventory window;
 		if debug-mode is true:
 			refresh the contents-debug window;
-		[refresh the map window;]
 		let people-in-the-room be the list of people who are not the player in the location of the player;
 		if the number of entries in people-in-the-room is greater than zero:
 			open the character-row window;
@@ -996,26 +760,6 @@ Book - Title
 
 Figure of Title is the file "the-dream-0.png".
 
-Book - Mapping
-
-Figure of Map-Island-1 is the file "mapgen4-195-1-gray.png".
-Figure of Map-Island-2 is the file "mapgen4-195-2-gray.png".
-
-Figure of Entire-Island is the file "mapgen4-195-gray.png".
-
-Book - Icons
-
-Figure of Icon-Player-Location is the file "icon-player-location-0.png".
-
-Figure of Icon-Unknown-Location is the file "icon-unknown-location-0.png".
-Figure of Icon-Visited-Location is the file "icon-visited-location-0.png".
-
-Figure of Icon-Ruins is the file "icon-ruins-0.png".
-Figure of Icon-Volcanic-Caldera is the file "icon-volcanic-caldera-0.png".
-
-Figure of Map-Width-Good is the file "map-width-good.png".
-Figure of Map-Width-Bad is the file "map-width-bad.png".
-
 Book - Rooms
 
 Figure of Beach-0 is the file "beach-0.png".
@@ -1048,43 +792,7 @@ Figure of Hybrid-Creature is the file "character-hybrid-creature-0.png".
 
 Book - Scenes
 
-
 Volume - Rooms
-
-Book - Map Display Information
-
-[
-Ever room in the game should have a table entry. 
-The following columns are required - map-section, x-coordinate; y-coordinate.
-The following columns are optional - icon; display.
-To use a custom visited icon for a room, set icon to a Figure of XYZ.
-To display a room icon on the map, set display to true.
-]
-
-[When map window height is 452 with 2-segment map]
-Table 1 - Room Map Locations
-room	map-section	x-coordinate	y-coordinate	icon	display
-Beach	Figure of Map-Island-1	195	235	--	true
-Jungle	Figure of Map-Island-1	195	205	--	true
-Ruins	Figure of Map-Island-1	150	205	Figure of Icon-Ruins	true
-Muddy Path	Figure of Map-Island-1	225	205	--	--
-Volcanic Caldera	Figure of Map-Island-1	285	275	Figure of Icon-Volcanic-Caldera	true
-Deep Jungle	Figure of Map-Island-1	300	115	--	true
-Hidden Valley	Figure of Map-Island-2	375	345	--	true
-Moreau-Compound	Figure of Map-Island-2	375	225	--	true
-
-[For main map]
-Table 2 - Room Main Map Locations
-room	x-coordinate	y-coordinate	icon	display
-Beach	190	724	--	true
-Jungle	190	694	--	true
-Ruins	145	694	Figure of Icon-Ruins	true
-Muddy Path	220	694	--	--
-Volcanic Caldera	285	766	Figure of Icon-Volcanic-Caldera	true
-Deep Jungle	300	604	--	true
-Hidden Valley	375	373	--	true
-Moreau-Compound	375	250	--	true
-
 
 Book - Beach
 
