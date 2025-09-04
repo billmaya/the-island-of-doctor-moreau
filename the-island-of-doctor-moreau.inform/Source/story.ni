@@ -5,7 +5,7 @@ The release number is 3.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5263]
+[WORDS - 5282]
 
 Table of Releases
 release	notes
@@ -23,7 +23,7 @@ release	notes
 		  Disabled graphics-mode.
 		  Disabled >map|show map|show entire map.
 		  Added scroll-mode."
-"3" 	"Removed all code related to drawing and updating the title-room, map, and entire-map windows.
+"3" 	"Removed all code related to drawing and updating the map and entire-map windows.
             Removed graphics-mode and all code associated with it."
  
 Volume - Setup
@@ -60,6 +60,11 @@ The scale method of the right-sidebar window is g-fixed-size.
 The measurement of the right-sidebar window is 290.
 
 Section - Location Windows
+
+The title-room window is a text grid g-window spawned by the right-sidebar window.
+The position of the title-room window is g-placeabove.
+The scale method of the title-room window is g-fixed-size.
+The measurement of the title-room window is 1. [2.] 
 
 The graphics-room window is a graphics g-window spawned by the right-sidebar window. 
 The position of the graphics-room window is g-placeabove.
@@ -135,6 +140,9 @@ The measurement of the character-topic window is 3.
 Chapter - Rules
 
 Section - Location Windows
+
+Rule for refreshing the title-room window:
+	say "[location]";
 
 Rule for refreshing the graphics-room window:
 	draw the illustration of the location in graphics-room window;
@@ -316,7 +324,7 @@ left	central	right
 " "	" "	"                [top rose]"
 " "	" "	"       [middle rose]"
 " "	" "	"       [bottom rose]"
-" "	" "	"[location]"
+[" "	" "	" "]
 
 Table of Empty Status
 left	central	right
@@ -324,7 +332,7 @@ left	central	right
 " "	" "	" "
 " "	" "	" "
 " "	" "	" "
-" "	" "	" "
+[" "	" "	" "]
 
 When play begins: 
 	now right alignment depth is 25;
@@ -403,7 +411,12 @@ Chapter - Rooms
 
 Section - Room Heading
 
-The room description heading rule does nothing.
+This is the modified room description heading rule:
+	refresh the title-room window;
+
+The modified room description heading rule substitutes for the room description heading rule.
+
+[The room description heading rule does nothing.]
 
 Section - Room Description
 
@@ -436,9 +449,6 @@ Before examining something:
 		otherwise:
 			refresh the description-inventory window;
 		stop the action;
-
-
-
 
 Book - Instead Of Rules
 
@@ -509,9 +519,9 @@ true	"Player Location"	"location"
 Part - Help Mode
 
 [This adds a blank row to the status bar when >help is called]
-Table of Deep Menu Status (continued)
+[Table of Deep Menu Status (continued)
 left	central	right
-""	""	""
+""	""	""]
 
 [help-mode exists in other parts of the code so it has not been commented out but it has been set to false.]
 [Currently, we'll be using Emily Short's Basic Help Menu extension to display instructions and help in the main window.]
@@ -674,6 +684,7 @@ When play begins:
 	pause the game;
 	close the title window;
 	open the right-sidebar window;
+	open the title-room window;
 	open the graphics-room window;
 	open the description-room window;
 	open the title-inventory window; 
@@ -1008,7 +1019,7 @@ The rusty knife is a thing.
 
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
 
-[The illustration of the rusty knife is Figure of Knife-0.]
+The illustration of the rusty knife is Figure of Knife-0.
 
 The rusty knife is in the Jungle.
 
