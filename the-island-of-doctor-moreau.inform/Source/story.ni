@@ -437,13 +437,18 @@ Before examining something:
 			refresh the description-inventory window;
 		stop the action;
 
+
+
+
 Book - Instead Of Rules
 
 Instead of taking inventory:
+	focus list-inventory window;
 	if the number of things enclosed by the player is 0:
 		say "";
 	otherwise:
 		list the contents of the player, with newlines;
+	focus main window;
 
 Book - After Rules
 
@@ -544,7 +549,8 @@ Understand "help" as switch help mode.]
 	
 Part - Scroll Mode
 
-[If scroll-mode is false, only one command and its results will be displayed in the main window (main window is cleared by After reading a command: code]
+[If scroll-mode is true, the main window is not cleared after every command]
+[If scroll-mode is false, the main window will be cleared after every command (see After reading a command: code in After Rules section for details]
 
 scroll-mode is a truth state that varies.
 scroll-mode is false. [true.]
