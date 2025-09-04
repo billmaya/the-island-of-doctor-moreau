@@ -5,7 +5,7 @@ The release number is 3.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5495]
+[WORDS - 5263]
 
 Table of Releases
 release	notes
@@ -23,14 +23,15 @@ release	notes
 		  Disabled graphics-mode.
 		  Disabled >map|show map|show entire map.
 		  Added scroll-mode."
-"3" 	"Removed all code related to drawing and updating the title-room, map, and entire-map windows."
+"3" 	"Removed all code related to drawing and updating the title-room, map, and entire-map windows.
+            Removed graphics-mode and all code associated with it."
  
 Volume - Setup
 
 Book - Extensions
 
 Include Flexible Windows by Jon Ingold. [v15/170131]
-Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly with v15/170131 of Flexible Windows]
+Include Simple Graphical Window by Emily Short. [Requires v10/161003 to display images correctly with Flexible Windows v15/170131]
 Include Basic Screen Effects by Emily Short. [v7/140425. Required to change status bar and display compass rose]
 Include Basic Help Menu by Emily Short.
 Include Punctuation Removal by Emily Short. [v5. Writing §17.21. Understanding mistakes]
@@ -148,18 +149,18 @@ Rule for refreshing the description-room window:
 Section - Inventory Windows
 
 Rule for refreshing the title-inventory window:
-	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
+	if the current action is examining something (called E): 
 		if the player has the noun part of the current action:
-			say "[noun]" in title case; [say "[noun part of the current action]" in title case;]
+			say "[noun]" in title case; 
 		else:
 			say "You Are Carrying";
 	else:
 		say "You Are Carrying";
 
 Rule for refreshing the list-inventory window (this is the update-list-inventory rule):
-	if the current action is examining something (called E): [if the action name part of the current action is examining action:]
+	if the current action is examining something (called E):
 		if the player has the noun part of the current action:
-			say "[description of E][line break]"; [say "[description of the noun part of the current action][line break]";]
+			say "[description of E][line break]"; 
 		else:
 			try taking inventory;
 	else:
@@ -269,10 +270,7 @@ Rule for refreshing the character-name window:
 				say " ";
 			say " ";
 
-To say demo-person: say "Montgomery";
-
 Rule for refreshing the character-topic window:
-	[say "[line break]";]
 	try listing suggested topics;
 
 Chapter - Styles
@@ -349,16 +347,16 @@ Definition: a room is discernible:
 
 To say top rose:
 	let place be the room up from the location;
-	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]U [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]U [default letters]"; otherwise say "  ";
 	let place be the room northwest from the location;
-	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]NW [default letters]"; otherwise say "   "; [Added two additional spaces to otherwise say]
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]NW [default letters]"; otherwise say "   ";
 	let place be the room north from the location;
-	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]N [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]N [default letters]"; otherwise say "  ";
 	let place be the room northeast from the location;
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]NE[default letters]"; otherwise say " ".
 
 To say middle rose:
-	say "           "; [Added one additional space to say; added nine additional spaces]
+	say "           "; 
 	let place be the room west from the location;
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]W [default letters]"; otherwise say "  ";
 	say " . ";
@@ -366,13 +364,13 @@ To say middle rose:
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if] E[default letters]"; otherwise say "  ".
 
 To say bottom rose:
-	say "         "; [Added nine additional spaces]
+	say "         ";
 	let place be the room down from the location;
-	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]D [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	if the place is a discernible room, say "[if the place is unvisited][red reverse][end if]D [default letters]"; otherwise say "  ";
 	let place be the room southwest from the location;
-	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SW [default letters]"; otherwise say "   "; [Added two additional spaces to otherwise say]
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SW [default letters]"; otherwise say "   ";
 	let place be the room south from the location;
-	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]S [default letters]"; otherwise say "  "; [Added one additional space to otherwise say]
+	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]S [default letters]"; otherwise say "  "; 
 	let place be the room southeast from the location;
 	if place is a discernible room, say "[if the place is unvisited][red reverse][end if]SE[default letters]"; otherwise say " ".
 
@@ -405,82 +403,59 @@ Chapter - Rooms
 
 Section - Room Heading
 
-This is the modified room description heading rule:
-	if graphics-mode is false:
-		focus main window;
-		say "[bold type][location][roman type]";
-		continue the action;
-		
-The modified room description heading rule substitutes for the room description heading rule.
+The room description heading rule does nothing.
 
 Section - Room Description
 
 This is the modified room description body text rule:
-	if graphics-mode is true:
-		refresh the description-room window;
-	otherwise:
-		focus main window;
-		say "[description of location][paragraph break]";
-		continue the action;
+	refresh the description-room window;
 
 The modified room description body text rule substitutes for the room description body text rule.
 
 Section - Room Graphics
 
-[The display room graphics rule is listed in the every turn rules.] [Made this an explicit call in Beginning The Story | Every Turn section]
+[The display room graphics rule is listed in the every turn rules.] 
+[Made this an explicit call in Beginning The Story | Every Turn section]
 
 This is the display room graphics rule:
-	if graphics-mode is true:
-		refresh the graphics-room window;
+	refresh the graphics-room window;
 
 Chapter - Examine
 
 Section - Standard Examine
 
 Before examining something:
-	if graphics-mode is true:
-		if the player has the noun part of the current action:
-			if the illustration of the noun part of the current action is not Figure of No-Image:
-				now display-inventory-illustration is true;
-			otherwise:
-				now display-inventory-illustration is false;
-			follow the Change Inventory Windows rules;
-			if display-inventory-illustration is false:
-				refresh the list-inventory window;
-			otherwise:
-				refresh the description-inventory window;
-			stop the action;
-	otherwise:
-		[focus main window;]
-		continue the action;
+	if the player has the noun part of the current action:
+		if the illustration of the noun part of the current action is not Figure of No-Image:
+			now display-inventory-illustration is true;
+		otherwise:
+			now display-inventory-illustration is false;
+		follow the Change Inventory Windows rules;
+		if display-inventory-illustration is false:
+			refresh the list-inventory window;
+		otherwise:
+			refresh the description-inventory window;
+		stop the action;
 
 Book - Instead Of Rules
 
 Instead of taking inventory:
-	if graphics-mode is true:
-		if the number of things enclosed by the player is 0:
-			say "";
-		otherwise:
-			list the contents of the player, with newlines;
+	if the number of things enclosed by the player is 0:
+		say "";
 	otherwise:
-		continue the action;
-
+		list the contents of the player, with newlines;
 
 Book - After Rules
 
 After going to a room (this is the check illustration rule):
-	if graphics-mode is true:
-		if the illustration of location is not Figure of No-Image:
-			now display-room-illustration is true;
-		otherwise:
-			now display-room-illustration is false;
-		follow the Change Location Windows rules;
-		continue the action;
+	if the illustration of location is not Figure of No-Image:
+		now display-room-illustration is true;
 	otherwise:
-		continue the action;
+		now display-room-illustration is false;
+	follow the Change Location Windows rules;
+	continue the action;
 
 After reading a command:
-	[if graphics-mode is true:]
 	if scroll-mode is false:
 		clear the main window;
 		say "[command prompt][bold type][player's command] [roman type][line break]";
@@ -488,11 +463,6 @@ After reading a command:
 		continue the action;
 	
 Book - Out Of World Actions
-
-Part - Graphics Mode
-
-graphics-mode is a truth state that varies.
-graphics-mode is [false.] true.
 
 Part - Debug Mode
 
@@ -591,42 +561,41 @@ Chapter - Change Location Windows Rulebook
 Change Location Windows is a rulebook.
 
 A change location windows rule (this is the change orientation of location windows rule):
-	if graphics-mode is true:
-		if debug-mode is true: [close debug windows]
-			close contents-debug window; 
-			close title-debug window;
-		if help-mode is true: [close help windows]
-			close contents-help window;
-			close title-help window;
-		[Close Inventory windows]
-		close list-inventory;
-		close title-inventory;
-		[Modify Room windows]
-		close description-room window;
-		if display-room-illustration is false:
-			close graphics-room window;
-			now the measurement of the description-room window is 18;
-			open description-room window;
-			refresh description-room window;
-		otherwise:
-			open graphics-room window;
-			refresh graphics-room window;
-			now the measurement of the description-room window is 9;
-			open description-room window;
-			refresh description-room window;
-		[Open Inventory windows]
-		open title-inventory window;
-		if display-inventory-illustration is false:
-			open list-inventory window;
-		otherwise:
-			open graphics-inventory window;
-			open description-inventory window;
-		if help-mode is true: [open help windows]
-			open title-help window;
-			open contents-help window;
-		if debug-mode is true: [open debug windows]
-			open title-debug window;
-			open contents-debug window;
+	if debug-mode is true: [close debug windows]
+		close contents-debug window; 
+		close title-debug window;
+	if help-mode is true: [close help windows]
+		close contents-help window;
+		close title-help window;
+	[Close Inventory windows]
+	close list-inventory;
+	close title-inventory;
+	[Modify Room windows]
+	close description-room window;
+	if display-room-illustration is false:
+		close graphics-room window;
+		now the measurement of the description-room window is 18;
+		open description-room window;
+		refresh description-room window;
+	otherwise:
+		open graphics-room window;
+		refresh graphics-room window;
+		now the measurement of the description-room window is 9;
+		open description-room window;
+		refresh description-room window;
+	[Open Inventory windows]
+	open title-inventory window;
+	if display-inventory-illustration is false:
+		open list-inventory window;
+	otherwise:
+		open graphics-inventory window;
+		open description-inventory window;
+	if help-mode is true: [open help windows]
+		open title-help window;
+		open contents-help window;
+	if debug-mode is true: [open debug windows]
+		open title-debug window;
+		open contents-debug window;
 
 
 Part - Change Inventory Windows
@@ -640,43 +609,40 @@ Change Inventory Windows is a rulebook.
 
 Change Inventory Windows is a rulebook.
 A change inventory windows rule:
-	if graphics-mode is true:
-		if debug-mode is true: [close debug windows]
-			close contents-debug window;
-			close title-debug window;
-		if help-mode is true: [close help windows]
-			close contents-help window;
-			close title-help window;
-		[Close Inventory contents window]
-		close title-inventory window;
-		close list-inventory window;
-		close graphics-inventory window;
-		close description-inventory window;
-		[Close Room windows]
-		[close title-room window;]
-		close graphics-room window;
-		close description-room window;
-		[open title-room window;]
-		if display-room-illustration is true:
-			open graphics-room window;
-			now the measurement of the description-room window is 9;
-			open description-room window;
-		otherwise:
-			now the measurement of the description-room window is 18;
-			open description-room window;
-		[Modify Inventory contents windows]
-		open title-inventory window;
-		if display-inventory-illustration is true: 
-			open graphics-inventory window;
-			open description-inventory window;
-		otherwise:
-			open list-inventory window;
-		if help-mode is true: [open help windows]
-			open title-help window;
-			open contents-help window;
-		if debug-mode is true: [open debug windows]
-			open title-debug window;
-			open contents-debug window;
+	if debug-mode is true: [close debug windows]
+		close contents-debug window;
+		close title-debug window;
+	if help-mode is true: [close help windows]
+		close contents-help window;
+		close title-help window;
+	[Close Inventory contents window]
+	close title-inventory window;
+	close list-inventory window;
+	close graphics-inventory window;
+	close description-inventory window;
+	[Close Room windows]
+	close graphics-room window;
+	close description-room window;
+	if display-room-illustration is true:
+		open graphics-room window;
+		now the measurement of the description-room window is 9;
+		open description-room window;
+	otherwise:
+		now the measurement of the description-room window is 18;
+		open description-room window;
+	[Modify Inventory contents windows]
+	open title-inventory window;
+	if display-inventory-illustration is true: 
+		open graphics-inventory window;
+		open description-inventory window;
+	otherwise:
+		open list-inventory window;
+	if help-mode is true: [open help windows]
+		open title-help window;
+		open contents-help window;
+	if debug-mode is true: [open debug windows]
+		open title-debug window;
+		open contents-debug window;
 
 
 Book - Release
@@ -701,18 +667,17 @@ When play begins:
 	say "[banner text]";
 	pause the game;
 	close the title window;
-	if graphics-mode is true:
-		open the right-sidebar window;
-		open the graphics-room window;
-		open the description-room window;
-		open the title-inventory window; 
-		open the list-inventory window;
-		if help-mode is true:
-			open the title-help window;
-			open the contents-help window;
-		if debug-mode is true:
-			open the title-debug window;
-			open the contents-debug window;
+	open the right-sidebar window;
+	open the graphics-room window;
+	open the description-room window;
+	open the title-inventory window; 
+	open the list-inventory window;
+	if help-mode is true:
+		open the title-help window;
+		open the contents-help window;
+	if debug-mode is true:
+		open the title-debug window;
+		open the contents-debug window;
 	now the time of day is time of day plus 1 minute;
 	[say "[introduction]";]
 	now suggest-on-greeting is false.
@@ -720,32 +685,28 @@ When play begins:
 Book - Every Turn
 
 Every turn:
-	if graphics-mode is true:
-		if display-inventory-illustration is false:
-			refresh the list-inventory window;
-		otherwise:
-			refresh the description-inventory window;
-		if debug-mode is true:
-			refresh the contents-debug window;
-		let people-in-the-room be the list of people who are not the player in the location of the player;
-		if the number of entries in people-in-the-room is greater than zero:
-			open the character-row window;
-			open the character-name window;
-			refresh the character-row window;
-			refresh the character-name window;
-		otherwise:
-			close the character-name window;
-			close the character-row window;
-		if the current interlocutor is not nothing:
-			if the character-topic window is g-unpresent:
-				open the character-topic window;
-			refresh the character-topic window;
-		otherwise:
-			close the character-topic window;
-		silently try looking;
+	if display-inventory-illustration is false:
+		refresh the list-inventory window;
 	otherwise:
-		continue the action;
-
+		refresh the description-inventory window;
+	if debug-mode is true:
+		refresh the contents-debug window;
+	let people-in-the-room be the list of people who are not the player in the location of the player;
+	if the number of entries in people-in-the-room is greater than zero:
+		open the character-row window;
+		open the character-name window;
+		refresh the character-row window;
+		refresh the character-name window;
+	otherwise:
+		close the character-name window;
+		close the character-row window;
+	if the current interlocutor is not nothing:
+		if the character-topic window is g-unpresent:
+			open the character-topic window;
+		refresh the character-topic window;
+	otherwise:
+		close the character-topic window;
+	silently try looking;
 
 Volume - Figures
 
@@ -1041,7 +1002,7 @@ The rusty knife is a thing.
 
 The description of the knife is "An old, worn out sheath knife that probably won't keep an edge."
 
-The illustration of the rusty knife is Figure of Knife-0.
+[The illustration of the rusty knife is Figure of Knife-0.]
 
 The rusty knife is in the Jungle.
 
@@ -1065,6 +1026,7 @@ Test me with "north / take knife / west / east / east / take cloth / southeast /
 Test me2 with "test me / north / northeast / north".
 Test me3 with "test me / north / west / examine knife".
 Test me4 with "test me3 / say hello to dogman / examine knife".
+Test me5 with "test me4 / examine cloth / wait".
 
 Test bug with "north / take knife / east/ take cloth".
 
