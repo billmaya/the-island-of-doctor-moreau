@@ -125,7 +125,7 @@ Section - Character Windows
 The character-row window is a graphics g-window spawned by the main window.
 The position of the character-row window is g-placeabove.
 The scale method of the character-row window is g-fixed-size.
-The measurement of the character-row window is 169.
+The measurement of the character-row window is 169 [195].
 
 The character-name window is a text grid g-window spawned by the main window.
 The position of the character-name window is g-placeabove.
@@ -186,7 +186,7 @@ Rule for refreshing the description-inventory window (this is the update-descrip
 	else:
 		now display-inventory-illustration is false;
 		follow the Change Inventory Windows rules;
-		try taking inventory;
+		[try taking inventory;] [Commented this out to prevent double listing of inventory]
 	refresh the graphics-inventory window;
 	refresh the title-inventory window;
 	
@@ -194,7 +194,7 @@ Rule for refreshing the graphics-inventory window:
 	if the current action is examining something (called E): 
 		if the player has the noun part of the current action:
 			draw the illustration of the noun part of the current action in the graphics-inventory window;
-
+[
 Rule for refreshing the description-inventory window:
 	if the current action is examining something (called E):
 		if the player has the noun part of the current action:
@@ -204,6 +204,8 @@ Rule for refreshing the description-inventory window:
 	else:
 		try taking inventory;
 	refresh the title-inventory window;
+]
+
 
 Section - Help & Debug Windows
 
@@ -242,10 +244,10 @@ Rule for refreshing the character-row window:
 		if the location of the people entry is the location of the player:
 			if there is an image entry:
 				if the type entry is "Portrait":
-					draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169;
+					draw the image entry in the character-row window at x image-x and y 0 scaled to width 127 and height 169 [195];
 					now image-x is image-x + 127;
 				otherwise:
-					draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169;
+					draw the image entry in the character-row window at x image-x and y 0 scaled to width 224 and height 169 [195];
 					now image-x is image-x + 224;
 
 portrait-name-length is a number that varies.
@@ -583,11 +585,9 @@ A change location windows rule (this is the change orientation of location windo
 	if help-mode is true: [close help windows]
 		close contents-help window;
 		close title-help window;
-	[Close Inventory windows]
-	close list-inventory;
+	close list-inventory; [close inventory windows]
 	close title-inventory;
-	[Modify Room windows]
-	close description-room window;
+	close description-room window; [modify room windows]
 	if display-room-illustration is false:
 		close graphics-room window;
 		now the measurement of the description-room window is 18;
@@ -599,8 +599,7 @@ A change location windows rule (this is the change orientation of location windo
 		now the measurement of the description-room window is 9;
 		open description-room window;
 		refresh description-room window;
-	[Open Inventory windows]
-	open title-inventory window;
+	open title-inventory window; [open inventory windows]
 	if display-inventory-illustration is false:
 		open list-inventory window;
 	otherwise:
@@ -631,13 +630,11 @@ A change inventory windows rule:
 	if help-mode is true: [close help windows]
 		close contents-help window;
 		close title-help window;
-	[Close Inventory contents window]
-	close title-inventory window;
+	close title-inventory window; [close inventory contents windows]
 	close list-inventory window;
 	close graphics-inventory window;
 	close description-inventory window;
-	[Close Room windows]
-	close graphics-room window;
+	close graphics-room window; [close room windows]
 	close description-room window;
 	if display-room-illustration is true:
 		open graphics-room window;
@@ -646,8 +643,7 @@ A change inventory windows rule:
 	otherwise:
 		now the measurement of the description-room window is 18;
 		open description-room window;
-	[Modify Inventory contents windows]
-	open title-inventory window;
+	open title-inventory window; [modify inventory contents windows]
 	if display-inventory-illustration is true: 
 		open graphics-inventory window;
 		open description-inventory window;
