@@ -1,7 +1,7 @@
 The story title is "The Island of Doctor Moreau".
 The story author is "Bill Maya".
 The story genre is "Science Fiction".
-The release number is 3.
+The release number is 4.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
@@ -25,6 +25,8 @@ release	notes
 		  Added scroll-mode."
 "3" 	"Removed all code related to drawing and updating the map and entire-map windows.
             Removed graphics-mode and all code associated with it."
+"4" 	" "
+
  
 Volume - Setup
 
