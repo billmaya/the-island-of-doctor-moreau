@@ -5,7 +5,7 @@ The release number is 4.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 5282]
+[WORDS - 6026]
 
 Table of Releases
 release	notes
@@ -829,6 +829,13 @@ The description of the Jungle is "This is the jungle."
 The illustration of the Jungle is Figure of Jungle-0.
 The printed name of the Jungle is "Jungle".
 
+Book - Beast-Folk-Village
+
+The Beast-Folk-Village is a room. The Beast-Folk-Village is east of the Jungle.
+The description of the Beast-Folk-Village is "This is the village of the Beast Folk."
+The illustration of the Beast-Folk-Village is Figure of Deep-Jungle-0.
+The printed name of the Beast-Folk-Village is "Beast Folk Village".
+
 Book - Trial-Grounds
 
 The Trial-Grounds is a room. The Trial-Grounds is north of the Jungle.
@@ -881,10 +888,8 @@ The illustration of the Ruins are Figure of Ruins-0.
 
 Book - Muddy Path
 
-The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of the Volcanic Caldera.
-
+The Muddy Path is a room. The Muddy Path is southeast of the Jungle and northwest of the Volcanic Caldera.
 The description of the Muddy Path is "This is a narrow, muddy path."
-
 The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
@@ -929,7 +934,7 @@ For example, if Montgomery's position was 2, Moreau's position was 1, and Dogman
 Table 3 - Character Display Information
 people	image	display-name	type	displayed	position
 Montgomery	Figure of Montgomery	"Montgomery"	"Portrait"	false	0
-Beast People	Figure of Beast-People	"Beast People"	"Landscape"	false	0
+Beast-Folk	Figure of Beast-People	"Beast Folk"	"Landscape"	false	0
 Dogman	Figure of Dogman	"Dogman"	"Portrait"	false	0
 Moreau	Figure of Moreau	"Moreau"	"Portrait" 	false	0
 Hybrid Creature	Figure of Hybrid-Creature	"Hybrid Creature"	"Landscape"	false	0
@@ -1019,13 +1024,14 @@ Chapter - Default Responses
 
 Chapter - Testing
 
-Book - Beast People
+Book - Beast-Folk
 
-The Beast People are people.
-The Beast People are neuter.
-The Beast People are plural-named.
+The Beast-Folk are people.
+The Beast-Folk are neuter.
+The Beast-Folk are plural-named.
+The printed name of Beast-Folk is "Beast Folk".
 
-The Beast People are in the Deep Jungle.
+The Beast-Folk are in the Beast-Folk-Village.
 
 Book - Moreau
 
