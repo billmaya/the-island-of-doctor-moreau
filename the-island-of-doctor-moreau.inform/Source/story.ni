@@ -196,18 +196,6 @@ Rule for refreshing the graphics-inventory window:
 	if the current action is examining something (called E): 
 		if the player has the noun part of the current action:
 			draw the illustration of the noun part of the current action in the graphics-inventory window;
-[
-Rule for refreshing the description-inventory window:
-	if the current action is examining something (called E):
-		if the player has the noun part of the current action:
-			say "[description of E][line break]"; 
-		else:
-			try taking inventory;
-	else:
-		try taking inventory;
-	refresh the title-inventory window;
-]
-
 
 Section - Help & Debug Windows
 
