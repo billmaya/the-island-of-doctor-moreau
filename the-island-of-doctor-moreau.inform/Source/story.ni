@@ -658,7 +658,7 @@ Before starting the virtual machine:
 
 Book - Player Location
 
-The player is in the Beach. [Compass Location.]
+The player is in Beach-0. [Compass Location.]
 
 Book - When Play Begins
 
@@ -759,21 +759,117 @@ Book - Scenes
 
 Volume - Rooms
 
-Book - Beach
+Book - Beach-0
 
-The Beach is a room. 
+Beach-0 is a room. 
+The description of Beach-0 is "This is the beach."
+The illustration of Beach-0 is Figure of Beach-0.
+The printed name of Beach-0 is "Beach".
 
-The description of the Beach is "This is the beach."
+Book - Beach-1
 
-The illustration of the Beach is Figure of Beach-0.
+The Beach-1 is a room. Beach-1 is east of Beach-0.
+The description of the Beach-1 is "This is the beach."
+The illustration of Beach-1 is Figure of No-Image.
+The printed name of Beach-1 is "Beach 1".
+		
+Book - Beach-2
+
+The Beach-2 is a room. Beach-2 is east of Beach-1.
+The description of the Beach-2 is "This is the beach."
+The illustration of Beach-2 is Figure of No-Image.
+The printed name of Beach-2 is "Beach 2".
+		
+Book - Cliff
+
+The Cliff is a room. Cliff is east of Beach-2.
+The description of the Cliff is "These are the beach cliffs."
+The illustration of Cliff is Figure of No-Image.
+The printed name of Cliff is "Beach Cliffs".
+
+Book - Beach-3
+
+The Beach-3 is a room. Beach-3 is west of Beach-0.
+The description of the Beach-3 is "This is the beach."
+The illustration of Beach-3 is Figure of No-Image.
+The printed name of Beach-3 is "Beach 3".
+
+Book - Beach-4
+
+The Beach-4 is a room. Beach-4 is west of Beach-3.
+The description of the Beach-4 is "This is the beach."
+The illustration of Beach-4 is Figure of No-Image.
+The printed name of Beach-4 is "Beach 4".
+
+Book - Beach-5
+
+The Beach-5 is a room. Beach-5 is northwest of Beach-4.
+The description of the Beach-5 is "This is the beach."
+The illustration of Beach-5 is Figure of No-Image.
+The printed name of Beach-5 is "Beach 5".
+
+Book - Beach-6
+
+The Beach-6 is a room. Beach-6 is north of Beach-5.
+The description of the Beach-5 is "This is the beach."
+The illustration of Beach-6 is Figure of No-Image.
+The printed name of Beach-6 is "Beach 6".
+
+Book - Forest
+
+The Forest is a room. The Forest is north of Beach-0.
+The description of the Forest is "This is the forest."
+The illustration of the Forest is Figure of Muddy-Path-0.
+The printed name of the Forest is "Forest".
 
 Book - Jungle
 
-The Jungle is a room. The Jungle is north of the Beach.
-
+The Jungle is a room. The Jungle is north of the Forest.
 The description of the Jungle is "This is the jungle."
-
 The illustration of the Jungle is Figure of Jungle-0.
+The printed name of the Jungle is "Jungle".
+
+Book - Trial-Grounds
+
+The Trial-Grounds is a room. The Trial-Grounds is north of the Jungle.
+The description of the Trial-Grounds is "This is the trial grounds."
+The illustration of the Trial-Grounds is Figure of No-Image.
+The printed name of the Trial-Grounds is "Trial Grounds".
+
+Book - Gate
+
+The Gate is a room. The Gate is north of the Trial-Grounds.
+The description of the Gate is "This is the gate."
+The illustration of the Gate is Figure of No-Image.
+The printed name of the Gate is "Gate".
+
+Book - Moreau-Compound
+
+The Moreau-Compound is a room. The Moreau-Compound is north of the Gate.
+The description of the Moreau-Compound is "This is the ruined laboratory compound of Dr. Moreau." 
+The illustration of the the Moreau-Compound is Figure of Moreau-Compound-0.
+The printed name of the Moreau-Compound is "Moreau's Compound".
+
+Book - Moreau-Lab
+
+The Moreau-Lab is a room. The Moreau-Lab is north of the Moreau-Compound.
+The description of the Moreau-Lab is "This is the laboratory of Dr. Moreau."
+The illustration of the Moreau-Lab is Figure of No-Image.
+The printed name of the Moreau-Lab is "Moreau's Lab".
+
+Book - Moreau-Grotto
+
+The Moreau-Grotto is a room. The Moreau-Grotto is down from the Moreau-Lab.
+The description of the Moreau-Grotto is "This is the grotto of Dr. Moreau."
+The illustration of the Moreau-Grotto is Figure of No-Image.
+The printed name of the Moreau-Grotto is "Moreau's Grotto".
+
+Book - Pier
+
+The Pier is a room. The Pier is west of the Moreau-Grotto.
+The description of the Pier is "This is the pier."
+The illustration of the Pier is Figure of No-Image.
+The printed name of the Pier is "Pier".
 
 Book - Ruins
 
@@ -789,7 +885,7 @@ The Muddy Path is a room. The Muddy Path is east of the Jungle and northwest of 
 
 The description of the Muddy Path is "This is a narrow, muddy path."
 
-[The illustration of the Muddy Path is Figure of Muddy-Path-0.]
+The illustration of the Muddy Path is Figure of Muddy-Path-0.
 
 Book - Volcanic Caldera
 
@@ -814,14 +910,6 @@ The Hidden Valley is a room. The Hidden Valley is north of the Deep Jungle.
 The description of the Hidden Valley is "This is the Hidden Valley."
 
 The illustration of the Hidden Valley is Figure of Hidden-Valley-0.
-
-Book - Moreau Compound
-
-The Moreau-Compound is a room. The Moreau-Compound is north of the Hidden Valley.
-
-The description of the Moreau-Compound is "This is the ruined laboratory compound of Dr. Moreau." The printed name of Moreau-Compound is "Moreau's Compound".
-
-The illustration of the Moreau-Compound is Figure of Moreau-Compound-0.
 
 Book - Regions
 
@@ -944,7 +1032,7 @@ Book - Moreau
 Moreau is a person.
 Moreau is male.
 
-Moreau is in Moreau-Compound.
+Moreau is in Moreau-Lab.
 
 Book - Assistant
 
@@ -952,14 +1040,14 @@ Assistant is a person.
 Assistant is neuter.
 The printed name of Assistant is "Moreau's Assistant". 
 
-Assistant is in Moreau-Compound.
+Assistant is in Moreau-Lab.
 
 Book - Hybrid Creature
 
 Hybrid Creature is a person.
 Hybrid Creature is neuter.
 
-Hybrid Creature is in Moreau-Compound.
+Hybrid Creature is in Moreau-Lab.
 
 Book - Ghost
 
@@ -1025,7 +1113,7 @@ Volume - Tests
 
 Book - General
 
-Test me with "north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
+Test me with "north / north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
 Test me2 with "test me / north / northeast / north".
 Test me3 with "test me / north / west / examine knife".
 Test me4 with "test me3 / say hello to dogman / examine knife".
