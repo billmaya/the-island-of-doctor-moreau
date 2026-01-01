@@ -5,7 +5,7 @@ The release number is 4.
 The story description is "The Island of Doctor Moreau".
 The story creation year is 2024.
 
-[WORDS - 6026]
+[WORDS - 5983]
 
 Table of Releases
 release	notes
@@ -1119,13 +1119,8 @@ Volume - Tests
 
 Book - General
 
-Test me with "north / north / take knife / west / east / east / take cloth / southeast / northwest / west / south / examine knife".
-Test me2 with "test me / north / northeast / north".
-Test me3 with "test me / north / west / examine knife".
-Test me4 with "test me3 / say hello to dogman / examine knife".
-Test me5 with "test me4 / examine cloth / wait".
+Test me with "north / north / take knife / southeast / take cloth / southeast / northwest / northwest / west / say hello to dogman / examine knife".
 
-Test bug with "north / take knife / east/ take cloth".
 
 Book - Compass Test Room
 
